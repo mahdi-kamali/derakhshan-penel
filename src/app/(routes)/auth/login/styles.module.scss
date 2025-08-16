@@ -1,0 +1,66 @@
+.form {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30rem;
+    border-radius: 2rem;
+    gap: 1rem;
+
+    .helps {
+        width: 80%;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        line-height: 2;
+        text-align: start;
+        margin: 0 auto;
+        a {
+            color: var(--color-dark-2);
+        }
+    }
+
+    .header {
+        width: 100%;
+        padding: 2em;
+        border-bottom: 0;
+        padding-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        h2 {
+            font-size: 1.25rem;
+        }
+       
+    }
+
+    .type {
+        margin-top: 1rem;
+        cursor: pointer;
+        color: var(--color-dark-2);
+        border-bottom: 2px solid var(--color-dark-2);
+        padding-bottom: 0.25em;
+        width: max-content;
+        justify-self: center;
+    }
+
+    .reSend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: max-content;
+        justify-self: center;
+        border-bottom: 1px solid currentColor;
+        cursor: pointer;
+    }
+}

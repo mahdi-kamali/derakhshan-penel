@@ -1,0 +1,20 @@
+.return {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    border: 2px solid white;
+    border-radius: 100rem;
+    width: max-content;
+    align-self: center;
+    justify-self: center;
+    padding: 0.25em 1.5em;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
