@@ -1,7 +1,10 @@
 .header {
     display: flex;
-    .title {
-    }
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5em;
+
     .edit {
         display: flex;
         align-items: center;
@@ -15,6 +18,11 @@
             padding: 0.25em 0.5em;
         }
     }
+
+    .title {
+        padding: 0.25em 0;
+    }
+
     .buttons {
         display: flex;
         align-items: center;

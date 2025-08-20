@@ -21,7 +21,10 @@ export const ADMIN_URLS = {
     list: ADMIN_URL_BASE_URL + "/gallery",
     create: ADMIN_URL_BASE_URL + "/gallery",
     update: ADMIN_URL_BASE_URL + "/gallery/{_id}",
-    delete: ADMIN_URL_BASE_URL + "/ gallery/{_id}",
+    delete: ADMIN_URL_BASE_URL + "/gallery/images",
+    IMAGES: {
+      add: ADMIN_URL_BASE_URL + "/gallery/images",
+    },
   },
 };
 

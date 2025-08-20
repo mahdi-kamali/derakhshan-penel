@@ -36,7 +36,9 @@ export default function Create(props: IProps) {
     <FormikProvider value={formik}>
       <Box
         header={
-          <Grid gridTemplateColumns={" 1fr max-content"}>
+          <Grid
+            gridTemplateColumns={" 1fr max-content"}
+            gap={"1rem"}>
             <p>ایجاد گالری جدید</p>
             <Button
               type='button'
@@ -49,20 +51,22 @@ export default function Create(props: IProps) {
         }>
         <Grid
           expanded={values.creating}
-          color='black'>
-          <Grid>
-            <Field.Text
-              variant='light'
-              name='title'
-              icon={<Icon icon='fluent:slide-text-title-20-filled' />}
-              onChange={handleChange}
-              title='عنوان گالری'
-              type='text'
-              value={values.title}
-              placeHodler='عنوان گالری را وارد کنید.'
-            />
-          </Grid>
-          <Grid gridTemplateColumns={"1fr 1fr"}>
+          color='black'
+          gap={"1rem"}>
+          <Field.Text
+            variant='light'
+            name='title'
+            icon={<Icon icon='fluent:slide-text-title-20-filled' />}
+            onChange={handleChange}
+            title='عنوان گالری'
+            type='text'
+            value={values.title}
+            placeHodler='عنوان گالری را وارد کنید.'
+          />
+          <Grid
+            gridTemplateColumns={"1fr 1fr"}
+            gap={"1rem"}
+            maxWidth={"20rem"}>
             <Button
               type='button'
               variant='success'

@@ -17,8 +17,10 @@ export default function Grid(props: IProps) {
     center,
     expanded = true,
     loading = false,
-    gap = "1rem",
     gridTemplateColumns = "unset",
+    alignItems = "center",
+    justifyContent = "center",
+    gap
   } = props;
   const contentClass = [styles.content, loading && styles.blur].join(" ");
   const gridClass = [styles.grid, expanded && styles.expanded].join(" ");

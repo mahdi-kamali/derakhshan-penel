@@ -1,21 +1,38 @@
 import { IMAGE_URL } from "@/common/urls/urls";
 import styles from "./styles.module.scss";
 import Icon from "../Icon/Icon";
-import { IFile } from "@/types/Gallery/gallery.types";
+import { IFile, IGallery } from "@/types/Gallery/gallery.types";
 import { dateToJalai } from "@/utils/Converters";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  DeleteGalleryAPI,
+  DeleteGalleryImageAPI,
+  GetAllGalleriesAPI,
+} from "@/services/Gallery.services";
 
 interface IProps {
+  gallery: IGallery;
   file: IFile;
   className?: string;
   loading?: () => void;
-  onDelete?: () => void;
 }
 export default function Image(props: IProps) {
-  const { className, onDelete = () => {}, file } = props;
+  const queryClein = useQueryClient();
+
+  const { className, file, gallery } = props;
 
   const imageClass = [styles.image, className].join(" ");
 
   const placeHolder = "/images/place-holder/image-holder.png";
+
+  const { mutate: DeleteMutate, isIdle } = useMutation({
+    mutationFn: DeleteGalleryImageAPI,
+    onSuccess(data, variables, context) {
+      queryClein.invalidateQueries({
+        queryKey: [GetAllGalleriesAPI.name],
+      });
+    },
+  });
 
   return (
     <div className={imageClass}>
@@ -46,6 +63,12 @@ export default function Image(props: IProps) {
           <Icon
             icon='mingcute:delete-2-fill'
             color='var(--color-danger)'
+            onClick={() => {
+              DeleteMutate({
+                _id: file._id,
+                gallery_id: gallery._id,
+              });
+            }}
           />
         </div>
       </div>

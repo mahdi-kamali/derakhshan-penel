@@ -3,6 +3,7 @@ import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
 import useTable from "@/hooks/useTable";
 import {
+  AddImagesGalleryAPI,
   DeleteGalleryAPI,
   GetAllGalleriesAPI,
   UpdateGalleryAPI,
@@ -17,37 +18,19 @@ export default function page() {
     api: GetAllGalleriesAPI,
   });
 
-  const { mutate: UpdateGallery, isIdle: UpdateGalleryLoading } = useMutation({
-    mutationFn: UpdateGalleryAPI,
-    onSuccess(data, variables, context) {
-      refetch();
-    },
-  });
-
-  const { mutate: DeleteGallery, isIdle: DeleteGalleryLoading } = useMutation({
-    mutationFn: DeleteGalleryAPI,
-    onSuccess(data, variables, context) {
-      refetch();
-    },
-  });
+  
 
   return (
     <PageContainer
       title='گالری'
-      isLoading={isLoading && UpdateGalleryLoading && DeleteGalleryLoading}>
-      <Grid>
-        <Grid>
-          <Gallery.Create onCreate={refetch} />
-        </Grid>
-        <Grid width={"100%"}>
+      isLoading={isLoading}>
+      <Grid gap={"1rem"}>
+        <Gallery.Create onCreate={refetch} />
+        <Grid
+          width={"100%"}
+          gap={"1rem"}>
           {data.map((gallery, index) => {
-            return (
-              <Gallery.Section
-                gallery={gallery}
-                onUpdate={UpdateGallery}
-                onDelete={DeleteGallery}
-              />
-            );
+            return <Gallery.Section gallery={gallery} />;
           })}
         </Grid>
       </Grid>

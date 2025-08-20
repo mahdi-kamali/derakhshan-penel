@@ -4,16 +4,40 @@ import Icon from "@/components/UI/Icon/Icon";
 import { useState } from "react";
 import { Grid } from "@/components/UI";
 import { ShowQuestion } from "@/common/toast/toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  DeleteGalleryAPI,
+  GetAllGalleriesAPI,
+  UpdateGalleryAPI,
+} from "@/services/Gallery.services";
 
 interface IProps {
   gallery: IGallery;
-  onUpdate: (gallery: IGallery) => void;
-  onDelete: (gallery: IGallery) => void;
 }
 
 export default function Header(props: IProps) {
-  const { gallery, onUpdate, onDelete } = props;
+  const client = useQueryClient();
+
+  const { gallery } = props;
   const { title } = gallery;
+
+  const { mutate: UpdateGallery, isIdle: UpdateGalleryLoading } = useMutation({
+    mutationFn: UpdateGalleryAPI,
+    onSuccess(data, variables, context) {
+      client.invalidateQueries({
+        queryKey: [GetAllGalleriesAPI.name],
+      });
+    },
+  });
+
+  const { mutate: DeleteGallery, isIdle: DeleteGalleryLoading } = useMutation({
+    mutationFn: DeleteGalleryAPI,
+    onSuccess(data, variables, context) {
+      client.invalidateQueries({
+        queryKey: [GetAllGalleriesAPI.name],
+      });
+    },
+  });
 
   const [editing, setEditing] = useState({
     active: false,
@@ -23,7 +47,7 @@ export default function Header(props: IProps) {
   const handleDelete = () => {
     ShowQuestion({
       onConfirm() {
-        onDelete(gallery);
+        DeleteGallery(gallery);
       },
       onDeny() {},
     });
@@ -50,7 +74,7 @@ export default function Header(props: IProps) {
               icon='el:ok-sign'
               color='var(--color-success)'
               onClick={() => {
-                onUpdate({
+                UpdateGallery({
                   ...gallery,
                   title: editing.value,
                 });
