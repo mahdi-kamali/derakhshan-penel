@@ -1,8 +1,9 @@
 import Accordion from "./accordion/Accordion";
-import Box from "./box/Box";
 import Field from "./Field/Field";
-import Grid from "./grid/Grid";
 import Spinners from "./Spinners";
-import Button from "./button/Button";
 import Animation from "./animation/Animation";
-export { Grid, Button, Accordion, Field, Box, Spinners, Animation };
+import Image from "./image/Image";
+import Box from "./Box/Box";
+import Button from "./Button/Button";
+import Grid from "./grid/Grid";
+export { Grid, Button, Accordion, Field, Box, Spinners, Animation, Image };

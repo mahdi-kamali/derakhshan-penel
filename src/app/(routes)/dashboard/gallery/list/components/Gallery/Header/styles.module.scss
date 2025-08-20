@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    .title {
+    }
+    .edit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0.5em;
+        input {
+            all: unset;
+            box-shadow: 0rem 0rem 0.3rem 0 rgb(217, 217, 217);
+            border-radius: 0.25rem;
+            padding: 0.25em 0.5em;
+        }
+    }
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        font-size: 1.5rem;
+        margin-right: auto;
+        svg {
+            cursor: pointer;
+        }
+    }
+}

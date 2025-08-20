@@ -12,5 +12,9 @@ export default function PageContainer({ children, title, isLoading }: IProps) {
     document.title = title;
   }, [title]);
 
-  return <div className={styles.pageContainer}>{children}</div>;
+  return (
+    <div className={styles.pageContainer}>
+      <div className={styles.content}>{children}</div>
+    </div>
+  );
 }

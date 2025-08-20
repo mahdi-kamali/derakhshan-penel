@@ -6,7 +6,7 @@
     border: 1px solid white;
     transition: 0.5s ease all;
     box-shadow: 0.3rem 0.5rem 0.5rem 0rem transparent;
-
+    font-size: 0.9rem;
     &:hover {
         box-shadow: 0.3rem 0.5rem 0.5rem 0rem rgba(255, 255, 255, 0.25);
     }
@@ -63,7 +63,6 @@
 }
 
 .tooltip {
-
     height: max-content;
     position: absolute;
     left: 1rem;
@@ -72,4 +71,9 @@
 
 .errorMessage {
     background-color: var(--color-danger);
+}
+
+.variant-light {
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }

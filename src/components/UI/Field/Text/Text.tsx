@@ -10,8 +10,7 @@ interface IProps extends IField {
 }
 
 export default function Text(props: IProps) {
-  const { type } = props;
-
+  const { type, placeHodler } = props;
 
   const [view, setView] = useState(false);
 
@@ -25,6 +24,7 @@ export default function Text(props: IProps) {
         <input
           {...props}
           type={view ? "text" : type}
+          placeholder={placeHodler}
         />
         <div className={styles.icons}>
           {type === "password" && !view && (

@@ -1,5 +1,5 @@
 import Icon from "@/components/UI/Icon/Icon";
-import { IRouteContent, IRouteType } from "@/types/Routes.types";
+import { IRouteType } from "@/types/Routes.types";
 import React, { useEffect, useState } from "react";
 
 export default function useAppRouter() {
@@ -30,6 +30,21 @@ export default function useAppRouter() {
           path: "/dashboard/users/create",
           icon: <Icon icon='material-symbols-light:new-label' />,
           shownSideBar: true,
+        },
+      ],
+    },
+    {
+      id: 1,
+      title: "گالری",
+      icon: <Icon icon='solar:gallery-wide-bold-duotone' />,
+      path: "/dashboard/gallery/list",
+      shownSideBar: true,
+      children: [
+        {
+          title: "لیست",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/gallery/list",
         },
       ],
     },

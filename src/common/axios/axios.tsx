@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, HttpStatusCode } from "axios";
 import moment from "moment-jalaali";
-import { ShowError } from "../toast/toast";
+import { ShowError, ShowSuccess } from "../toast/toast";
 import { RootStore } from "@/@redux/reduxt/stores/RootStore";
 type IResponse<T, OTHERS = any> = {
   data: T;
@@ -10,6 +10,8 @@ type IResponse<T, OTHERS = any> = {
 
 axios.interceptors.response.use(
   (response) => {
+    const message = response.data.message;
+    if (message) ShowSuccess(message);
     return response.data;
   },
   (error) => {

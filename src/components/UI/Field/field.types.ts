@@ -1,6 +1,7 @@
 import { ChangeEventHandler } from "react";
 
 export interface IField {
+  variant?: "regular" | "dark" | "light";
   name: string;
   title: string;
   icon: React.ReactElement;

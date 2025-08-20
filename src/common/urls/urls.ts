@@ -10,19 +10,19 @@ export const AUTH_URLS = {
   logOut: SERVER_API_URL + "/logout",
 };
 
-export const ADMIN_URL = SERVER_API_URL + "/admin";
+export const ADMIN_URL_BASE_URL = SERVER_API_URL + "/admin";
 
-export const USERS_URLS = {
-  list: ADMIN_URL + "/users",
-  create: ADMIN_URL + "/users",
-  assignRole: ADMIN_URL + "/users/role/assign",
-  assignContractor: ADMIN_URL + "/users/contractor/assign",
-  deleteUserById: ADMIN_URL + "/users/{id}",
-  getByuId: ADMIN_URL + "/users/{id}?includes=Roles",
-  updateById: ADMIN_URL + "/users/{id}",
-  rolesById: ADMIN_URL + "/users/{id}/roles",
-  contractorsById: ADMIN_URL + "/users/{id}/contractors",
-  revokeRole: ADMIN_URL + "/users/{user}/role/{roleId}",
-  revokeContract: ADMIN_URL + "/users/{user}/contractor/{contract}",
-  exportExcel: ADMIN_URL + "/users/export",
+export const ADMIN_URLS = {
+  USERS: {
+    list: ADMIN_URL_BASE_URL + "/users",
+    create: ADMIN_URL_BASE_URL + "/users",
+  },
+  GALLERY: {
+    list: ADMIN_URL_BASE_URL + "/gallery",
+    create: ADMIN_URL_BASE_URL + "/gallery",
+    update: ADMIN_URL_BASE_URL + "/gallery/{_id}",
+    delete: ADMIN_URL_BASE_URL + "/ gallery/{_id}",
+  },
 };
+
+export const IMAGE_URL = (path: string) => `${SERVER_BASE_URL}${path}`;

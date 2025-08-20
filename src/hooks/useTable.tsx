@@ -11,15 +11,12 @@ export default function useTable<T = any[]>(props: IProps<T>) {
   const [params, setParams] = useState({});
   const [enabled, setEnabled] = useState();
   const [currentPage, _setCurrentPage] = useState(0);
-
   const setCurrentPage = (page: number) => {
     setParams({ ...params, page });
     _setCurrentPage(page);
   };
 
-  console.log(params);
-
-  const { data, isLoading } = useQuery<T>({
+  const { data, isLoading, refetch } = useQuery<T>({
     queryFn: () => api({ ...params }).then((res: any) => res.data),
     initialData: [] as T,
     queryKey: [api.name, params],
@@ -35,5 +32,6 @@ export default function useTable<T = any[]>(props: IProps<T>) {
     setEnabled,
     currentPage,
     setCurrentPage,
+    refetch,
   };
 }

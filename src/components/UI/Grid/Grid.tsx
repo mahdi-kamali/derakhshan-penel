@@ -17,6 +17,8 @@ export default function Grid(props: IProps) {
     center,
     expanded = true,
     loading = false,
+    gap = "1rem",
+    gridTemplateColumns = "unset",
   } = props;
   const contentClass = [styles.content, loading && styles.blur].join(" ");
   const gridClass = [styles.grid, expanded && styles.expanded].join(" ");
@@ -26,8 +28,18 @@ export default function Grid(props: IProps) {
   return (
     <div
       className={gridClass}
-      style={props}>
-      <div className={contentClass}>{children}</div>
+      style={{
+        ...props,
+        gridTemplateColumns: "unset",
+      }}>
+      <div
+        className={contentClass}
+        style={{
+          gridTemplateColumns: gridTemplateColumns,
+          gap: gap,
+        }}>
+        {children}
+      </div>
       <div
         className={spinnerClass}
         key={loading ? 1 : 0}>

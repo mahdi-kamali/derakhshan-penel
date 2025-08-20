@@ -6,13 +6,4 @@ export interface IRouteType {
   children?: IRouteType[];
   onClick?: () => void;
   shownSideBar: boolean;
-  contents?: IRouteContent[];
-}
-
-export interface IRouteContent {
-  description: string;
-  name: string;
-  tab: string;
-  type: string;
-  value: number;
 }

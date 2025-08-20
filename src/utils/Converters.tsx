@@ -1,9 +1,9 @@
 import jalaali from "jalaali-js";
 import moment from "moment-jalaali";
 
-export const dateToJalai = (value: Date) => {
+export const dateToJalai = (value: string) => {
   const m = moment(value);
-  const formated = m.format("jYYYY-jMM-jDD");
+  const formated = m.format("jYYYY/jMM/jDD");
   const isNan = formated.includes("NaN");
   if (isNan || !value) return "---";
   return formated;
@@ -35,7 +35,6 @@ export function convertStringBooleans(obj: any) {
 export const ToJson = (data: any) => {
   return JSON.stringify(data);
 };
-
 
 export function ResolveNestedOBject(path: string, obj = self, separator = ".") {
   const properties = Array.isArray(path) ? path : path.split(separator);

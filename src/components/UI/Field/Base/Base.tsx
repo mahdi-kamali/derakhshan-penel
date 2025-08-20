@@ -5,17 +5,25 @@ import Icon from "../../Icon/Icon";
 import Tooltip from "../../tooltip/Tooltip";
 
 export interface IBaseProps extends IField {
-  children?: React.ReactElement ;
+  children?: React.ReactElement;
 }
 
 export default function Base(props: IBaseProps) {
-  const { children, icon, title, value, validation } = props;
+  const {
+    children,
+    icon,
+    title,
+    value,
+    validation,
+    variant = "regular",
+  } = props;
 
   const field = [
     styles.field,
     value && styles.value,
     value && validation?.errorMessage === undefined && styles.success,
     validation?.errorMessage && styles.danger,
+    styles[`variant-${variant}`],
   ].join(" ");
 
   return (
