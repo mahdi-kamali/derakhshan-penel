@@ -1,0 +1,117 @@
+.container {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    height: max-content;
+    border: none !important;
+    margin-top: -0.5rem;
+    * {
+        border: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.control {
+    border: none !important;
+    border-radius: 8px;
+    min-height: 40px;
+    background: #fff;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: #888;
+    }
+
+    &--is-focused {
+        border-color: #1a73e8;
+        box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+    }
+}
+
+.placeholder {
+    color: #888;
+}
+
+.single-value {
+    color: #222;
+    font-weight: 500;
+}
+
+.menu {
+    border-radius: 8px;
+    z-index: 1000;
+    margin-top: 1rem !important;
+    box-shadow: none !important;
+    box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.selected {
+    background: var(--color-info) !important;
+    color: white !important;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: white !important;
+    padding: 0.5em !important;
+    transition: 0.25s ease all !important;
+
+    &:hover {
+        background: var(--color-info) !important;
+        color: white !important;
+    }
+    &--is-selected {
+        background: red !important;
+        color: white !important;
+    }
+}
+
+.variant--success {
+    // background-color: var(--color-success) !important;
+    color: var(--color-success) !important;
+}
+
+.variant--type-2 {
+    // background-color: var(--color-secondary) !important;
+    color: var(--color-secondary) !important;
+}
+
+.variant--primary {
+    // background-color: var(--color-primary) !important;
+    color: var(--color-primary) !important;
+}
+
+.variant--type-4 {
+    // background-color: var(--color-info) !important;
+    color: var(--color-info) !important;
+}
+
+.variant--light {
+    // background-color: var(--color-success) !important;
+    color: var(--color-success) !important;
+}
+
+.variant--danger {
+    // background-color: var(--color-danger) !important;
+    color: var(--color-danger) !important;
+}
+
+.variant--warning {
+    // background-color: var(--color-warning) !important;
+    color: var(--color-warning) !important;
+}
+
+.variant--panel-list-item {
+    // background-color: var(--color-gray-200) !important;
+    color: var(--color-gray-200) !important;
+}
+
+.variant--indigo {
+    // background-color: var(--color-indigo) !important;
+    color: var(--color-indigo) !important;
+}

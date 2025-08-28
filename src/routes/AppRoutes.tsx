@@ -39,12 +39,33 @@ export default function useAppRouter() {
       icon: <Icon icon='solar:gallery-wide-bold-duotone' />,
       path: "/dashboard/gallery/list",
       shownSideBar: true,
+      // children: [
+      //   {
+      //     title: "لیست",
+      //     id: 3,
+      //     shownSideBar: true,
+      //     path: "/dashboard/gallery/list",
+      //   },
+      // ],
+    },
+    {
+      id: 1,
+      title: "صفحات",
+      icon: <Icon icon='icon-park-solid:web-page' />,
+      path: "/dashboard/pages/list",
+      shownSideBar: true,
       children: [
         {
           title: "لیست",
           id: 3,
           shownSideBar: true,
-          path: "/dashboard/gallery/list",
+          path: "/dashboard/pages/list",
+        },
+        {
+          title: "ایجاد",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/pages/create",
         },
       ],
     },

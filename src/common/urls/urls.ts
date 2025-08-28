@@ -26,6 +26,14 @@ export const ADMIN_URLS = {
       add: ADMIN_URL_BASE_URL + "/gallery/images",
     },
   },
+  PAGES: {
+    list: ADMIN_URL_BASE_URL + "/pages",
+    create: ADMIN_URL_BASE_URL + "/pages",
+    deleteByID: ADMIN_URL_BASE_URL + "/pages/{id}",
+    SECTIONS: {
+      list: ADMIN_URL_BASE_URL + "/pages/{id}/sections",
+    },
+  },
 };
 
 export const IMAGE_URL = (path: string) => `${SERVER_BASE_URL}${path}`;

@@ -8,42 +8,48 @@ interface IProps extends CSSProperties {
   center?: boolean;
   expanded?: boolean;
   loading?: boolean;
+  type?: "flex" | "grid";
 }
 
 export default function Grid(props: IProps) {
   const {
     children,
-    flexDirection = "flex",
-    center,
     expanded = true,
     loading = false,
-    gridTemplateColumns = "unset",
-    alignItems = "center",
-    justifyContent = "center",
-    gap
+    type = "grid",
+    gridTemplateColumns,
+    gap,
+    center = false,
   } = props;
-  const contentClass = [styles.content, loading && styles.blur].join(" ");
-  const gridClass = [styles.grid, expanded && styles.expanded].join(" ");
-  const spinnerClass = [styles.spinner, loading && styles.spinnerShow].join(
-    " ",
-  );
+
+  const grid = [
+    styles.grid,
+    expanded && styles.expanded,
+    loading && styles.blur,
+    center && styles.center
+  ].join(" ");
+  const accordion = [styles.accordion].join(" ");
+  const content = [
+    styles.content,
+    type === "flex" && styles.flex,
+    type === "grid" && styles.grid,
+  ].join(" ");
+  const spinner = [styles.spinner, loading && styles.spinnerShow].join(" ");
   return (
-    <div
-      className={gridClass}
-      style={{
-        ...props,
-        gridTemplateColumns: "unset",
-      }}>
-      <div
-        className={contentClass}
-        style={{
-          gridTemplateColumns: gridTemplateColumns,
-          gap: gap,
-        }}>
-        {children}
+    <div className={grid}>
+      <div className={accordion}>
+        <div
+          className={content}
+          style={{
+            ...props,
+            gridTemplateColumns: gridTemplateColumns,
+            gap: gap,
+          }}>
+          {children}
+        </div>
       </div>
       <div
-        className={spinnerClass}
+        className={spinner}
         key={loading ? 1 : 0}>
         <span>در حال پردازش...</span>
         <Spinners.Shade />

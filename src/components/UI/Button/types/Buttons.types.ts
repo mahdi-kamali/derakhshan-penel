@@ -1,4 +1,4 @@
-import { ISize, IVariant } from "@/types/Variables";
+import { IVariant } from "@/types/Variables";
 import React, { CSSProperties } from "react";
 
 type IDisable =
@@ -32,7 +32,6 @@ export type IButtonProps = {
   onClick?: () => void;
   disabled?: IDisable;
   isLoading?: boolean;
-  size?: ISize;
   style?: CSSProperties;
   className?: string;
   children?: React.ReactElement;

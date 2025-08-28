@@ -5,10 +5,30 @@
     position: relative;
 }
 
-.content {
+.accordion {
     display: grid;
     overflow: hidden;
     transition: inherit;
+}
+
+.center {
+    align-items: center !important;
+    justify-content: center !important;
+    .content {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+.flex {
+    display: flex !important;
+    flex-wrap: wrap;
+}
+
+.grid {
+    display: grid !important;
 }
 
 .expanded {
@@ -16,8 +36,12 @@
 }
 
 .blur {
-    filter: blur(10px);
+    .content {
+        filter: blur(10px);
+    }
 }
+
+// SPinner
 
 .spinner {
     position: absolute;
@@ -39,6 +63,7 @@
     opacity: 0;
     user-select: none !important;
     pointer-events: none;
+    height: max-content;
     span {
         border-bottom: 1px solid white;
         padding-bottom: 0.25em;

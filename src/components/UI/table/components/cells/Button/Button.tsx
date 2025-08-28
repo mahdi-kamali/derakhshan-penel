@@ -1,12 +1,13 @@
 import { IVariant } from "@/types/Variables";
 import styles from "./styles.module.scss";
 import Spinners from "@/components/UI/Spinners";
+import Cell from "../Cell";
 
 interface IProps {
   variant: IVariant;
   icon: React.ReactElement;
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
 }
@@ -16,7 +17,7 @@ export default function Button(props: IProps) {
     variant,
     icon,
     title,
-    onClick,
+    onClick = () => {},
     disabled = false,
     loading = false,
   } = props;
@@ -24,22 +25,24 @@ export default function Button(props: IProps) {
   const className = [styles.button, styles[variant]].join(" ");
 
   return (
-    <button
-      className={className}
-      disabled={disabled}
-      onClick={onClick}>
-      {loading && (
-        <>
-          <Spinners.Bars />
-          <span>درحال پردازش ...</span>
-        </>
-      )}
-      {!loading && (
-        <>
-          {icon}
-          <span>{title}</span>
-        </>
-      )}
-    </button>
+    <Cell.Container>
+      <button
+        className={className}
+        disabled={disabled}
+        onClick={onClick}>
+        {loading && (
+          <>
+            <Spinners.Bars />
+            <span>درحال پردازش ...</span>
+          </>
+        )}
+        {!loading && (
+          <>
+            {icon}
+            <span>{title}</span>
+          </>
+        )}
+      </button>
+    </Cell.Container>
   );
 }

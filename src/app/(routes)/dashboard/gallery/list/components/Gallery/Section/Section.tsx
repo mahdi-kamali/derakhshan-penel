@@ -15,7 +15,7 @@ export default function Section(props: IProps) {
       <Grid gap={"1rem"}>
         {/* Prev Images */}
         <Grid
-          gridTemplateColumns={"1fr 1fr 1fr "}
+          gridTemplateColumns={"1fr 1fr 1fr"}
           gap={"1rem"}>
           {gallery.images.map((image) => {
             return (

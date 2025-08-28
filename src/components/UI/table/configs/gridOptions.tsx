@@ -17,6 +17,7 @@ const gridOptions: GridOptions = {
     editable: false,
     suppressMovable: true,
     unSortIcon: false,
+    flex :1 ,
     cellRenderer: (props: any) => {
       const { value, colDef } = props;
       const { type } = colDef;

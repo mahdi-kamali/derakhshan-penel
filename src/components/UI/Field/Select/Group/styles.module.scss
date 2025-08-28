@@ -1,0 +1,20 @@
+.group {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+}
+
+.childs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: max-content;
+    gap: 0.5rem;
+    padding: 0.5em;
+    padding-right: 0;
+}
+
+
+.variant-indigo {
+}

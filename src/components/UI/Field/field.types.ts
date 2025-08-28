@@ -1,6 +1,7 @@
 import { ChangeEventHandler } from "react";
 
 export interface IField {
+  dir?: "rtl" | "ltr";
   variant?: "regular" | "dark" | "light";
   name: string;
   title: string;

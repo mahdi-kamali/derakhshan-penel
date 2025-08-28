@@ -22,7 +22,7 @@ export default function Status(props: IProps) {
   return (
     <div className={statusClass}>
       <span>{option?.icon}</span>
-      <span>{option?.lable}</span>
+      <span>{option?.label}</span>
     </div>
   );
 }
