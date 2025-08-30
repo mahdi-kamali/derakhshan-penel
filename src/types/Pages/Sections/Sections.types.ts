@@ -2,6 +2,7 @@
 type Sections = {
   UNSET: {
     type: "UNSET";
+    components: any;
   };
   HOME_HERO: {
     type: "HOME_HERO";

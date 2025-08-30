@@ -4,6 +4,7 @@ import { ISectionsBase } from "@/types/Pages/Sections/Sections.types";
 import { SECTIONS_OPTIONS } from "@/types/Variables";
 import { useFormik } from "formik";
 import React, { useState } from "react";
+import HOME_HERO from "../Home/HOME_HERO/HOME_HERO";
 
 export default function Create() {
   const [isCreating, setIsCreating] = useState(false);
@@ -14,13 +15,19 @@ export default function Create() {
       type: "UNSET",
       name: "",
       isActive: false,
+      components: {
+        EN: {},
+        FA: {},
+      },
     } as ISectionsBase,
     onSubmit(values, formikHelpers) {},
   });
   return (
     <Grid
       type='flex'
-      center>
+      center
+      flexDirection='column'
+      gap={"1rem"}>
       <Box
         maxContent
         header={
@@ -76,14 +83,7 @@ export default function Create() {
         </Grid>
       </Box>
 
-      <Grid expanded={values.type === "HOME_HERO"}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-          debitis odio praesentium, ea obcaecati ad laboriosam quis aut
-          voluptatem doloremque rem veritatis consequatur fugiat et reiciendis
-          dicta consectetur ipsa nisi.
-        </p>
-      </Grid>
+      <HOME_HERO />
     </Grid>
   );
 }
