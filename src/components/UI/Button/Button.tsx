@@ -13,7 +13,6 @@ export default function Button(props: IButtonProps) {
     disabled = false,
     isLoading = false,
     onClick = () => {},
-    size = "normal",
     style = {},
     type,
     className,
@@ -24,7 +23,6 @@ export default function Button(props: IButtonProps) {
     const classs = [
       styles.button,
       styles[variant],
-      styles[size],
       className,
       (isLoading || disabled) && styles.disabled,
     ];
@@ -36,7 +34,7 @@ export default function Button(props: IButtonProps) {
     const { href } = props;
     return (
       <Link
-        className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+        className={`${styles.button} ${styles[variant]}`}
         onClick={onClick}
         style={style}
         href={href}>

@@ -41,3 +41,10 @@ input[data-autocompleted] {
 img {
     display: flex;
 }
+
+.slick-list {
+    margin: 0 -7px;
+    & .slick-slide > div {
+        padding: 0 10px;
+    }
+}

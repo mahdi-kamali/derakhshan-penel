@@ -2,23 +2,15 @@
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
 import useTable from "@/hooks/useTable";
-import {
-  AddImagesGalleryAPI,
-  DeleteGalleryAPI,
-  GetAllGalleriesAPI,
-  UpdateGalleryAPI,
-} from "@/services/Gallery.services";
+import { GetAllGalleriesAPI } from "@/services/Gallery.services";
 import { IGallery } from "@/types/Gallery/gallery.types";
 import React from "react";
 import Gallery from "./components/Gallery";
-import { useMutation } from "@tanstack/react-query";
 
 export default function page() {
   const { data, isLoading, refetch } = useTable<IGallery[]>({
     api: GetAllGalleriesAPI,
   });
-
-  
 
   return (
     <PageContainer

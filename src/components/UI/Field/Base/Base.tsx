@@ -5,7 +5,7 @@ import Icon from "../../Icon/Icon";
 import Tooltip from "../../tooltip/Tooltip";
 
 export interface IBaseProps extends IField {
-  children?: React.ReactElement;
+  children?: React.ReactElement | React.ReactElement[];
 }
 
 export default function Base(props: IBaseProps) {

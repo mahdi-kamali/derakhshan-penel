@@ -6,11 +6,12 @@ import { IField } from "../field.types";
 import styles from "./styles.module.scss";
 
 interface IProps extends IField {
-  type: HTMLInputElement["type"];
+  type: "text" | "password";
+  lines?: number;
 }
 
 export default function Text(props: IProps) {
-  const { type, placeHodler } = props;
+  const { type, placeHodler, lines } = props;
 
   const [view, setView] = useState(false);
 
@@ -21,11 +22,22 @@ export default function Text(props: IProps) {
   return (
     <Base {...props}>
       <div className={styles.text}>
-        <input
-          {...props}
-          type={view ? "text" : type}
-          placeholder={placeHodler}
-        />
+        {lines && (
+          <textarea
+            {...(props as any)}
+            rows={lines}
+            placeholder={placeHodler}
+          />
+        )}
+
+        {!lines && (
+          <input
+            {...props}
+            type={view ? "text" : type}
+            placeholder={placeHodler}
+          />
+        )}
+
         <div className={styles.icons}>
           {type === "password" && !view && (
             <Icon

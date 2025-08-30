@@ -6,4 +6,15 @@ import Image from "./image/Image";
 import Box from "./Box/Box";
 import Button from "./Button/Button";
 import Grid from "./grid/Grid";
-export { Grid, Button, Accordion, Field, Box, Spinners, Animation, Image };
+import Modal from "./modal/Modal";
+export {
+  Grid,
+  Button,
+  Accordion,
+  Field,
+  Box,
+  Spinners,
+  Animation,
+  Image,
+  Modal,
+};
