@@ -1,16 +1,19 @@
 import { ChangeEventHandler } from "react";
 
-export interface IField {
+export interface IField<
+  TYPE = any,
+  CHANGE = ChangeEventHandler<HTMLInputElement>,
+> {
   dir?: "rtl" | "ltr";
   variant?: "regular" | "dark" | "light";
   name: string;
   title: string;
   icon: React.ReactElement;
-  value: any;
+  value: TYPE;
   placeHodler?: string;
   disabled?: boolean;
   isLoading?: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange: (value: CHANGE) => void;
   validation?: {
     errorMessage: string | undefined;
   };

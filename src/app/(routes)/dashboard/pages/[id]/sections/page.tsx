@@ -5,7 +5,8 @@ import { GetPageSectionsAPI } from "@/services/Pages/Sections/Sections.services"
 import { IPage } from "@/types/Pages/pages.types";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import Create from "./components/Create/Create";
+import CreateSection from "./components/CreateSection/CreateSection";
+import HOME_HERO from "./components/Home/HOME_HERO/HOME_HERO";
 
 export default function page() {
   const { id } = useParams();
@@ -19,16 +20,25 @@ export default function page() {
   return (
     <PageContainer title='ویرایش محتوای صفحه'>
       <Grid>
-        <Grid>
-          <Create />
-        </Grid>
-        <Grid>
-          <>
+        <CreateSection page_id={id as string} />
+        <Grid
+          marginTop={"1rem"}
+          gap={"1rem"}
+          type='flex'
+          center
+          flexDirection='column'>
+          <span>لیست سکشن های موجود ({data.length})</span>
+          <Grid gap={"1rem"}>
             {data?.map((section) => {
-              console.log(section.type);
-              return <h1>ok</h1>;
+              const { type } = section;
+              switch (type) {
+                case "HOME_HERO": {
+                  return <HOME_HERO section={section} />;
+                }
+              }
+              return <h1>{section.name}</h1>;
             })}
-          </>
+          </Grid>
         </Grid>
       </Grid>
     </PageContainer>

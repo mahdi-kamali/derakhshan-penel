@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import styles from "./styles.module.scss";
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
+import { Fade, Grow } from "@mui/material";
 
 interface IProps {
   children: ReactElement | ReactElement[];
@@ -29,32 +30,38 @@ export default function Modal(props: IProps) {
         backdrop: styles.backdrop,
       }}
       open={show}
-      onClose={onClose}>
-      <div className={styles.content}>
-        <div className={styles.children}>{children}</div>
+      onClose={onClose}
+      closeAfterTransition>
+      <Grow in={show}>
+        <div className={styles.content}>
+          <div className={styles.children}>{children}</div>
 
-        {actions && (
-          <div className={styles.actions}>
-            <Button
-              type='button'
-              title='لغو و بستن'
-              variant='danger'
-              icon={<Icon icon='line-md:close' />}
-              onClick={onClose}
-              disabled={actions.cancel.enabled === false}
-            />
+          {actions && (
+            <div className={styles.actions}>
+              <Button
+                type='button'
+                title='لغو و بستن'
+                variant='danger'
+                icon={<Icon icon='line-md:close' />}
+                onClick={onClose}
+                disabled={actions.cancel.enabled === false}
+              />
 
-            <Button
-              type='button'
-              title='ثبت'
-              variant='success'
-              icon={<Icon icon='lsicon:submit-outline' />}
-              onClick={onClose}
-              disabled={actions.submit.enabled === false}
-            />
-          </div>
-        )}
-      </div>
+              <Button
+                type='button'
+                title='ثبت'
+                variant='success'
+                icon={<Icon icon='lsicon:submit-outline' />}
+                onClick={() => {
+                  if (actions?.submit?.onSubmit) actions?.submit?.onSubmit();
+                  onClose();
+                }}
+                disabled={actions.submit.enabled === false}
+              />
+            </div>
+          )}
+        </div>
+      </Grow>
     </MuiModal>
   );
 }

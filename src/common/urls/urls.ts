@@ -32,6 +32,7 @@ export const ADMIN_URLS = {
     deleteByID: ADMIN_URL_BASE_URL + "/pages/{id}",
     SECTIONS: {
       list: ADMIN_URL_BASE_URL + "/pages/{id}/sections",
+      create: ADMIN_URL_BASE_URL + "/pages/{id}/sections",
     },
   },
 };

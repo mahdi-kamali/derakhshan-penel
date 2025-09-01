@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 import Icon from "../../Icon/Icon";
 import { GetAllGalleriesAPI } from "@/services/Gallery.services";
 import useTable from "@/hooks/useTable";
-interface IProps extends IField {
+interface IProps extends IField<IFile, IFile> {
   type: "single" | "multi";
 }
 
@@ -24,7 +24,7 @@ export default function Image(props: IProps) {
   });
 
   return (
-    <Base {...props}>
+    <Base {...(props as any)}>
       <div className={styles.field}>
         <div className={styles.preview}>
           <img
@@ -53,8 +53,10 @@ export default function Image(props: IProps) {
         onClose={() => setShow(false)}
         actions={{
           submit: {
-            enabled: false,
-            onSubmit() {},
+            enabled: !!file,
+            onSubmit: () => {
+              props.onChange(file!!);
+            },
           },
           cancel: {
             enabled: true,
@@ -71,6 +73,16 @@ export default function Image(props: IProps) {
                     <GalleryImage
                       file={image}
                       gallery={gallery}
+                      actions={{
+                        select: {
+                          enabled: true,
+                          onChange(checked) {
+                            if (checked) setFile(image);
+                            else setFile(undefined);
+                          },
+                          checked: file?._id === image._id,
+                        },
+                      }}
                     />
                   );
                 })}

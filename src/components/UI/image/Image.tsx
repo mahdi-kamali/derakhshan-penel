@@ -9,17 +9,25 @@ import {
   DeleteGalleryImageAPI,
   GetAllGalleriesAPI,
 } from "@/services/Gallery.services";
+import { Checkbox } from "@mui/material";
 
 interface IProps {
   gallery: IGallery;
   file: IFile;
   className?: string;
   loading?: () => void;
+  actions?: {
+    select?: {
+      enabled?: boolean;
+      onChange: (checked: boolean) => void;
+      checked?: boolean;
+    };
+  };
 }
 export default function Image(props: IProps) {
   const queryClein = useQueryClient();
 
-  const { className, file, gallery } = props;
+  const { className, file, gallery, actions } = props;
 
   const imageClass = [styles.image, className].join(" ");
 
@@ -71,6 +79,19 @@ export default function Image(props: IProps) {
             }}
           />
         </div>
+        {actions && (
+          <div className={styles.actions}>
+            {actions.select?.enabled && (
+              <label className={styles.select}>
+                <Checkbox
+                  checked={actions.select.checked}
+                  onChange={(event, value) => actions.select?.onChange(value)}
+                />
+                <span>انتخاب کردن</span>
+              </label>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
