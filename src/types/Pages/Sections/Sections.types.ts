@@ -113,4 +113,4 @@ type BaseFields = {
 };
 
 // 3) Final type
-export type ISectionsBase = BaseFields & Sections[keyof Sections];
+export type ISection = BaseFields & Sections[keyof Sections];

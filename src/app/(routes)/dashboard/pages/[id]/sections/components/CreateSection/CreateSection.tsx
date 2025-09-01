@@ -1,6 +1,6 @@
 import { Box, Field, Grid } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
-import { ISectionsBase } from "@/types/Pages/Sections/Sections.types";
+import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { SECTIONS_OPTIONS } from "@/types/Variables";
 import { useFormik } from "formik";
 import React, { useState } from "react";
@@ -13,9 +13,10 @@ interface IProps {
 
 export default function CreateSection(props: IProps) {
   const { page_id } = props;
+
   const [isCreating, setIsCreating] = useState(false);
 
-  const [type, setType] = useState<ISectionsBase["type"]>();
+  const [type, setType] = useState<ISection["type"]>();
 
   return (
     <Grid
@@ -65,7 +66,7 @@ export default function CreateSection(props: IProps) {
       <Grid
         expanded={type === "HOME_HERO"}
         marginTop={"1rem"}>
-        <HOME_HERO page_id={page_id} />
+        <HOME_HERO page_id={page_id}  />
       </Grid>
     </Grid>
   );

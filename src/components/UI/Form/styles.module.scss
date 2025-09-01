@@ -10,34 +10,12 @@
 
 .tabs {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 1em;
-
-    button {
-        all: unset;
-        display: flex;
-        color: black;
-        align-items: center;
-        justify-content: center;
-        padding: 0.25em 1em;
-        border-radius: 0.5rem;
-        gap: 0.5rem;
-        background-color: rgba(129, 129, 129, 0.1);
-        cursor: pointer;
-        transition: all 0.5s ease;
-        &:hover {
-            background-color: var(--color-indigo);
-            color: white;
-        }
-    }
-
-    .isActive {
-        background-color: var(--color-indigo);
-        color: white;
-    }
 }
 
 .actons {
@@ -55,6 +33,11 @@
     }
 }
 
-.form {
-    direction: rtl;
+.forms {
+    .body {
+        margin-top: 1rem;
+    }
+    .form {
+        direction: rtl;
+    }
 }

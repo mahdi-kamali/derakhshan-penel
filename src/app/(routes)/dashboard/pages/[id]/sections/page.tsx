@@ -22,18 +22,25 @@ export default function page() {
       <Grid>
         <CreateSection page_id={id as string} />
         <Grid
-          marginTop={"1rem"}
+          marginTop={"2rem"}
           gap={"1rem"}
           type='flex'
           center
-          flexDirection='column'>
+          flexDirection='column'
+          borderTop={"1px solid white"}
+          paddingTop={"1em"}>
           <span>لیست سکشن های موجود ({data.length})</span>
-          <Grid gap={"1rem"}>
+          <Grid gap={"1rem"} >
             {data?.map((section) => {
               const { type } = section;
               switch (type) {
                 case "HOME_HERO": {
-                  return <HOME_HERO section={section} />;
+                  return (
+                    <HOME_HERO
+                      section={section}
+                      page_id={id as string}
+                    />
+                  );
                 }
               }
               return <h1>{section.name}</h1>;

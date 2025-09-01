@@ -1,10 +1,10 @@
-import { ISectionsBase } from "./Sections/Sections.types";
+import { ISection } from "./Sections/Sections.types";
 
 export interface IPage {
   _id: string;
   title: string;
   slug: string;
-  sections: ISectionsBase[];
+  sections: ISection[];
   status: string;
   createdAt: string;
   updatedAt: string;

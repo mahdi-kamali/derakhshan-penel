@@ -5,123 +5,73 @@ import styles from "./styles.module.scss";
 // Import slick styles
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
+import { FormikContextType } from "formik";
+import { ISection } from "@/types/Pages/Sections/Sections.types";
 
-interface ITab {
-  label: string;
-  icon: ReactElement;
-}
+type IComponentsType = (props: {
+  formik: FormikContextType<ISection>;
+  extraProps?: any;
+}) => ReactElement | ReactElement[];
 
 interface IProps {
-  tabs: ITab[];
-  children: (props: {
-    goPrev: () => void;
-    goNext: () => void;
-  }) => React.ReactElement[];
-  disabled?: boolean;
-  actions: {
-    submit?: {
-      enabled?: boolean;
-      title: string;
-      onSubmit: () => void;
-    };
-    cancel?: {
-      enabled?: boolean;
-      title: string;
-      onCancel: () => void;
-    };
+  formik: FormikContextType<ISection>;
+  extraProps?: any;
+  children: () => {
+    HEADERS: IComponentsType;
+    BODY: IComponentsType;
+    TABS: IComponentsType;
+    ACTIONS: IComponentsType;
   };
 }
 
 export default function Form(props: IProps) {
-  const { tabs, actions, disabled = false } = props;
-  const { submit, cancel } = actions;
+  const { children, formik, extraProps } = props;
 
   const sliderRef = useRef<Slider>(null);
 
-  var settings: Settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    draggable: false,
-    rtl: false,
-  };
+  const form = children();
 
-  const [currentForm, setCurrentForm] = useState(0);
-
-  const goNext = () => {
-    setCurrentForm((prev) => prev + 1);
-  };
-
-  const goPrev = () => {};
-
-  const forms = props.children({
-    goNext,
-    goPrev,
-  });
-
-  useEffect(() => {
-    setTimeout(() => {
-      sliderRef.current?.slickGoTo(currentForm);
-    }, 200);
-  }, [currentForm]);
-
-  const formClass = [styles.container, disabled && styles.disabled].join(" ");
+  const { BODY, HEADERS, TABS, ACTIONS } = form;
 
   return (
-    <div className={formClass}>
+    <div className={styles.container}>
       <div className={styles.tabs}>
-        {tabs.map((tab, index) => {
-          const className = [currentForm === index && styles.isActive].join(
-            " ",
-          );
-          return (
-            <button
-              className={className}
-              onClick={() => {
-                setCurrentForm(index);
-              }}>
-              <span>{tab.icon}</span>
-              <span>{tab.label}</span>
-            </button>
-          );
-        })}
+        <TABS
+          formik={formik}
+          {...extraProps}
+        />
       </div>
       <div className={styles.forms}>
-        <Slider
-          {...settings}
-          ref={sliderRef}
-          slide='1'>
-          {forms.map((form) => {
-            return <div className={styles.form}>{form}</div>;
-          })}
-        </Slider>
+        <div className={styles.header}>
+          <HEADERS
+            formik={formik}
+            {...extraProps}
+          />
+        </div>
+        <div className={styles.body}>
+          <Slider
+            dots={true}
+            infinite={false}
+            speed={500}
+            slidesToShow={1}
+            slidesToScroll={1}
+            arrows={false}
+            draggable={false}
+            rtl={false}
+            ref={sliderRef}
+            slide='1'>
+            <BODY
+              formik={formik}
+              {...extraProps}
+            />
+          </Slider>
+        </div>
       </div>
       <div className={styles.actons}>
-        {submit && (
-          <Button
-            type='button'
-            title={submit.title}
-            variant='success'
-            icon={<Icon icon='formkit:submit' />}
-            onClick={submit.onSubmit}
-            disabled={submit.enabled === false}
-          />
-        )}
-        {cancel && (
-          <Button
-            type='button'
-            title={cancel.title}
-            variant='danger'
-            icon={<Icon icon='formkit:submit' />}
-            onClick={cancel.onCancel}
-            disabled={cancel.enabled === false}
-          />
-        )}
+        {ACTIONS({
+          formik: formik,
+          ...extraProps,
+        })}
       </div>
     </div>
   );
