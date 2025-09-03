@@ -10,8 +10,11 @@ type IResponse<T, OTHERS = any> = {
 
 axios.interceptors.response.use(
   (response) => {
-    const message = response.data.message;
-    if (message) ShowSuccess(message);
+    const method = response.config.method;
+    if (method !== "get") {
+      const message = response.data.message;
+      if (message) ShowSuccess(message);
+    }
     return response.data;
   },
   (error) => {
@@ -47,8 +50,6 @@ async function postRequest<T, OTHERS = any>(
   const res: IResponse<T, OTHERS> = await axios.post(url, data, otherConfigs);
   return res;
 }
-
-
 
 async function getRequest<T, OTHERS = any>(
   url: string,

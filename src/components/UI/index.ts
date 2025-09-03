@@ -7,6 +7,7 @@ import Box from "./Box/Box";
 import Button from "./Button/Button";
 import Grid from "./grid/Grid";
 import Modal from "./modal/Modal";
+import Group from "./group/Group";
 export {
   Grid,
   Button,
@@ -17,4 +18,5 @@ export {
   Animation,
   Image,
   Modal,
+  Group
 };

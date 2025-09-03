@@ -14,7 +14,7 @@ type IProps = {
   section?: ISection;
 };
 
-export default function HOME_HERO(props: IProps) {
+export default function HOME_ABOUT_US(props: IProps) {
   const { section, page_id } = props;
 
   const isCreating = section === undefined;
@@ -24,24 +24,56 @@ export default function HOME_HERO(props: IProps) {
     initialValues: {
       _id: "",
       name: "",
-      type: "HOME_HERO",
+      type: "UNSET",
       components: {
         EN: {
-          experience: "",
-          logo: undefined as any,
-          tagline: "",
+          description: "",
+          title: "",
+          agents: [
+            {
+              name: "",
+              image: undefined as any,
+              role: "",
+            },
+            {
+              name: "",
+              image: undefined as any,
+              role: "",
+            },
+            {
+              name: "",
+              image: undefined as any,
+              role: "",
+            },
+          ],
         },
         FA: {
-          experience: "",
-          logo: undefined as any,
-          tagline: "",
+          description: "",
+          title: "",
+          agents: [
+            {
+              name: "",
+              image: undefined as any,
+              role: "",
+            },
+            {
+              name: "",
+              image: undefined as any,
+              role: "",
+            },
+            {
+              name: "",
+              image: undefined as any,
+              role: "",
+            },
+          ],
         },
       },
       isActive: true,
       createdAt: "",
       updatedAt: "",
     },
-    validationSchema: VALIDATION.PAGE.SECTIONS.HOME_HERO,
+    validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
     onSubmit(values, formikHelpers) {},
   });
 

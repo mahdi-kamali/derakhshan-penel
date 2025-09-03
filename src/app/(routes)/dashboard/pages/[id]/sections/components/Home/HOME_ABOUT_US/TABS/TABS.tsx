@@ -12,10 +12,11 @@ interface ITAB {
 interface IProps {
   formik: FormikContextType<ISection>;
   goToSlide: (index: number) => void;
+  currentSlide: number;
 }
 
 export default function TABS(props: IProps) {
-  const { goToSlide } = props;
+  const { goToSlide, currentSlide } = props;
 
   const tabs: ITAB[] = [
     {
@@ -28,10 +29,16 @@ export default function TABS(props: IProps) {
     },
   ];
 
+  console.log(props);
+
   return tabs.map((tab, index) => {
+    const tabClass = [
+      index === currentSlide && styles.isActive,
+      styles.tab,
+    ].join(" ");
     return (
       <button
-        className={styles.tab}
+        className={tabClass}
         onClick={() => goToSlide(index)}>
         <span>{tab.icon}</span>
         <span>{tab.label}</span>

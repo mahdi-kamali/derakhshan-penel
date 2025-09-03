@@ -6,7 +6,7 @@ import { IPage } from "@/types/Pages/pages.types";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import CreateSection from "./components/CreateSection/CreateSection";
-import HOME_HERO from "./components/Home/HOME_HERO/HOME_HERO";
+import SectionForm from "./components/SectionForm/SectionForm";
 
 export default function page() {
   const { id } = useParams();
@@ -30,20 +30,14 @@ export default function page() {
           borderTop={"1px solid white"}
           paddingTop={"1em"}>
           <span>لیست سکشن های موجود ({data.length})</span>
-          <Grid gap={"1rem"} >
+          <Grid gap={"1rem"}>
             {data?.map((section) => {
-              const { type } = section;
-              switch (type) {
-                case "HOME_HERO": {
-                  return (
-                    <HOME_HERO
-                      section={section}
-                      page_id={id as string}
-                    />
-                  );
-                }
-              }
-              return <h1>{section.name}</h1>;
+              return (
+                <SectionForm
+                  page_id={id as string}
+                  section={section}
+                />
+              );
             })}
           </Grid>
         </Grid>

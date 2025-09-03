@@ -14,6 +14,8 @@ export default function BODY(props: IProps): ReactElement[] {
 
   const { values, handleChange, setFieldValue, errors } = formik;
 
+  if (values.type !== "HOME_HERO") return [];
+
   const FA = (
     <Grid
       gap={"1rem"}

@@ -1,5 +1,6 @@
 .field {
     all: unset;
+    position: relative;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -24,6 +25,7 @@
     box-shadow: 0.3rem 0.3rem 0.25rem 0rem transparent;
     transition: inherit;
     background-color: #290f56;
+
     span {
         display: flex;
     }

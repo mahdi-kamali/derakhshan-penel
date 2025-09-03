@@ -6,15 +6,16 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import HEADER from "./HEADER/HEADER";
 import TABS from "./TABS/TABS";
-import BODY from "./BODY/BODY";
+import HOME_ABOUT_US_BODY from "./BODY/HOME_ABOUT_US/HOME_ABOUT_US_BODY";
 import ACTIONS from "./ACTIONS/ACTIONS";
+import HOME_HERO_BODY from "./BODY/HOME_HERO/HOME_HERO_BODY";
 
 type IProps = {
   page_id?: IPage["_id"];
   section?: ISection;
 };
 
-export default function HOME_HERO(props: IProps) {
+export default function SectionForm(props: IProps) {
   const { section, page_id } = props;
 
   const isCreating = section === undefined;
@@ -24,24 +25,16 @@ export default function HOME_HERO(props: IProps) {
     initialValues: {
       _id: "",
       name: "",
-      type: "HOME_HERO",
+      type: "UNSET",
       components: {
-        EN: {
-          experience: "",
-          logo: undefined as any,
-          tagline: "",
-        },
-        FA: {
-          experience: "",
-          logo: undefined as any,
-          tagline: "",
-        },
+        EN: {},
+        FA: {},
       },
       isActive: true,
       createdAt: "",
       updatedAt: "",
     },
-    validationSchema: VALIDATION.PAGE.SECTIONS.HOME_HERO,
+    validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
     onSubmit(values, formikHelpers) {},
   });
 
@@ -51,6 +44,19 @@ export default function HOME_HERO(props: IProps) {
     if (isCreating) return;
     setValues({ ...section!! });
   }, [section]);
+
+  const GET_BODY = () => {
+    const { type } = formik.values;
+
+    switch (type) {
+      case "HOME_HERO":
+        return HOME_HERO_BODY;
+      case "HOME_ABOUT_US":
+        return HOME_ABOUT_US_BODY;
+      default:
+        return HOME_ABOUT_US_BODY;
+    }
+  };
 
   return (
     <Form
@@ -65,7 +71,7 @@ export default function HOME_HERO(props: IProps) {
         return {
           TABS: TABS,
           HEADERS: HEADER,
-          BODY: BODY,
+          BODY: GET_BODY(),
           ACTIONS: ACTIONS,
         };
       }}

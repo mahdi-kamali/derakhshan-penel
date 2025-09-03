@@ -32,7 +32,7 @@ export default function Text(props: IProps) {
 
         {!lines && (
           <input
-            {...props}
+            {...(props as any)}
             type={view ? "text" : type}
             placeholder={placeHodler}
           />

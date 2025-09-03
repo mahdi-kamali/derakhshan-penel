@@ -1,0 +1,29 @@
+.header {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-indigo);
+    color: white;
+    padding: 0.25em;
+    border-radius: 1rem;
+    font-size: 1.25rem;
+}
+
+.group {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .child {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 1rem;
+        padding: 2em 0em !important;
+    }
+}
