@@ -1,21 +1,23 @@
-import {
-  LegacyRef,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Slider, { Settings } from "react-slick";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 
 import styles from "./styles.module.scss";
-// Import slick styles
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 import { FormikContextType } from "formik";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
+import { Swiper as SwiperType } from "swiper/types";
 
-type IComponentsType = (props: any) => ReactElement | ReactElement[];
+type IComponentsType = (props: any) => ReactElement[] | ReactElement;
 
 interface IProps {
   formik: FormikContextType<ISection>;
@@ -31,22 +33,32 @@ interface IProps {
 export default function Form(props: IProps) {
   const { children, formik, extraProps } = props;
 
-  const [slider, setSlider] = useState<Slider | undefined>(undefined);
+  const [swiper, setSwiper] = useState<SwiperType | undefined>(undefined);
 
   const form = children();
 
   const { BODY, HEADERS, TABS, ACTIONS } = form;
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentForm, setCurrentForm] = useState<number>(0);
 
-  const goToSlide = slider?.slickGoTo;
+  const FORMS = BODY({
+    formik,
+    ...extraProps,
+  }) as ReactElement[];
+
+  const slideTo = (index: number) => {
+    if (swiper === undefined) return;
+    swiper.slideTo(index);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.tabs}>
         <TABS
           formik={formik}
-          goToSlide={goToSlide}
-          currentSlide={currentSlide}
+          currentForm={currentForm}
+          slideTo={slideTo}
+          swiper={swiper}
           {...extraProps}
         />
       </div>
@@ -58,30 +70,22 @@ export default function Form(props: IProps) {
           />
         </div>
         <div className={styles.body}>
-          <Slider
-            dots={false}
-            infinite={false}
-            speed={500}
-            slidesToShow={1}
-            slidesToScroll={1}
-            arrows={false}
+          <Swiper
+            centeredSlides
+            spaceBetween={0}
+            slidesPerView={1}
+            onSwiper={setSwiper}
             draggable={false}
-            ref={(ref) => {
-              setSlider(ref as any);
-            }}
-            slide='1'
-            beforeChange={(props) => {
-              setCurrentSlide(props);
+            allowTouchMove={false}
+            onSlideChange={(swiper) => {
+              setCurrentForm(swiper.realIndex);
             }}>
-            {Array.from(
-              BODY({
-                formik,
-                ...extraProps,
-              }) as ReactElement[],
-            ).map((form) => (
-              <div className={styles.form}>{form}</div>
+            {FORMS.map((form) => (
+              <SwiperSlide>
+                <div className={styles.form}>{form}</div>
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </div>
       </div>
       <div className={styles.actons}>

@@ -9,12 +9,14 @@ interface IProps {
   formik: FormikContextType<ISection>;
 }
 
-export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
+export default function HOME_ADVANCE_PACKING_BODY(
+  props: IProps,
+): ReactElement[] {
   const { formik } = props;
 
   const { values, handleChange, setFieldValue, errors } = formik;
 
-  if (values.type !== "HOME_HERO") return [];
+  if (values.type !== "HOME_ADVANCED_PACKAGING") return [];
 
   const FA = (
     <Grid
@@ -22,43 +24,43 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
       gridTemplateColumns={"1fr 1fr "}>
       <Field.Text
         variant='light'
-        name='components.FA.experience'
+        name='components.FA.title'
         type='text'
         icon={<Icon icon='mdi:company' />}
         onChange={handleChange}
-        title='تجربیات'
-        value={values.components.FA.experience}
+        title='عنوان'
+        value={values.components.FA.title}
         validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.experience"),
+          errorMessage: FindErrorKey(errors, "components.FA.title"),
         }}
         lines={5}
       />
 
       <Field.Text
         variant='light'
-        name='components.FA.tagline'
+        name='components.FA.description'
         type='text'
         icon={<Icon icon='mdi:company' />}
         onChange={handleChange}
-        title='شعار شرکت'
-        value={values.components.FA.tagline}
+        title='توضیحات'
+        value={values.components.FA.description}
         validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.tagline"),
+          errorMessage: FindErrorKey(errors, "components.FA.description"),
         }}
       />
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
           type='single'
-          name='components.FA.logo'
+          name='components.FA.image'
           icon={<Icon icon='ri:image-fill' />}
           onChange={(file) => {
-            setFieldValue("components.FA.logo", file);
+            setFieldValue("components.FA.image", file);
           }}
-          title='لوگو'
-          value={values.components.FA.logo}
+          title='عکس'
+          value={values.components.FA.image}
           validation={{
-            errorMessage: FindErrorKey(errors, "components.FA.logo"),
+            errorMessage: FindErrorKey(errors, "components.FA.image"),
           }}
           placeHodler='لوگو را انتخاب کنید...'
           variant='light'
@@ -70,46 +72,46 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
   const EN = (
     <Grid
       gap={"1rem"}
-      gridTemplateColumns={"1fr  1fr"}>
+      gridTemplateColumns={"1fr 1fr "}>
       <Field.Text
         variant='light'
-        name='components.EN.experience'
+        name='components.EN.title'
         type='text'
         icon={<Icon icon='mdi:company' />}
         onChange={handleChange}
-        title='تجربیات'
-        value={values.components.EN.experience}
+        title='عنوان'
+        value={values.components.EN.title}
         validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.experience"),
+          errorMessage: FindErrorKey(errors, "components.EN.title"),
         }}
         lines={5}
       />
 
       <Field.Text
         variant='light'
-        name='components.EN.tagline'
+        name='components.EN.description'
         type='text'
         icon={<Icon icon='mdi:company' />}
         onChange={handleChange}
-        title='شعار شرکت'
-        value={values.components.EN.tagline}
+        title='توضیحات'
+        value={values.components.EN.description}
         validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.tagline"),
+          errorMessage: FindErrorKey(errors, "components.EN.description"),
         }}
       />
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
           type='single'
-          name='components.EN.logo'
+          name='components.EN.image'
           icon={<Icon icon='ri:image-fill' />}
           onChange={(file) => {
-            setFieldValue("components.EN.logo", file);
+            setFieldValue("components.EN.image", file);
           }}
-          title='لوگو'
-          value={values.components.EN.logo}
+          title='عکس'
+          value={values.components.EN.image}
           validation={{
-            errorMessage: FindErrorKey(errors, "components.EN.logo"),
+            errorMessage: FindErrorKey(errors, "components.EN.image"),
           }}
           placeHodler='لوگو را انتخاب کنید...'
           variant='light'

@@ -28,7 +28,7 @@ export default function HEADER(props: IProps) {
   return (
     <Grid
       gap={"1rem"}
-      gridTemplateColumns={"1fr "}>
+      gridTemplateColumns={"1fr 1fr "}>
       <Field.Text
         variant='light'
         icon={<Icon icon='fluent:slide-text-title-edit-16-filled' />}

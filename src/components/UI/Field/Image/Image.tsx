@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Image as GalleryImage } from "@/components/UI/index";
 import { IField } from "../field.types";
 import Base from "../Base/Base";
@@ -22,6 +22,10 @@ export default function Image(props: IProps) {
   const { data: galleries } = useTable<IGallery[]>({
     api: GetAllGalleriesAPI,
   });
+
+  useEffect(() => {
+    setFile(props.value);
+  }, [props.value]);
 
   return (
     <Base {...(props as any)}>

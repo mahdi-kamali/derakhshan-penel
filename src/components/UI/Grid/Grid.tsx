@@ -26,7 +26,7 @@ export default function Grid(props: IProps) {
     styles.grid,
     expanded && styles.expanded,
     loading && styles.blur,
-    center && styles.center
+    center && styles.center,
   ].join(" ");
   const accordion = [styles.accordion].join(" ");
   const content = [
@@ -36,7 +36,11 @@ export default function Grid(props: IProps) {
   ].join(" ");
   const spinner = [styles.spinner, loading && styles.spinnerShow].join(" ");
   return (
-    <div className={grid}>
+    <div
+      className={grid}
+      style={{
+        gridColumn: props.gridColumn,
+      }}>
       <div className={accordion}>
         <div
           className={content}

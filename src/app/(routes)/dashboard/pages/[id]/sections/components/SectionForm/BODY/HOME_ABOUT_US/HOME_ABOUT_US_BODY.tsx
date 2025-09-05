@@ -45,7 +45,9 @@ export default function HOME_ABOUT_US_BODY(props: IProps): ReactElement[] {
         lines={5}
       />
 
-      <Group header='همکاران'>
+      <Group
+        header='همکاران'
+        gridTemplateColumns={"1fr 1fr"}>
         {values.components.FA.agents.map((agent, index) => {
           const value = values.components.FA.agents[index];
 
@@ -138,7 +140,9 @@ export default function HOME_ABOUT_US_BODY(props: IProps): ReactElement[] {
         lines={5}
       />
 
-      <Group header='همکاران'>
+      <Group
+        header='همکاران'
+        gridTemplateColumns={"1fr 1fr"}>
         {values.components.EN.agents.map((agent, index) => {
           const value = values.components.EN.agents[index];
 

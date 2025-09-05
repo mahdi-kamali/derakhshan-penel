@@ -6,9 +6,8 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import HEADER from "./HEADER/HEADER";
 import TABS from "./TABS/TABS";
-import HOME_ABOUT_US_BODY from "./BODY/HOME_ABOUT_US/HOME_ABOUT_US_BODY";
 import ACTIONS from "./ACTIONS/ACTIONS";
-import HOME_HERO_BODY from "./BODY/HOME_HERO/HOME_HERO_BODY";
+import BODY from "./BODY/BODY";
 
 type IProps = {
   page_id?: IPage["_id"];
@@ -45,19 +44,7 @@ export default function SectionForm(props: IProps) {
     setValues({ ...section!! });
   }, [section]);
 
-  const GET_BODY = () => {
-    const { type } = formik.values;
-
-    switch (type) {
-      case "HOME_HERO":
-        return HOME_HERO_BODY;
-      case "HOME_ABOUT_US":
-        return HOME_ABOUT_US_BODY;
-      default:
-        return HOME_ABOUT_US_BODY;
-    }
-  };
-
+  BODY;
   return (
     <Form
       formik={formik}
@@ -71,7 +58,7 @@ export default function SectionForm(props: IProps) {
         return {
           TABS: TABS,
           HEADERS: HEADER,
-          BODY: GET_BODY(),
+          BODY: BODY,
           ACTIONS: ACTIONS,
         };
       }}

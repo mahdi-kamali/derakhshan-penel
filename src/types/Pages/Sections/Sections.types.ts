@@ -68,10 +68,12 @@ export type SECTIONS_TYPES = {
       EN: {
         title: string; // "Advanced Packaging Solutions"
         description: string; // the text block under it
+        image: IFile;
       };
       FA: {
         title: string;
         description: string;
+        image: IFile;
       };
     };
   };
@@ -154,12 +156,16 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
           "This is a placeholder description for About Us section in English.",
         agents: [
           { name: "Agent EN", role: "Role EN", image: undefined as any },
+          { name: "Agent EN", role: "Role EN", image: undefined as any },
+          { name: "Agent EN", role: "Role EN", image: undefined as any },
         ],
       },
       FA: {
         title: "درباره ما",
         description: "این یک متن نمونه برای بخش درباره ما به زبان فارسی است.",
         agents: [
+          { name: "نماینده FA", role: "نقش FA", image: undefined as any },
+          { name: "نماینده FA", role: "نقش FA", image: undefined as any },
           { name: "نماینده FA", role: "نقش FA", image: undefined as any },
         ],
       },
@@ -172,10 +178,12 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
       EN: {
         title: "Advanced Packaging Solutions",
         description: "Placeholder description for advanced packaging EN.",
+        image: undefined as any,
       },
       FA: {
         title: "راه‌حل‌های بسته‌بندی پیشرفته",
         description: "متن نمونه برای بسته‌بندی پیشرفته به فارسی.",
+        image: undefined as any,
       },
     },
   },

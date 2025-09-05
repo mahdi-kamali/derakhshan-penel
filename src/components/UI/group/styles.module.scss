@@ -18,12 +18,12 @@
 }
 
 .body {
-    display: flex;
+    display: grid;
     flex-direction: column;
     gap: 1rem;
     .child {
         background-color: rgba(0, 0, 0, 0.1);
         border-radius: 1rem;
-        padding: 2em 0em !important;
+        padding: 2em 1em !important;
     }
 }

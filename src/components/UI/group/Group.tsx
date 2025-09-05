@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 
 import styles from "./styles.module.scss";
 
-interface IProps {
+interface IProps extends CSSProperties {
   children: ReactElement[];
   header: string;
 }
@@ -13,7 +13,9 @@ export default function Group(props: IProps) {
   return (
     <div className={styles.group}>
       <div className={styles.header}>{header}</div>
-      <div className={styles.body}>
+      <div
+        className={styles.body}
+        style={props}>
         {children.map((child) => (
           <div className={styles.child}>{child}</div>
         ))}
