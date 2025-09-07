@@ -10,7 +10,7 @@ import {
 import { IPage } from "@/types/Pages/pages.types";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { FormikContextType } from "formik";
+import { FormikContextType, useFormikContext } from "formik";
 import React from "react";
 
 type IAction = {
@@ -26,9 +26,9 @@ interface IProps {
 }
 
 export default function ACTIONS(props: IProps) {
-  const { formik, page_id, section_id, isCreating, isUpdating } = props;
+  const { page_id, section_id, isCreating, isUpdating } = props;
 
-  const { values } = formik;
+  const { values } = useFormikContext<ISection>();
 
   const queryClient = useQueryClient();
 

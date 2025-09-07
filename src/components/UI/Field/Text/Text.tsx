@@ -4,6 +4,7 @@ import Base from "../Base/Base";
 import { IField } from "../field.types";
 
 import styles from "./styles.module.scss";
+import { useFormikContext } from "formik";
 
 interface IProps extends IField {
   type: "text" | "password";

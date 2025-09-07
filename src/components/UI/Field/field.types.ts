@@ -14,7 +14,4 @@ export interface IField<
   disabled?: boolean;
   isLoading?: boolean;
   onChange: (value: CHANGE) => void;
-  validation?: {
-    errorMessage: string | undefined;
-  };
 }

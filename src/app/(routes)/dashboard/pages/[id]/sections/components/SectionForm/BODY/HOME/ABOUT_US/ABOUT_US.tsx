@@ -9,8 +9,8 @@ interface IProps {
   formik: FormikContextType<ISection>;
 }
 
-export default function HOME_ABOUT_US_BODY(props: IProps): ReactElement[] {
-  const { formik } = props;
+export default function ABOUT_US(props: IProps): ReactElement[] {
+  const formik = useFormikContext<ISection>()
 
   const { values, handleChange, setFieldValue, errors } = formik;
 

@@ -44,7 +44,8 @@ export default function SectionForm(props: IProps) {
     setValues({ ...section!! });
   }, [section]);
 
-  BODY;
+
+
   return (
     <Form
       formik={formik}

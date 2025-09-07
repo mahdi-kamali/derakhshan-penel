@@ -1,24 +1,25 @@
 import { ISection } from "@/types/Pages/Sections/Sections.types";
-import { FormikContextType } from "formik";
-import HOME_HERO_BODY from "./HOME_HERO/HOME_HERO_BODY";
-import HOME_ABOUT_US_BODY from "./HOME_ABOUT_US/HOME_ABOUT_US_BODY";
-import HOME_ADVANCE_PACKING_BODY from "./HOME_ADVANCE_PACKING/HOME_ADVANCE_PACKING";
+import { FormikContext, FormikContextType, useFormikContext } from "formik";
+import HOME from "./HOME/HOME";
+import ABOUT_US from "./ABOUT-US/ABOUT_US";
 
-interface IProps {
-  formik: FormikContextType<ISection>;
-}
+export default function BODY(props: any) {
+  const { values } = useFormikContext<ISection>();
 
-export default function BODY(props: IProps) {
-  const { type } = props.formik.values;
+  const { type } = values;
 
   switch (type) {
     case "HOME_HERO":
-      return HOME_HERO_BODY(props);
+      return HOME.HERO(props);
     case "HOME_ABOUT_US":
-      return HOME_ABOUT_US_BODY(props);
+      return HOME.ABOUT_US(props);
     case "HOME_ADVANCED_PACKAGING":
-      return HOME_ADVANCE_PACKING_BODY(props);
+      return HOME.ADVANCE_PACKING(props);
+    case "HOME_EXCLUSIVE_GIFT_BOXES":
+      return HOME.EXCLUSIVE_GIFT_BOXES(props);
+    case "ABOUT_US_MAIN":
+      return ABOUT_US.MAIN(props);
     default:
-      return HOME_HERO_BODY(props);
+      return HOME.HERO(props);
   }
 }

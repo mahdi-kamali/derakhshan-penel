@@ -27,6 +27,8 @@ export default function Image(props: IProps) {
     setFile(props.value);
   }, [props.value]);
 
+
+
   return (
     <Base {...(props as any)}>
       <div className={styles.field}>

@@ -6,6 +6,7 @@ export type SECTIONS_TYPES = {
     type: "UNSET";
     components: any;
   };
+
   HOME_HERO: {
     type: "HOME_HERO";
     components: {
@@ -84,10 +85,12 @@ export type SECTIONS_TYPES = {
       EN: {
         title: string; // "Exclusive Gift Boxes"
         description: string; // text under this section
+        images: IFile[];
       };
       FA: {
         title: string;
         description: string;
+        images: IFile[];
       };
     };
   };
@@ -112,6 +115,38 @@ export type SECTIONS_TYPES = {
         quickLinks: string[];
         supportLinks: string[];
         socialLinks: string[];
+      };
+    };
+  };
+
+  ABOUT_US_MAIN: {
+    type: "ABOUT_US_MAIN";
+    components: {
+      EN: {
+        background: IFile; // <img> src
+        agents: {
+          name: string;
+          role: string;
+          image: IFile;
+        }[];
+        generations: {
+          title: string;
+          description: string;
+          image: IFile;
+        }[];
+      };
+      FA: {
+        background: IFile;
+        agents: {
+          name: string;
+          role: string;
+          image: IFile;
+        }[];
+        generations: {
+          title: string;
+          description: string;
+          image: IFile;
+        }[];
       };
     };
   };
@@ -194,10 +229,12 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
       EN: {
         title: "Exclusive Gift Boxes",
         description: "Placeholder description for exclusive gift boxes EN.",
+        images: [undefined as any, undefined as any, undefined as any],
       },
       FA: {
         title: "جعبه‌های هدیه انحصاری",
         description: "متن نمونه برای جعبه‌های هدیه انحصاری به فارسی.",
+        images: [undefined as any, undefined as any, undefined as any],
       },
     },
   },
@@ -225,7 +262,64 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
       },
     },
   },
+
+  ABOUT_US_MAIN: {
+    type: "ABOUT_US_MAIN",
+    components: {
+      EN: {
+        background: undefined as any,
+        agents: [
+          { name: "Agent EN", role: "Role EN", image: undefined as any },
+          { name: "Agent EN", role: "Role EN", image: undefined as any },
+          { name: "Agent EN", role: "Role EN", image: undefined as any },
+        ],
+        generations: [
+          {
+            title: "Generation 1",
+            description: "Placeholder description for generation 1 EN.",
+            image: undefined as any,
+          },
+          {
+            title: "Generation 2",
+            description: "Placeholder description for generation 2 EN.",
+            image: undefined as any,
+          },
+          {
+            title: "Generation 3",
+            description: "Placeholder description for generation 2 EN.",
+            image: undefined as any,
+          },
+        ],
+      },
+      FA: {
+        background: undefined as any,
+        agents: [
+          { name: "نماینده FA", role: "نقش FA", image: undefined as any },
+          { name: "نماینده FA", role: "نقش FA", image: undefined as any },
+          { name: "نماینده FA", role: "نقش FA", image: undefined as any },
+        ],
+        generations: [
+          {
+            title: "نسل اول",
+            description: "توضیح نمونه برای نسل اول به فارسی.",
+            image: undefined as any,
+          },
+          {
+            title: "نسل دوم",
+            description: "توضیح نمونه برای نسل دوم به فارسی.",
+            image: undefined as any,
+          },
+          {
+            title: "نسل سوم",
+            description: "توضیح نمونه برای نسل دوم به فارسی.",
+            image: undefined as any,
+          },
+        ],
+      },
+    },
+  },
 };
+
 
 // 2) Shared base fields
 type BaseFields = {

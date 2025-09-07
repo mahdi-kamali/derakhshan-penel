@@ -7,15 +7,15 @@ import {
 } from "@/types/Pages/Sections/Sections.types";
 import { SECTIONS_OPTIONS } from "@/types/Variables";
 import { FindErrorKey } from "@/utils/validations";
-import { FormikContextType } from "formik";
+import { FormikContextType, useFormikContext } from "formik";
 import React from "react";
 interface IProps {
   formik: FormikContextType<ISection>;
 }
 
 export default function HEADER(props: IProps) {
-  const { formik } = props;
-  const { values, handleChange, setFieldValue, errors, setValues } = formik;
+  const { values, handleChange, setFieldValue, errors, setValues } =
+    useFormikContext<ISection>();
 
   const setType = (type: keyof SECTIONS_TYPES) => {
     const sample = SECTIONS_TYPES_EXAMPLES[type] as ISection;
@@ -37,9 +37,6 @@ export default function HEADER(props: IProps) {
         onChange={handleChange}
         title='نام'
         value={values.name}
-        validation={{
-          errorMessage: FindErrorKey(errors, "name"),
-        }}
         placeHodler='نام سکشن را وارد کنید..'
       />
       <Field.Select
@@ -51,9 +48,6 @@ export default function HEADER(props: IProps) {
         }}
         title='نوع'
         value={values.type}
-        validation={{
-          errorMessage: FindErrorKey(errors, "type"),
-        }}
         placeHodler='نوع سکشن را انتخاب کنید..'
         options={SECTIONS_OPTIONS}
       />

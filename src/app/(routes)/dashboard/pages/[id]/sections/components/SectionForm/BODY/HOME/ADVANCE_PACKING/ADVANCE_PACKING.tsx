@@ -9,10 +9,10 @@ interface IProps {
   formik: FormikContextType<ISection>;
 }
 
-export default function HOME_ADVANCE_PACKING_BODY(
+export default function ADVANCE_PACKING(
   props: IProps,
 ): ReactElement[] {
-  const { formik } = props;
+  const formik = useFormikContext<ISection>()
 
   const { values, handleChange, setFieldValue, errors } = formik;
 

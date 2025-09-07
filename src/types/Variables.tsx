@@ -1,4 +1,5 @@
 import Icon from "@/components/UI/Icon/Icon";
+import { ISection } from "./Pages/Sections/Sections.types";
 
 export type IVariant =
   | "success"
@@ -11,19 +12,19 @@ export type IVariant =
   | "panel-list-item"
   | "indigo";
 
-export type IOption = {
+export type IOption<VALUE = any> = {
   label: string;
   variant?: IVariant;
   icon?: React.ReactElement;
 } & (
   | {
       type: "parent";
-      options: IOption[];
-      value?: any;
+      options: IOption<VALUE>[];
+      value?: VALUE;
     }
   | {
       type: "child";
-      value: any;
+      value: VALUE;
     }
   | {
       type: "none";
@@ -79,7 +80,7 @@ export const PAGES_STATUS_OPTIONS: IOption[] = [
   },
 ];
 
-export const SECTIONS_OPTIONS: IOption[] = [
+export const SECTIONS_OPTIONS: IOption<ISection["type"]>[] = [
   {
     label: "مشخص نشده",
     value: undefined,
@@ -145,7 +146,7 @@ export const SECTIONS_OPTIONS: IOption[] = [
     options: [
       {
         label: "درباره ما",
-        value: "about-us",
+        value: "ABOUT_US_MAIN",
         icon: <Icon icon='mdi:about' />,
         variant: "success",
         type: "child",

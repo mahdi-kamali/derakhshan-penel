@@ -33,8 +33,6 @@ export default function TABS(props: IProps) {
     const isActive = currentForm === index;
     const tabClass = [isActive && styles.isActive, styles.tab].join(" ");
 
-    console.log(currentForm);
-
     return (
       <button
         className={tabClass}

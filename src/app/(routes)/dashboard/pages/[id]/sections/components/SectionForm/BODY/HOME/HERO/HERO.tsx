@@ -1,18 +1,17 @@
 import { Field, Grid } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
-import { FindErrorKey } from "@/utils/validations";
-import { FormikContextType } from "formik";
-import React, { ReactElement, useEffect, useState } from "react";
+import { FormikContextType, useFormikContext } from "formik";
+import React from "react";
 
 interface IProps {
   formik: FormikContextType<ISection>;
 }
 
-export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
-  const { formik } = props;
+export default function HERO(props: IProps) {
+  const formik = useFormikContext<ISection>();
 
-  const { values, handleChange, setFieldValue, errors } = formik;
+  const { values, handleChange, setFieldValue } = formik;
 
   if (values.type !== "HOME_HERO") return [];
 
@@ -28,9 +27,6 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='تجربیات'
         value={values.components.FA.experience}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.experience"),
-        }}
         lines={5}
       />
 
@@ -42,9 +38,6 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='شعار شرکت'
         value={values.components.FA.tagline}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.tagline"),
-        }}
       />
 
       <Grid gridColumn={"-1/1"}>
@@ -57,9 +50,6 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
           }}
           title='لوگو'
           value={values.components.FA.logo}
-          validation={{
-            errorMessage: FindErrorKey(errors, "components.FA.logo"),
-          }}
           placeHodler='لوگو را انتخاب کنید...'
           variant='light'
         />
@@ -79,9 +69,6 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='تجربیات'
         value={values.components.EN.experience}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.experience"),
-        }}
         lines={5}
       />
 
@@ -93,9 +80,6 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='شعار شرکت'
         value={values.components.EN.tagline}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.tagline"),
-        }}
       />
 
       <Grid gridColumn={"-1/1"}>
@@ -108,9 +92,6 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
           }}
           title='لوگو'
           value={values.components.EN.logo}
-          validation={{
-            errorMessage: FindErrorKey(errors, "components.EN.logo"),
-          }}
           placeHodler='لوگو را انتخاب کنید...'
           variant='light'
         />
@@ -118,5 +99,5 @@ export default function HOME_HERO_BODY(props: IProps): ReactElement[] {
     </Grid>
   );
 
-  return [FA, EN];
+  return [EN, FA]
 }

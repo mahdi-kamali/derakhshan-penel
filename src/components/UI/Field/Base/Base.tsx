@@ -3,26 +3,24 @@ import { IField } from "../field.types";
 import styles from "./styles.module.scss";
 import Icon from "../../Icon/Icon";
 import Tooltip from "../../tooltip/Tooltip";
+import { FindErrorKey } from "@/utils/validations";
+import { useFormikContext } from "formik";
 
 export interface IBaseProps extends IField {
   children?: React.ReactElement | React.ReactElement[];
 }
 
 export default function Base(props: IBaseProps) {
-  const {
-    children,
-    icon,
-    title,
-    value,
-    validation,
-    variant = "regular",
-  } = props;
+  const { children, icon, title, value, variant = "regular", name } = props;
+
+  const { errors } = useFormikContext();
+  const error = FindErrorKey(errors, name);
 
   const field = [
     styles.field,
     value && styles.value,
-    value && validation?.errorMessage === undefined && styles.success,
-    validation?.errorMessage && styles.danger,
+    value && error === undefined && styles.success,
+    error && styles.danger,
     styles[`variant-${variant}`],
   ].join(" ");
 
@@ -31,11 +29,11 @@ export default function Base(props: IBaseProps) {
       <legend className={styles.legend}>
         <span>{icon}</span>
         <span>{title}</span>
-        {validation?.errorMessage && (
+        {error && (
           <div className={styles.tooltip}>
             <Tooltip
               label={<Icon icon='line-md:alert-twotone' />}
-              popup={<span>{validation?.errorMessage}</span>}
+              popup={<span>{error}</span>}
             />
           </div>
         )}
