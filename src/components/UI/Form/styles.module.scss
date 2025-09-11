@@ -1,11 +1,14 @@
 .container {
     width: 50rem;
-    display: flex;
     flex-direction: column;
     gap: 1rem;
     background-color: white;
     padding: 1em;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    // display: grid;
+    // grid-template-rows: max-content max-content max-content;
 }
 
 .tabs {
@@ -36,6 +39,8 @@
 .forms {
     .body {
         margin-top: 1rem;
+        max-height: 50dvh;
+        overflow: auto;
     }
     .form {
         direction: rtl;

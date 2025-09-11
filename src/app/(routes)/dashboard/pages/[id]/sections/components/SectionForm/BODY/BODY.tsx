@@ -3,9 +3,13 @@ import { FormikContext, FormikContextType, useFormikContext } from "formik";
 import HOME from "./HOME/HOME";
 import ABOUT_US from "./ABOUT-US/ABOUT_US";
 
-export default function BODY(props: any) {
-  const { values } = useFormikContext<ISection>();
+interface IProps {
+  formik: FormikContextType<ISection>;
+}
 
+export default function BODY(props: IProps) {
+  const { formik } = props;
+  const { values } = formik;
   const { type } = values;
 
   switch (type) {

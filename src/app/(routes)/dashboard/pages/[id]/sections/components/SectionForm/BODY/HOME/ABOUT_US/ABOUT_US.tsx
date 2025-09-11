@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export default function ABOUT_US(props: IProps): ReactElement[] {
-  const formik = useFormikContext<ISection>()
+  const { formik } = props;
 
   const { values, handleChange, setFieldValue, errors } = formik;
 
@@ -20,6 +20,7 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
       gap={"1rem"}
       gridTemplateColumns={"1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.title'
         type='text'
@@ -27,11 +28,9 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='عنوان'
         value={values.components.FA.title}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.title"),
-        }}
       />
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.description'
         type='text'
@@ -39,9 +38,6 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='توضیحات'
         value={values.components.FA.description}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.description"),
-        }}
         lines={5}
       />
 
@@ -54,6 +50,7 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
           return (
             <Grid gap={"1rem"}>
               <Field.Text
+                errors={errors}
                 variant='light'
                 name={`components.FA.agents[${index}].name`}
                 type='text'
@@ -61,15 +58,10 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
                 onChange={handleChange}
                 title='نام همکار'
                 value={value.name}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.FA.agents[${index}].name`,
-                  ),
-                }}
               />
 
               <Field.Text
+                errors={errors}
                 variant='light'
                 name={`components.FA.agents[${index}].role`}
                 type='text'
@@ -77,15 +69,10 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
                 onChange={handleChange}
                 title='نقش داخل شرکت'
                 value={value.role}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.FA.agents[${index}].role`,
-                  ),
-                }}
               />
 
               <Field.Image
+                errors={errors}
                 type='single'
                 name={`components.FA.agents[${index}].image`}
                 icon={<Icon icon='ri:image-fill' />}
@@ -94,12 +81,6 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
                 }}
                 title='عکس همکار'
                 value={value.image}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.FA.agents[${index}].image`,
-                  ),
-                }}
                 placeHodler=''
                 variant='light'
               />
@@ -115,6 +96,7 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
       gap={"1rem"}
       gridTemplateColumns={"1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.title'
         type='text'
@@ -122,11 +104,9 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='عنوان EN'
         value={values.components.EN.title}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.title"),
-        }}
       />
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.description'
         type='text'
@@ -134,9 +114,6 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='توضیحات'
         value={values.components.EN.description}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.description"),
-        }}
         lines={5}
       />
 
@@ -149,6 +126,7 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
           return (
             <Grid gap={"1rem"}>
               <Field.Text
+                errors={errors}
                 variant='light'
                 name={`components.EN.agents[${index}].name`}
                 type='text'
@@ -156,15 +134,10 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
                 onChange={handleChange}
                 title='نام همکار'
                 value={value.name}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.EN.agents[${index}].name`,
-                  ),
-                }}
               />
 
               <Field.Text
+                errors={errors}
                 variant='light'
                 name={`components.EN.agents[${index}].role`}
                 type='text'
@@ -172,15 +145,10 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
                 onChange={handleChange}
                 title='نقش داخل شرکت'
                 value={value.role}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.EN.agents[${index}].role`,
-                  ),
-                }}
               />
 
               <Field.Image
+                errors={errors}
                 type='single'
                 name={`components.EN.agents[${index}].image`}
                 icon={<Icon icon='ri:image-fill' />}
@@ -189,12 +157,6 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
                 }}
                 title='عکس همکار'
                 value={value.image}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.EN.agents[${index}].image`,
-                  ),
-                }}
                 placeHodler=''
                 variant='light'
               />

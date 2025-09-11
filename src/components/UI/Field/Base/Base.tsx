@@ -8,12 +8,20 @@ import { useFormikContext } from "formik";
 
 export interface IBaseProps extends IField {
   children?: React.ReactElement | React.ReactElement[];
+  errors: any;
 }
 
 export default function Base(props: IBaseProps) {
-  const { children, icon, title, value, variant = "regular", name } = props;
+  const {
+    children,
+    icon,
+    title,
+    value,
+    variant = "regular",
+    name,
+    errors,
+  } = props;
 
-  const { errors } = useFormikContext();
   const error = FindErrorKey(errors, name);
 
   const field = [

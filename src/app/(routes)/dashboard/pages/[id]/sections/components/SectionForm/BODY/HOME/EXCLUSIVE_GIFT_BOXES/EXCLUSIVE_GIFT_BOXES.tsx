@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
-  const formik = useFormikContext<ISection>()
+  const { formik } = props;
 
   const { values, handleChange, setFieldValue, errors } = formik;
 
@@ -21,6 +21,7 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
       gap={"1rem"}
       gridTemplateColumns={"1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.title'
         type='text'
@@ -28,11 +29,9 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='عنوان EN'
         value={values.components.FA.title}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.title"),
-        }}
       />
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.description'
         type='text'
@@ -40,9 +39,6 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='توضیحات'
         value={values.components.FA.description}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.description"),
-        }}
         lines={5}
       />
 
@@ -55,6 +51,7 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
           return (
             <Grid gap={"1rem"}>
               <Field.Image
+                errors={errors}
                 type='single'
                 name={`components.FA.images[${index}]`}
                 icon={<Icon icon='ri:image-fill' />}
@@ -63,12 +60,6 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
                 }}
                 title='عکس'
                 value={value}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.FA.images[${index}]`,
-                  ),
-                }}
                 placeHodler=''
                 variant='light'
               />
@@ -84,6 +75,7 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
       gap={"1rem"}
       gridTemplateColumns={"1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.title'
         type='text'
@@ -91,11 +83,9 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='عنوان EN'
         value={values.components.EN.title}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.title"),
-        }}
       />
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.description'
         type='text'
@@ -103,9 +93,6 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='توضیحات'
         value={values.components.EN.description}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.description"),
-        }}
         lines={5}
       />
 
@@ -118,6 +105,7 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
           return (
             <Grid gap={"1rem"}>
               <Field.Image
+                errors={errors}
                 type='single'
                 name={`components.EN.images[${index}]`}
                 icon={<Icon icon='ri:image-fill' />}
@@ -126,12 +114,6 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
                 }}
                 title='عکس'
                 value={value}
-                validation={{
-                  errorMessage: FindErrorKey(
-                    errors,
-                    `components.EN.images[${index}]`,
-                  ),
-                }}
                 placeHodler=''
                 variant='light'
               />

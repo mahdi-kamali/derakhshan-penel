@@ -16,6 +16,7 @@ export default function BODY(props: IProps) {
       gap='0'
       margin='0 auto'>
       <Field.Text
+                    errors={errors}
         name='phone'
         type='text'
         icon={<Icon icon='line-md:phone' />}
@@ -28,6 +29,7 @@ export default function BODY(props: IProps) {
 
       <Grid marginTop={"1rem"}>
         <Field.Text
+                    errors={errors}
           name='password'
           type='password'
           icon={<Icon icon='mdi:password' />}

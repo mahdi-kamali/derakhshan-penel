@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import styles from "./styles.module.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,7 +18,7 @@ interface IProps<T = any> {
   extraProps?: any;
   children: () => {
     HEADERS: IComponentsType;
-    BODY: (props: any) => ReactElement[] ;
+    BODY: (props: any) => ReactElement[];
     TABS: IComponentsType;
     ACTIONS: IComponentsType;
   };
@@ -40,8 +40,10 @@ export default function Form(props: IProps) {
     swiper.slideTo(index);
   };
 
-
-  console.log( <BODY {...extraProps} />)
+  const BODY_ARRAY = BODY({
+    extraProps: extraProps,
+    formik: formik,
+  }) as ReactElement[];
 
   return (
     <FormikProvider value={formik}>
@@ -73,8 +75,9 @@ export default function Form(props: IProps) {
               onSlideChange={(swiper) => {
                 setCurrentForm(swiper.realIndex);
               }}>
-              <BODY {...extraProps} />
-            
+              {BODY_ARRAY.map((form) => {
+                return <SwiperSlide>{form}</SwiperSlide>;
+              })}
             </Swiper>
           </div>
         </div>

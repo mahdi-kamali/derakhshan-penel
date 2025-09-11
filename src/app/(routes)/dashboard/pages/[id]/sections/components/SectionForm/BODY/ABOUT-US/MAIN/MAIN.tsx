@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export default function MAIN(props: IProps): ReactElement[] {
-  const formik = useFormikContext<ISection>()
+  const { formik } = props;
 
   const { values, handleChange, setFieldValue, errors } = formik;
 
@@ -22,7 +22,8 @@ export default function MAIN(props: IProps): ReactElement[] {
     return (
       <Grid
         gap={"1rem"}
-        gridTemplateColumns={"1fr 1fr "}>
+        gridTemplateColumns={"1fr 1fr "}
+        overflow='auto'>
         <Grid gridColumn={"-1/1"}>
           <Group
             header='همکاران'
@@ -37,55 +38,40 @@ export default function MAIN(props: IProps): ReactElement[] {
                   borderRadius={"1rem"}
                   padding={"1em"}>
                   <Field.Text
+                    errors={errors}
                     variant='light'
-                    name={`components.FA.agents[${index}].name`}
+                    name={`components.${language}.agents[${index}].name`}
                     type='text'
                     icon={<Icon icon='mdi:company' />}
                     onChange={handleChange}
                     title='نام همکار'
                     value={value.name}
-                    validation={{
-                      errorMessage: FindErrorKey(
-                        errors,
-                        `components.FA.agents[${index}].name`,
-                      ),
-                    }}
                   />
 
                   <Field.Text
+                    errors={errors}
                     variant='light'
-                    name={`components.FA.agents[${index}].role`}
+                    name={`components.${language}.agents[${index}].role`}
                     type='text'
                     icon={<Icon icon='mdi:company' />}
                     onChange={handleChange}
                     title='نقش داخل شرکت'
                     value={value.role}
-                    validation={{
-                      errorMessage: FindErrorKey(
-                        errors,
-                        `components.FA.agents[${index}].role`,
-                      ),
-                    }}
                   />
 
                   <Field.Image
+                    errors={errors}
                     type='single'
-                    name={`components.FA.agents[${index}].image`}
+                    name={`components.${language}.agents[${index}].image`}
                     icon={<Icon icon='ri:image-fill' />}
                     onChange={(file) => {
                       setFieldValue(
-                        `components.FA.agents[${index}].image`,
+                        `components.${language}.agents[${index}].image`,
                         file,
                       );
                     }}
                     title='عکس همکار'
                     value={value.image}
-                    validation={{
-                      errorMessage: FindErrorKey(
-                        errors,
-                        `components.FA.agents[${index}].image`,
-                      ),
-                    }}
                     placeHodler=''
                     variant='light'
                   />
@@ -109,8 +95,9 @@ export default function MAIN(props: IProps): ReactElement[] {
                   borderRadius={"1rem"}
                   padding={"1em"}>
                   <Field.Text
+                    errors={errors}
                     variant='light'
-                    name={`components.FA.generations[${index}].title`}
+                    name={`components.${language}.generations[${index}].title`}
                     type='text'
                     icon={<Icon icon='mdi:company' />}
                     onChange={handleChange}
@@ -119,8 +106,9 @@ export default function MAIN(props: IProps): ReactElement[] {
                   />
 
                   <Field.Text
+                    errors={errors}
                     variant='light'
-                    name={`components.FA.generations[${index}].description`}
+                    name={`components.${language}.generations[${index}].description`}
                     type='text'
                     icon={<Icon icon='mdi:company' />}
                     onChange={handleChange}
@@ -130,12 +118,13 @@ export default function MAIN(props: IProps): ReactElement[] {
                   />
 
                   <Field.Image
+                    errors={errors}
                     type='single'
-                    name={`components.FA.generations[${index}].image`}
+                    name={`components.${language}.generations[${index}].image`}
                     icon={<Icon icon='ri:image-fill' />}
                     onChange={(file) => {
                       setFieldValue(
-                        `components.FA.generations[${index}].image`,
+                        `components.${language}.generations[${index}].image`,
                         file,
                       );
                     }}
@@ -152,6 +141,7 @@ export default function MAIN(props: IProps): ReactElement[] {
 
         <Grid gridColumn={"-1/1"}>
           <Field.Image
+            errors={errors}
             type='single'
             name='components.FA.background'
             icon={<Icon icon='ri:image-fill' />}
@@ -162,7 +152,6 @@ export default function MAIN(props: IProps): ReactElement[] {
             value={components.background}
             placeHodler='لوگو را انتخاب کنید...'
             variant='light'
-            errors={errors}
           />
         </Grid>
       </Grid>
@@ -170,6 +159,7 @@ export default function MAIN(props: IProps): ReactElement[] {
   };
 
   const FA = Component("FA");
+  const EN = Component("EN");
 
-  return [FA];
+  return [FA, EN];
 }

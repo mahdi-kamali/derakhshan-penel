@@ -18,7 +18,7 @@ export default function page() {
     },
   });
 
-  const { values, handleChange, submitForm } = useFormik({
+  const { values, handleChange, submitForm, errors } = useFormik({
     onSubmit(values, formikHelpers) {
       ShowQuestion({
         onConfirm() {
@@ -55,6 +55,7 @@ export default function page() {
             gridTemplateColumns={"1fr "}
             gap={"1rem"}>
             <Field.Text
+              errors={errors}
               variant='light'
               type='text'
               name='title'
@@ -65,6 +66,7 @@ export default function page() {
               placeHodler='مثال : صفحه اصلی - ارتباط با ما ....'
             />
             <Field.Text
+              errors={errors}
               variant='light'
               type='text'
               name='slug'

@@ -54,6 +54,7 @@ export default function Create(props: IProps) {
           color='black'
           gap={"1rem"}>
           <Field.Text
+                    errors={errors}
             variant='light'
             name='title'
             icon={<Icon icon='fluent:slide-text-title-20-filled' />}

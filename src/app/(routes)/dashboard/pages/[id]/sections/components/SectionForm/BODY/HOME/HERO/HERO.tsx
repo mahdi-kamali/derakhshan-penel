@@ -9,9 +9,9 @@ interface IProps {
 }
 
 export default function HERO(props: IProps) {
-  const formik = useFormikContext<ISection>();
+  const { formik } = props;
 
-  const { values, handleChange, setFieldValue } = formik;
+  const { values, handleChange, setFieldValue, errors } = formik;
 
   if (values.type !== "HOME_HERO") return [];
 
@@ -20,6 +20,7 @@ export default function HERO(props: IProps) {
       gap={"1rem"}
       gridTemplateColumns={"1fr 1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.experience'
         type='text'
@@ -31,6 +32,7 @@ export default function HERO(props: IProps) {
       />
 
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.tagline'
         type='text'
@@ -42,6 +44,7 @@ export default function HERO(props: IProps) {
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
+                errors={errors}
           type='single'
           name='components.FA.logo'
           icon={<Icon icon='ri:image-fill' />}
@@ -62,6 +65,7 @@ export default function HERO(props: IProps) {
       gap={"1rem"}
       gridTemplateColumns={"1fr  1fr"}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.experience'
         type='text'
@@ -73,6 +77,7 @@ export default function HERO(props: IProps) {
       />
 
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.tagline'
         type='text'
@@ -84,6 +89,7 @@ export default function HERO(props: IProps) {
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
+                errors={errors}
           type='single'
           name='components.EN.logo'
           icon={<Icon icon='ri:image-fill' />}
@@ -99,5 +105,5 @@ export default function HERO(props: IProps) {
     </Grid>
   );
 
-  return [EN, FA]
+  return [EN, FA];
 }

@@ -14,4 +14,5 @@ export interface IField<
   disabled?: boolean;
   isLoading?: boolean;
   onChange: (value: CHANGE) => void;
+  errors?: any;
 }

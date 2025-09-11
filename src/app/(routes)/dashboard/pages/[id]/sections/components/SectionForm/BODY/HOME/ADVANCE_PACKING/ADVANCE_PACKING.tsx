@@ -9,10 +9,8 @@ interface IProps {
   formik: FormikContextType<ISection>;
 }
 
-export default function ADVANCE_PACKING(
-  props: IProps,
-): ReactElement[] {
-  const formik = useFormikContext<ISection>()
+export default function ADVANCE_PACKING(props: IProps): ReactElement[] {
+  const { formik } = props;
 
   const { values, handleChange, setFieldValue, errors } = formik;
 
@@ -23,6 +21,7 @@ export default function ADVANCE_PACKING(
       gap={"1rem"}
       gridTemplateColumns={"1fr 1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.title'
         type='text'
@@ -30,13 +29,11 @@ export default function ADVANCE_PACKING(
         onChange={handleChange}
         title='عنوان'
         value={values.components.FA.title}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.title"),
-        }}
         lines={5}
       />
 
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.FA.description'
         type='text'
@@ -44,13 +41,11 @@ export default function ADVANCE_PACKING(
         onChange={handleChange}
         title='توضیحات'
         value={values.components.FA.description}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.FA.description"),
-        }}
       />
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
+          errors={errors}
           type='single'
           name='components.FA.image'
           icon={<Icon icon='ri:image-fill' />}
@@ -59,9 +54,6 @@ export default function ADVANCE_PACKING(
           }}
           title='عکس'
           value={values.components.FA.image}
-          validation={{
-            errorMessage: FindErrorKey(errors, "components.FA.image"),
-          }}
           placeHodler='لوگو را انتخاب کنید...'
           variant='light'
         />
@@ -74,6 +66,7 @@ export default function ADVANCE_PACKING(
       gap={"1rem"}
       gridTemplateColumns={"1fr 1fr "}>
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.title'
         type='text'
@@ -81,13 +74,11 @@ export default function ADVANCE_PACKING(
         onChange={handleChange}
         title='عنوان'
         value={values.components.EN.title}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.title"),
-        }}
         lines={5}
       />
 
       <Field.Text
+        errors={errors}
         variant='light'
         name='components.EN.description'
         type='text'
@@ -95,13 +86,11 @@ export default function ADVANCE_PACKING(
         onChange={handleChange}
         title='توضیحات'
         value={values.components.EN.description}
-        validation={{
-          errorMessage: FindErrorKey(errors, "components.EN.description"),
-        }}
       />
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
+          errors={errors}
           type='single'
           name='components.EN.image'
           icon={<Icon icon='ri:image-fill' />}
@@ -110,9 +99,6 @@ export default function ADVANCE_PACKING(
           }}
           title='عکس'
           value={values.components.EN.image}
-          validation={{
-            errorMessage: FindErrorKey(errors, "components.EN.image"),
-          }}
           placeHodler='لوگو را انتخاب کنید...'
           variant='light'
         />
