@@ -30,7 +30,7 @@ export default function Create(props: IProps) {
     },
   });
 
-  const { values, handleChange, setFieldValue, submitForm } = formik;
+  const { values, handleChange, setFieldValue, submitForm, errors } = formik;
 
   return (
     <FormikProvider value={formik}>
@@ -54,7 +54,7 @@ export default function Create(props: IProps) {
           color='black'
           gap={"1rem"}>
           <Field.Text
-                    errors={errors}
+            errors={errors}
             variant='light'
             name='title'
             icon={<Icon icon='fluent:slide-text-title-20-filled' />}

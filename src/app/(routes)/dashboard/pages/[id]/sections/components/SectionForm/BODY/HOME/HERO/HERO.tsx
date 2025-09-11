@@ -44,7 +44,7 @@ export default function HERO(props: IProps) {
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
-                errors={errors}
+          errors={errors}
           type='single'
           name='components.FA.logo'
           icon={<Icon icon='ri:image-fill' />}
@@ -89,7 +89,7 @@ export default function HERO(props: IProps) {
 
       <Grid gridColumn={"-1/1"}>
         <Field.Image
-                errors={errors}
+          errors={errors}
           type='single'
           name='components.EN.logo'
           icon={<Icon icon='ri:image-fill' />}
@@ -105,5 +105,5 @@ export default function HERO(props: IProps) {
     </Grid>
   );
 
-  return [EN, FA];
+  return [FA, EN];
 }

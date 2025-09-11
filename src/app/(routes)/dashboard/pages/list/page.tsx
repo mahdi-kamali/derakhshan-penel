@@ -13,6 +13,8 @@ import { useMutation } from "@tanstack/react-query";
 import React from "react";
 
 export default function page() {
+
+  
   const { data, isLoading, refetch } = useTable<IPage[]>({
     api: GetPagesAPI,
   });
