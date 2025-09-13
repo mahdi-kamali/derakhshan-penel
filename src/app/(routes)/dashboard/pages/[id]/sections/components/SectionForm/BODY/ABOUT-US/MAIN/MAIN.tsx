@@ -36,7 +36,8 @@ export default function MAIN(props: IProps): ReactElement[] {
                   gap={"1rem"}
                   backgroundColor='rgba(0,0,0,0.1)'
                   borderRadius={"1rem"}
-                  padding={"1em"}>
+                  padding={"1em"}
+                  key={index}>
                   <Field.Text
                     errors={errors}
                     variant='light'
@@ -93,7 +94,8 @@ export default function MAIN(props: IProps): ReactElement[] {
                   gap={"1rem"}
                   backgroundColor='rgba(0,0,0,0.1)'
                   borderRadius={"1rem"}
-                  padding={"1em"}>
+                  padding={"1em"}
+                  key={index}>
                   <Field.Text
                     errors={errors}
                     variant='light'

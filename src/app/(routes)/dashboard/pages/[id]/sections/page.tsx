@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 import CreateSection from "./components/CreateSection/CreateSection";
 import SectionForm from "./components/SectionForm/SectionForm";
 
-export default function page() {
+export default function Page() {
   const { id } = useParams();
 
   const { data } = useQuery<IPage["sections"]>({
@@ -34,6 +34,7 @@ export default function page() {
             {data?.map((section) => {
               return (
                 <SectionForm
+                key={section._id}
                   page_id={id as string}
                   section={section}
                 />

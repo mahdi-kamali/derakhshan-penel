@@ -8,7 +8,7 @@ import { CreatePageAPI } from "@/services/Pages/Pages.services";
 import { ICreatePage, IPage } from "@/types/Pages/pages.types";
 import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
-export default function page() {
+export default function Page() {
   const GoList = useRedirect().admin.pages.list;
 
   const { mutate: CreatePage, isIdle } = useMutation({

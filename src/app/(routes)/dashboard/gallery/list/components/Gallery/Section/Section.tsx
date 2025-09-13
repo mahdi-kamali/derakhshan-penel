@@ -22,6 +22,7 @@ export default function Section(props: IProps) {
               <Image
                 file={image}
                 gallery={gallery}
+                key={image._id}
               />
             );
           })}

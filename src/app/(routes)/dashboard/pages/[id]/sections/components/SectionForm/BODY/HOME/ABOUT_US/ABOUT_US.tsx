@@ -48,10 +48,12 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
           const value = values.components.FA.agents[index];
 
           return (
-            <Grid gap={"1rem"} 
-            padding={"1em"}
-            backgroundColor="rgba(0,0,0,0.1)"
-            borderRadius={"1rem"}>
+            <Grid
+              gap={"1rem"}
+              padding={"1em"}
+              backgroundColor='rgba(0,0,0,0.1)'
+              borderRadius={"1rem"}
+              key={index}>
               <Field.Text
                 errors={errors}
                 variant='light'
@@ -127,7 +129,9 @@ export default function ABOUT_US(props: IProps): ReactElement[] {
           const value = values.components.EN.agents[index];
 
           return (
-            <Grid gap={"1rem"}>
+            <Grid
+              gap={"1rem"}
+              key={index}>
               <Field.Text
                 errors={errors}
                 variant='light'

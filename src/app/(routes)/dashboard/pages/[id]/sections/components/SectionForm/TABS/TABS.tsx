@@ -36,7 +36,8 @@ export default function TABS(props: IProps) {
     return (
       <button
         className={tabClass}
-        onClick={() => slideTo(index)}>
+        onClick={() => slideTo(index)}
+        key={index}>
         <span>{tab.icon}</span>
         <span>{tab.label}</span>
       </button>

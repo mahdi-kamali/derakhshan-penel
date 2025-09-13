@@ -2,7 +2,7 @@
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
 
-export default function page() {
+export default function Page() {
   return (
     <PageContainer title='پیشخوان'>
       <Grid>

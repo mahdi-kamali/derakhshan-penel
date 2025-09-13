@@ -21,7 +21,7 @@ export default function Text(props: IProps) {
   };
 
   return (
-    <Base {...props}>
+    <Base {...props as any}>
       <div className={styles.text}>
         {lines && (
           <textarea

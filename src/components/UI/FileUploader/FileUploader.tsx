@@ -53,7 +53,7 @@ export default function FileUploader(porps: IProps) {
         {files.map((file, index) => {
           const url = URL.createObjectURL(file);
           return (
-            <div className={styles.image}>
+            <div className={styles.image} key={index}>
               <img
                 src={url}
                 onError={(e) => {

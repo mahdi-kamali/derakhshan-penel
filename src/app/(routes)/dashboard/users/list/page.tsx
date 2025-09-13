@@ -7,14 +7,12 @@ import useTable from "@/hooks/useTable";
 import { GetUsersAPI } from "@/services/Users.services";
 import { IUser } from "@/types/User/user.types";
 
-export default function page() {
+export default function Page() {
   const { usersColDef } = useColdefs();
 
   const { data, isLoading, currentPage, setCurrentPage } = useTable<IUser[]>({
     api: GetUsersAPI,
   });
-
-  console.log(data);
 
   return (
     <PageContainer

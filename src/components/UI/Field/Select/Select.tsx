@@ -47,7 +47,7 @@ export default function Select(props: IProps) {
 
   return (
     <Base
-      {...props}
+      {...props as any}
       onChange={(value: any) => onChange(value)}>
       <RcSelect
         options={options}

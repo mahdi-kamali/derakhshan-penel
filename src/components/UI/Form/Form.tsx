@@ -76,7 +76,7 @@ export default function Form(props: IProps) {
                 setCurrentForm(swiper.realIndex);
               }}>
               {BODY_ARRAY.map((form) => {
-                return <SwiperSlide>{form}</SwiperSlide>;
+                return <SwiperSlide key={form.key}>{form}</SwiperSlide>;
               })}
             </Swiper>
           </div>

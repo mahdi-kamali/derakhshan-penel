@@ -7,7 +7,7 @@ import { IGallery } from "@/types/Gallery/gallery.types";
 import React from "react";
 import Gallery from "./components/Gallery";
 
-export default function page() {
+export default function Page() {
   const { data, isLoading, refetch } = useTable<IGallery[]>({
     api: GetAllGalleriesAPI,
   });
@@ -22,7 +22,7 @@ export default function page() {
           width={"100%"}
           gap={"1rem"}>
           {data.map((gallery, index) => {
-            return <Gallery.Section gallery={gallery} />;
+            return <Gallery.Section key={gallery._id} gallery={gallery} />;
           })}
         </Grid>
       </Grid>

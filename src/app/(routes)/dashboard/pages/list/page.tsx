@@ -12,7 +12,7 @@ import { IPage } from "@/types/Pages/pages.types";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 
-export default function page() {
+export default function Page() {
 
   
   const { data, isLoading, refetch } = useTable<IPage[]>({

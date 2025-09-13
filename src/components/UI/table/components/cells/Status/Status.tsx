@@ -17,7 +17,9 @@ export default function Status(props: IProps) {
 
   if (option === undefined) return <h1>موردی نا مشخص {value}</h1>;
 
-  const statusClass = [styles.status, styles[option.variant]].join(" ");
+  const statusClass = [styles.status, styles[option.variant || "success"]].join(
+    " ",
+  );
 
   return (
     <div className={statusClass}>

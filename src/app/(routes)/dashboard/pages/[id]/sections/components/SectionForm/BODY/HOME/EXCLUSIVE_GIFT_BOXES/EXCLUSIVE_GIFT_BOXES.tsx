@@ -49,7 +49,9 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
           const value = values.components.FA.images[index];
 
           return (
-            <Grid gap={"1rem"}>
+            <Grid
+              gap={"1rem"}
+              key={image._id}>
               <Field.Image
                 errors={errors}
                 type='single'
@@ -103,7 +105,9 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
           const value = values.components.EN.images[index];
 
           return (
-            <Grid gap={"1rem"}>
+            <Grid
+              gap={"1rem"}
+              key={index}>
               <Field.Image
                 errors={errors}
                 type='single'

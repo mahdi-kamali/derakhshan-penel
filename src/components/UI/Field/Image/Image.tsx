@@ -71,12 +71,13 @@ export default function Image(props: IProps) {
         }}>
         {galleries.map((gallery) => {
           return (
-            <div className={styles.gallery}>
+            <div className={styles.gallery} key={gallery._id}>
               <h1>{gallery.title}</h1>
               <div className={styles.images}>
                 {gallery.images.map((image) => {
                   return (
                     <GalleryImage
+                    key={image._id}
                       file={image}
                       gallery={gallery}
                       actions={{

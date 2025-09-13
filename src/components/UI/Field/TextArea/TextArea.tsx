@@ -5,7 +5,7 @@ import { IField } from "../field.types";
 
 import styles from "./styles.module.scss";
 
-interface IProps extends IField {
+interface IProps extends IField<string> {
   type: HTMLInputElement["type"];
 }
 
@@ -19,12 +19,12 @@ export default function TextArea(props: IProps) {
   };
 
   return (
-    <Base {...props}>
+    <Base {...(props as any)}>
       <div className={styles.text}>
         <input
-          {...props}
+          {...(props as any)}
           type={view ? "text" : type}
-          placeholder={placeHodler}
+          placeholder={placeHodler || ""}
         />
         <div className={styles.icons}>
           {type === "password" && !view && (

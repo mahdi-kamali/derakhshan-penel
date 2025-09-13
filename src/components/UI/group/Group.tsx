@@ -17,7 +17,7 @@ export default function Group(props: IProps) {
         className={styles.body}
         style={props}>
         {children.map((child) => (
-          <div className={styles.child}>{child}</div>
+          <div className={styles.child} key={child.key}>{child}</div>
         ))}
       </div>
     </div>

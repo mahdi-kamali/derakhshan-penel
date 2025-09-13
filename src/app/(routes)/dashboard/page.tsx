@@ -3,10 +3,10 @@ import useRedirect from "@/hooks/useRedirect";
 import { useEffect } from "react";
 
 export default function Page() {
-  const { GoHome } = useRedirect();
+  // const { GoHome } = useRedirect();
 
   useEffect(() => {
-    GoHome();
+    // GoHome();
   }, []);
 
   return <></>;

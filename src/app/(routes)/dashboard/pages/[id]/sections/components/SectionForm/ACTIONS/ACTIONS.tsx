@@ -106,5 +106,10 @@ export default function ACTIONS(props: IProps) {
 
   return [EDIT, CREATE, DELETE, CLOSE]
     .filter((action) => action.show)
-    .map((action) => <Button {...action} />);
+    .map((action, index) => (
+      <Button
+        {...action}
+        key={index}
+      />
+    ));
 }
