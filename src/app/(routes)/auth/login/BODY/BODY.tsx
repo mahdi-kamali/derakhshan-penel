@@ -2,13 +2,16 @@ import { Field } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
 import { ILogin } from "@/types/Auth/Auth.type";
 import { Grid } from "@mui/material";
-import { useFormikContext } from "formik";
+import { FormikContextType, useFormikContext } from "formik";
 import { SwiperSlide } from "swiper/react";
 
-interface IProps {}
+interface IProps {
+  formik : FormikContextType<ILogin>
+}
 
 export default function BODY(props: IProps) {
-  const { values, handleChange, errors } = useFormikContext<any>();
+  const {formik} = props
+  const { values, handleChange, errors } = formik;
 
   const LOGIN = (
     <Grid
