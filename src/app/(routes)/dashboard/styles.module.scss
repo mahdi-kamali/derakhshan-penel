@@ -3,13 +3,13 @@
     display: grid;
     grid-template-columns: max-content 1fr;
     transition: var((--trans-field));
+    gap: 1rem;
 }
 
 .page {
     overflow: auto;
-    padding: 1em var(--panel-box-gap);
-    height: 90dvh;
     margin: auto;
+    width: 100%;
 }
 
 @media only screen and (max-width: 600px) {

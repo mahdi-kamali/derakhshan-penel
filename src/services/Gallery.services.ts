@@ -40,7 +40,15 @@ export const DeleteGalleryImageAPI = (data: {
 export const AddImagesGalleryAPI = (data: {
   images: File[];
   gallery_id: IGallery["_id"];
+  onChange: (value: number) => void;
 }) => {
   const url = IMAGES.add;
-  return FilesSystem.uploadFileRequest(url, data);
+  return FilesSystem.uploadFileRequest(url, data, {
+    onUploadProgress(progressEvent) {
+      const percent = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total!! || 0,
+      );
+      data.onChange(percent);
+    },
+  });
 };

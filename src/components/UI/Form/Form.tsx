@@ -52,14 +52,17 @@ export default function Form(props: IProps) {
         style={{
           width: props.width,
         }}>
-        <div className={styles.tabs}>
-          <TABS
-            currentForm={currentForm}
-            slideTo={slideTo}
-            swiper={swiper}
-            {...extraProps}
-          />
-        </div>
+        {TABS.length > 0 && (
+          <div className={styles.tabs}>
+            <TABS
+              currentForm={currentForm}
+              slideTo={slideTo}
+              swiper={swiper}
+              {...extraProps}
+            />
+          </div>
+        )}
+
         <div className={styles.forms}>
           <div className={styles.header}>
             <HEADERS {...extraProps} />

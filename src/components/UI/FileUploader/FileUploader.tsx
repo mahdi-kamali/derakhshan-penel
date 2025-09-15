@@ -10,6 +10,7 @@ import {
   GetAllGalleriesAPI,
 } from "@/services/Gallery.services";
 import { IGallery } from "@/types/Gallery/gallery.types";
+import { LinearProgress } from "@mui/material";
 
 interface IProps {
   gallery: IGallery;
@@ -19,6 +20,11 @@ interface IProps {
 export default function FileUploader(porps: IProps) {
   const client = useQueryClient();
 
+  const [progress, setProgress] = useState({
+    isShow: false,
+    value: 0,
+  });
+
   const { gallery } = porps;
 
   const placeHolder = "/images/place-holder/image-holder.png";
@@ -26,6 +32,10 @@ export default function FileUploader(porps: IProps) {
   const { mutate: AddImages } = useMutation({
     mutationFn: AddImagesGalleryAPI,
     onSuccess(data, variables, context) {
+      setProgress({
+        isShow: false,
+        value: 0,
+      });
       client.invalidateQueries({
         queryKey: [GetAllGalleriesAPI.name],
       });
@@ -53,7 +63,9 @@ export default function FileUploader(porps: IProps) {
         {files.map((file, index) => {
           const url = URL.createObjectURL(file);
           return (
-            <div className={styles.image} key={index}>
+            <div
+              className={styles.image}
+              key={index}>
               <img
                 src={url}
                 onError={(e) => {
@@ -78,6 +90,12 @@ export default function FileUploader(porps: IProps) {
           uploadedLabel='فایل های  مورد نظر اضافه شدند.'
           multiple={true}
         />
+        <Grid expanded={progress.isShow}>
+          <LinearProgress
+            variant='buffer'
+            value={progress.value}
+          />
+        </Grid>
         <Grid
           expanded={files.length > 0}
           gridTemplateColumns={"1fr 1fr"}
@@ -86,22 +104,20 @@ export default function FileUploader(porps: IProps) {
             type='button'
             icon={<Icon icon='ep:upload-filled' />}
             variant='success'
+            disabled={progress.isShow}
             onClick={() =>
               AddImages({
                 gallery_id: gallery._id,
                 images: files,
+                onChange(value) {
+                  setProgress({
+                    isShow: true,
+                    value: value,
+                  });
+                },
               })
             }>
             <span>تایید و آپلود</span>
-          </Button>
-          <Button
-            type='button'
-            icon={<Icon icon='fa7-solid:cancel' />}
-            variant='danger'
-            onClick={() => {
-              setFiles([]);
-            }}>
-            <span>لغو</span>
           </Button>
         </Grid>
       </Grid>
