@@ -51,7 +51,7 @@ export default function EXCLUSIVE_GIFT_BOXES(props: IProps): ReactElement[] {
           return (
             <Grid
               gap={"1rem"}
-              key={image._id}>
+              key={index}>
               <Field.Image
                 errors={errors}
                 type='single'

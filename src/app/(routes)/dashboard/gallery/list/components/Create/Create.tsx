@@ -36,7 +36,7 @@ export default function Create(props: IProps) {
     <FormikProvider value={formik}>
       <Box
         header={
-          <Grid gridTemplateColumns={" 1fr max-content"}>
+          <Grid gridTemplateColumns={" 1fr max-content"} gap={"1rem"}>
             <p>ایجاد گالری جدید</p>
             <Button
               type='button'
