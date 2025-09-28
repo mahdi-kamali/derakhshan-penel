@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useState } from "react";
 import Icon from "../../Icon/Icon";
 import Base from "../Base/Base";
 import { IField } from "../field.types";
 
 import styles from "./styles.module.scss";
-import { useFormikContext } from "formik";
 
-interface IProps extends IField {
+interface IProps extends IField<string, ChangeEvent<HTMLInputElement>> {
   type: "text" | "password";
   lines?: number;
 }
@@ -21,7 +20,7 @@ export default function Text(props: IProps) {
   };
 
   return (
-    <Base {...props as any}>
+    <Base {...(props as any)}>
       <div className={styles.text}>
         {lines && (
           <textarea

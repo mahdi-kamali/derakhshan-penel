@@ -1,12 +1,35 @@
 import Icon from "@/components/UI/Icon/Icon";
 import Cell from "@/components/UI/table/components/cells/Cell";
 import { IPage } from "@/types/Pages/pages.types";
-import { IROLE_OPTIONS, PAGES_STATUS_OPTIONS } from "@/types/Variables";
+import {
+  ICAREER_IS_ACTIVE,
+  IROLE_OPTIONS,
+  PAGES_STATUS_OPTIONS,
+} from "@/types/Variables";
 import { ColDef } from "@ag-grid-community/core";
 import useRedirect from "./useRedirect";
+import { dateToJalai } from "@/utils/Converters";
+import { IMAGE_URL } from "@/common/urls/urls";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  DeleteCareerByIDAPI,
+  GetCareersAPI,
+} from "@/services/Careers/Careers.services";
+import { ShowQuestion } from "@/common/toast/toast";
 
 export default function useColdefs() {
   const { admin } = useRedirect();
+
+  const queryClient = useQueryClient();
+
+  const { mutate: DeleteCareer } = useMutation({
+    mutationFn: DeleteCareerByIDAPI,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetCareersAPI.name],
+      });
+    },
+  });
 
   const usersColDef: ColDef[] = [
     {
@@ -105,8 +128,99 @@ export default function useColdefs() {
     },
   ];
 
+  const careersColDef: ColDef[] = [
+    {
+      field: "image",
+      headerName: "تصویر",
+      cellRenderer: (params: any) => {
+        const value = params.value?.path;
+        return (
+          <img
+            src={IMAGE_URL(value)}
+            alt=''
+            style={{
+              aspectRatio: "16/10",
+              objectFit: "contain",
+              width: "100%",
+            }}
+          />
+        );
+      },
+    },
+    { field: "title", headerName: "عنوان" },
+    { field: "description", headerName: "توضیحات" },
+    {
+      field: "skills",
+      headerName: "مهارت‌ها",
+      valueGetter: (params) => params.data.skills?.join(" , ") || "-",
+      cellRenderer: (params: any) => {
+        const value = params.value;
+        return (
+          <Cell.ToolTip
+            content={<p>{value}</p>}
+            icon={<Icon icon='fluent-mdl2:view' />}
+            label='مشاهده'
+            variant='success'
+          />
+        );
+      },
+    },
+    {
+      headerName: "وضعیت",
+      field: "isActive",
+      type: "STATUS",
+      cellDataType: "text",
+      cellRendererParams: {
+        OPTIONS: ICAREER_IS_ACTIVE,
+      },
+    },
+    {
+      field: "updatedAt",
+      headerName: "تاریخ بروزرسانی",
+      cellRenderer: (params: any) => {
+        const value = params.value;
+        return (
+          <Cell.Container>
+            <p>{dateToJalai(value)}</p>
+          </Cell.Container>
+        );
+      },
+    },
+    {
+      field: "_id",
+      headerName: "عملیات",
+      minWidth: 200,
+      cellRenderer: (params: any) => {
+        const _id = params.value;
+        return (
+          <Cell.Container gap={"0.5rem"}>
+            <Cell.Button
+              title='ویرایش'
+              variant='warning'
+              onClick={() => admin.careers.edit(_id)}
+              icon={<Icon icon='line-md:edit-filled' />}
+            />
+            <Cell.Button
+              title='حذف'
+              variant='danger'
+              onClick={() => {
+                ShowQuestion({
+                  onConfirm() {
+                    DeleteCareer(_id);
+                  },
+                });
+              }}
+              icon={<Icon icon='material-symbols-light:delete-rounded' />}
+            />
+          </Cell.Container>
+        );
+      },
+    },
+  ];
+
   return {
     pagesColDef,
     usersColDef,
+    careersColDef,
   };
 }

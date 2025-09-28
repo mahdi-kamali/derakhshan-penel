@@ -36,6 +36,14 @@ export const ADMIN_URLS = {
       deleteById: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections/{section_id}",
     },
   },
+
+  CAREERS: {
+    create: ADMIN_URL_BASE_URL + "/careers/",
+    list: ADMIN_URL_BASE_URL + "/careers/",
+    getByID: ADMIN_URL_BASE_URL + "/careers/{_id}",
+    deleteById: ADMIN_URL_BASE_URL + "/careers/{_id}",
+    updateById: ADMIN_URL_BASE_URL + "/careers/{_id}",
+  },
 };
 
 export const IMAGE_URL = (path: string) => `${SERVER_BASE_URL}${path}`;

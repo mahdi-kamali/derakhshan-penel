@@ -1,8 +1,9 @@
+import { IResponse } from "@/common/axios/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 interface IProps<T> {
-  api: (params: any) => Promise<T>;
+  api: (params: any) => Promise<any>;
 }
 
 export default function useTable<T = any[]>(props: IProps<T>) {

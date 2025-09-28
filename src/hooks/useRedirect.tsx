@@ -1,3 +1,4 @@
+import { ICareer } from "@/types/Career/Career.types";
 import { useRouter } from "next/navigation";
 
 export default function useRedirect() {
@@ -17,6 +18,10 @@ export default function useRedirect() {
         sections: {
           edit: (_id: string) => redirect(`/dashboard/pages/${_id}/sections`),
         },
+      },
+      careers: {
+        list: () => redirect("/dashboard/careers/list"),
+        edit: (_id: ICareer["_id"]) => redirect(`/dashboard/careers/${_id}/`),
       },
     },
     GoLogin: () => redirect("/auth/login"),

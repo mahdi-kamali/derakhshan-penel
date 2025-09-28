@@ -20,6 +20,7 @@ export default function Base(props: IBaseProps) {
     variant = "regular",
     name,
     errors,
+    disabled,
   } = props;
 
   const error = FindErrorKey(errors, name);
@@ -30,6 +31,7 @@ export default function Base(props: IBaseProps) {
     value && error === undefined && styles.success,
     error && styles.danger,
     styles[`variant-${variant}`],
+    disabled && styles.disabled,
   ].join(" ");
 
   return (

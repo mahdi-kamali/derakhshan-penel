@@ -2,6 +2,7 @@ import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { FormikContext, FormikContextType, useFormikContext } from "formik";
 import HOME from "./HOME/HOME";
 import ABOUT_US from "./ABOUT-US/ABOUT_US";
+import CAREERS from "./CAREERS/CAREERS";
 
 interface IProps {
   formik: FormikContextType<ISection>;
@@ -23,6 +24,10 @@ export default function BODY(props: IProps) {
       return HOME.EXCLUSIVE_GIFT_BOXES(props);
     case "ABOUT_US_MAIN":
       return ABOUT_US.MAIN(props);
+    case "CAREERS_HERO":
+      return CAREERS.CAREERS_HERO(props);
+    case "CAREERS_JOBS":
+      return CAREERS.JOBS(props);
     default:
       return HOME.HERO(props);
   }

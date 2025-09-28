@@ -1,5 +1,6 @@
 import { Field, Grid, Group } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
+import { LanguagesENUM } from "@/types/Language/Language.types";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { FindErrorKey } from "@/utils/validations";
 import { FormikContextType } from "formik";
@@ -16,7 +17,7 @@ export default function MAIN(props: IProps): ReactElement[] {
 
   if (values.type !== "ABOUT_US_MAIN") return [];
 
-  const Component = (language: "FA" | "EN") => {
+  const Component = (language: LanguagesENUM) => {
     const components = values.components[language];
 
     return (
@@ -145,14 +146,14 @@ export default function MAIN(props: IProps): ReactElement[] {
           <Field.Image
             errors={errors}
             type='single'
-            name='components.FA.background'
+            name={`components.${language}.background`}
             icon={<Icon icon='ri:image-fill' />}
             onChange={(file) => {
-              setFieldValue("components.FA.background", file);
+              setFieldValue(`components.${language}.background`, file);
             }}
             title='تصویر پس زمینه'
             value={components.background}
-            placeHodler='لوگو را انتخاب کنید...'
+            placeHodler='تصویر را انتخاب کنید...'
             variant='light'
           />
         </Grid>
@@ -160,8 +161,8 @@ export default function MAIN(props: IProps): ReactElement[] {
     );
   };
 
-  const FA = Component("FA");
-  const EN = Component("EN");
+  const FA = Component(LanguagesENUM.FA);
+  const EN = Component(LanguagesENUM.EN);
 
   return [FA, EN];
 }

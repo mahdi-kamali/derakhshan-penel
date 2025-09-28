@@ -34,6 +34,28 @@ export default function useAppRouter() {
       ],
     },
     {
+      id: 2,
+      title: "آکهی ها",
+      icon: <Icon icon='academicons:ads' />,
+      shownSideBar: true,
+      children: [
+        {
+          id: 3,
+          title: "لیست",
+          path: "/dashboard/careers/list",
+          icon: <Icon icon='ic:round-view-list' />,
+          shownSideBar: true,
+        },
+        {
+          id: 4,
+          title: "ایجاد آگهی",
+          path: "/dashboard/careers/create",
+          icon: <Icon icon='material-symbols-light:new-label' />,
+          shownSideBar: true,
+        },
+      ],
+    },
+    {
       id: 1,
       title: "گالری",
       icon: <Icon icon='solar:gallery-wide-bold-duotone' />,

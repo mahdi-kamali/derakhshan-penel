@@ -150,6 +150,40 @@ export type SECTIONS_TYPES = {
       };
     };
   };
+
+  CAREERS_HERO: {
+    type: "CAREERS_HERO";
+    components: {
+      EN: {
+        background: IFile;
+        title: {
+          marked: string;
+          text: string;
+        };
+        description: string;
+      };
+      FA: {
+        background: IFile;
+        title: {
+          marked: string;
+          text: string;
+        };
+        description: string;
+      };
+    };
+  };
+
+  CAREERS_JOBS: {
+    type: "CAREERS_JOBS";
+    components: {
+      EN: {
+        jobs: [];
+      };
+      FA: {
+        jobs: [];
+      };
+    };
+  };
 };
 
 export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
@@ -318,8 +352,41 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
       },
     },
   },
-};
 
+  CAREERS_HERO: {
+    type: "CAREERS_HERO",
+    components: {
+      EN: {
+        background: undefined as any,
+        title: {
+          marked: "marked title",
+          text: "this is text with marked title",
+        },
+        description: "this is description.",
+      },
+      FA: {
+        background: undefined as any,
+        title: {
+          marked: "متن مارک شده",
+          text: "این یک متن است که مارک شده است",
+        },
+        description: "این یک توضیحات است.",
+      },
+    },
+  },
+
+  CAREERS_JOBS: {
+    type: "CAREERS_JOBS",
+    components: {
+      EN: {
+        jobs: [],
+      },
+      FA: {
+        jobs: [],
+      },
+    },
+  },
+};
 
 // 2) Shared base fields
 type BaseFields = {

@@ -34,7 +34,7 @@ export default function Page() {
             {data?.map((section) => {
               return (
                 <SectionForm
-                key={section._id}
+                  key={section._id}
                   page_id={id as string}
                   section={section}
                 />

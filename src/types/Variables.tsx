@@ -55,6 +55,22 @@ export const IROLE_OPTIONS: IOption[] = [
     type: "child",
   },
 ];
+export const ICAREER_IS_ACTIVE: IOption[] = [
+  {
+    icon: <Icon icon="codicon:vm-active" />,
+    label: "فعال",
+    value: true,
+    variant: "success",
+    type: "child",
+  },
+  {
+    icon: <Icon icon='ep:user-filled' />,
+    label: "غیرفعال",
+    value: false,
+    variant: "danger",
+    type: "child",
+  },
+];
 
 export const PAGES_STATUS_OPTIONS: IOption[] = [
   {
@@ -148,6 +164,28 @@ export const SECTIONS_OPTIONS: IOption<ISection["type"]>[] = [
         label: "درباره ما",
         value: "ABOUT_US_MAIN",
         icon: <Icon icon='mdi:about' />,
+        variant: "success",
+        type: "child",
+      },
+    ],
+  },
+  {
+    label: "شغلی",
+    icon: <Icon icon='hugeicons:job-search' />,
+    variant: "success",
+    type: "parent",
+    options: [
+      {
+        label: "هیرو",
+        value: "CAREERS_HERO",
+        icon: <Icon icon='tabler:article-filled' />,
+        variant: "warning",
+        type: "child",
+      },
+      {
+        label: "شغل ها",
+        value: "CAREERS_JOBS",
+        icon: <Icon icon='hugeicons:job-search' />,
         variant: "success",
         type: "child",
       },

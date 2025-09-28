@@ -2,11 +2,17 @@ import axios, { AxiosRequestConfig, HttpStatusCode } from "axios";
 import moment from "moment-jalaali";
 import { ShowError, ShowSuccess } from "../toast/toast";
 import { RootStore } from "@/@redux/reduxt/stores/RootStore";
-type IResponse<T, OTHERS = any> = {
-  data: T;
-  message: string;
-  status: HttpStatusCode;
-} & OTHERS;
+export type IResponse<T, OTHERS = any> = OTHERS extends any
+  ? {
+      data: T;
+      message: string;
+      status: HttpStatusCode;
+    }
+  : {
+      data: T;
+      message: string;
+      status: HttpStatusCode;
+    } & OTHERS;
 
 axios.interceptors.response.use(
   (response) => {

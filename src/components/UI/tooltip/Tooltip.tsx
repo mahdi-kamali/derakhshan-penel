@@ -5,7 +5,7 @@ import {
   Tooltip as MUI_tooltip,
   Zoom,
 } from "@mui/material";
-import React from "react";
+import React, { CSSProperties } from "react";
 
 import styles from "./styles.module.scss";
 
@@ -13,6 +13,10 @@ interface IProps {
   label: React.ReactElement;
   popup: React.ReactElement;
   open?: boolean;
+  otherStyles?: {
+    label?: CSSProperties;
+    popup?: CSSProperties;
+  };
 }
 
 const Component = styled(({ className, ...props }: TooltipProps) => (
@@ -32,14 +36,29 @@ const Component = styled(({ className, ...props }: TooltipProps) => (
 }));
 
 export const Tooltip = (props: IProps) => {
-  const { label, popup, open = false } = props;
+  const {
+    label,
+    popup,
+    open = false,
+    otherStyles = { label: {}, popup: {} },
+  } = props;
   return (
     <Component
-      title={<div className={styles.popup}>{popup}</div>}
+      title={
+        <div
+          className={styles.popup}
+          style={{ ...props.otherStyles?.popup }}>
+          {popup}
+        </div>
+      }
       placement='bottom-end'
       dir='rtl'
       arrow>
-      <div className={styles.label}>{label}</div>
+      <div
+        className={styles.label}
+        style={{ ...props.otherStyles?.label }}>
+        {label}
+      </div>
     </Component>
   );
 };
