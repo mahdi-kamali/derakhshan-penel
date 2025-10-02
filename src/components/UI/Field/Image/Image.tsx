@@ -27,8 +27,6 @@ export default function Image(props: IProps) {
     setFile(props.value);
   }, [props.value]);
 
-
-
   return (
     <Base {...(props as any)}>
       <div className={styles.field}>
@@ -56,47 +54,53 @@ export default function Image(props: IProps) {
       </div>
       <Modal
         show={show}
-        onClose={() => setShow(false)}
-        actions={{
-          submit: {
-            enabled: !!file,
-            onSubmit: () => {
-              props.onChange(file!!);
-            },
-          },
-          cancel: {
-            enabled: true,
-            onCancel() {},
-          },
-        }}>
-        {galleries.map((gallery) => {
-          return (
-            <div className={styles.gallery} key={gallery._id}>
-              <h1>{gallery.title}</h1>
-              <div className={styles.images}>
-                {gallery.images.map((image) => {
-                  return (
-                    <GalleryImage
-                    key={image._id}
-                      file={image}
-                      gallery={gallery}
-                      actions={{
-                        select: {
-                          enabled: true,
-                          onChange(checked) {
-                            if (checked) setFile(image);
-                            else setFile(undefined);
-                          },
-                          checked: file?._id === image._id,
-                        },
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+        onClose={() => setShow(false)}>
+        {() => {
+          return {
+            BODY: galleries.map((gallery) => {
+              return (
+                <div
+                  className={styles.gallery}
+                  key={gallery._id}>
+                  <h1>{gallery.title}</h1>
+                  <div className={styles.images}>
+                    {gallery.images.map((image) => {
+                      return (
+                        <GalleryImage
+                          key={image._id}
+                          file={image}
+                          gallery={gallery}
+                          actions={{
+                            select: {
+                              enabled: true,
+                              onChange(checked) {
+                                if (checked) setFile(image);
+                                else setFile(undefined);
+                              },
+                              checked: file?._id === image._id,
+                            },
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            }),
+            ACTIONS: [
+              {
+                type: "button",
+                variant: "success",
+                disabled: file === undefined,
+                title: "ثبت",
+                onClick() {
+                  props.onChange(file!!);
+                  setShow(false)
+                },
+              },
+            ],
+          };
+        }}
       </Modal>
     </Base>
   );

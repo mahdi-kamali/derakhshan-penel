@@ -184,6 +184,32 @@ export type SECTIONS_TYPES = {
       };
     };
   };
+
+  CONTACT_US: {
+    type: "CONTACT_US";
+    components: {
+      EN: {
+        info: {
+          company: string;
+          location: string;
+          phone: string;
+          fax: string;
+          email: string;
+          image: IFile;
+        };
+      };
+      FA: {
+        info: {
+          company: string;
+          location: string;
+          phone: string;
+          fax: string;
+          email: string;
+          image: IFile;
+        };
+      };
+    };
+  };
 };
 
 export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
@@ -383,6 +409,32 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
       },
       FA: {
         jobs: [],
+      },
+    },
+  },
+
+  CONTACT_US: {
+    type: "CONTACT_US",
+    components: {
+      EN: {
+        info: {
+          company: "Derakhshan Pak Tabriz",
+          location: "Iran – Tabriz – Km 6 Tehran Road, Irdak Industrial Zone",
+          phone: "+98-413-6373751",
+          fax: "+98-413-6373753",
+          email: "info@dppack.com",
+          image: undefined as any,
+        },
+      },
+      FA: {
+        info: {
+          company: "درخشان پاک تبریز",
+          location: "ایران – تبریز – کیلومتر ۶ جاده تهران، کوی صنعتی ایرداک",
+          phone: "+۹۸-۴۱۳-۶۳۷۳۷۵۱",
+          fax: "+۹۸-۴۱۳-۶۳۷۳۷۵۳",
+          email: "info@dppack.com",
+          image: undefined as any,
+        },
       },
     },
   },

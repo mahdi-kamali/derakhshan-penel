@@ -1,6 +1,9 @@
 import Form from "@/components/UI/Form/Form";
 import { IPage } from "@/types/Pages/pages.types";
-import { ISection } from "@/types/Pages/Sections/Sections.types";
+import {
+  ISection,
+  SECTIONS_TYPES_EXAMPLES,
+} from "@/types/Pages/Sections/Sections.types";
 import VALIDATION from "@/utils/validations";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
@@ -24,14 +27,10 @@ export default function SectionForm(props: IProps) {
     initialValues: {
       _id: "",
       name: "",
-      type: "UNSET",
-      components: {
-        EN: {},
-        FA: {},
-      },
-      isActive: true,
       createdAt: "",
       updatedAt: "",
+      isActive: true,
+      ...SECTIONS_TYPES_EXAMPLES["CONTACT_US"],
     },
     validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
     onSubmit(values, formikHelpers) {},

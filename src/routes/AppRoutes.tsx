@@ -61,14 +61,6 @@ export default function useAppRouter() {
       icon: <Icon icon='solar:gallery-wide-bold-duotone' />,
       path: "/dashboard/gallery/list",
       shownSideBar: true,
-      // children: [
-      //   {
-      //     title: "لیست",
-      //     id: 3,
-      //     shownSideBar: true,
-      //     path: "/dashboard/gallery/list",
-      //   },
-      // ],
     },
     {
       id: 1,
@@ -90,6 +82,13 @@ export default function useAppRouter() {
           path: "/dashboard/pages/create",
         },
       ],
+    },
+    {
+      id: 1,
+      title: "تماس با ما",
+      icon: <Icon icon='material-symbols-light:contact-phone-rounded' />,
+      path: "/dashboard/contact-us/list",
+      shownSideBar: true,
     },
   ]);
 

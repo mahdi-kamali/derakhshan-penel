@@ -17,7 +17,7 @@ export default function Group(props: IProps) {
     const childrens = children as ReactElement[];
 
     const isArray = Array.isArray(children);
-    if (isArray) return children;
+    if (isArray===false) return children;
     return childrens.map((child) => (
       <div
         className={styles.child}

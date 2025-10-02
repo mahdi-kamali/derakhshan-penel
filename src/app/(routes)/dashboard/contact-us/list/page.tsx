@@ -4,24 +4,24 @@ import { Grid } from "@/components/UI";
 import Table from "@/components/UI/table/Table";
 import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";
-import { GetCareersAPI } from "@/services/Careers/Careers.services";
+import { GetContactUsAPI } from "@/services/Contact-us/Contact_us.services";
 import { GetUsersAPI } from "@/services/Users.services";
-import { ICareer } from "@/types/Career/Career.types";
+import { IUser } from "@/types/User/user.types";
 
 export default function Page() {
-  const { careersColDef } = useColdefs();
+  const { contactUsColDef } = useColdefs();
 
-  const { data, isLoading, currentPage, setCurrentPage } = useTable<ICareer[]>({
-    api: GetCareersAPI,
+  const { data, isLoading, currentPage, setCurrentPage } = useTable<IUser[]>({
+    api: GetContactUsAPI,
   });
 
   return (
     <PageContainer
-      title='لیست کاربران'
+      title='درباره ما'
       isLoading={isLoading}>
       <Grid>
         <Table
-          colDefs={careersColDef}
+          colDefs={contactUsColDef}
           rowData={data}
         />
       </Grid>

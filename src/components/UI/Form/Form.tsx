@@ -75,6 +75,7 @@ export default function Form(props: IProps) {
               onSwiper={setSwiper}
               draggable={false}
               allowTouchMove={false}
+              autoHeight={true}
               onSlideChange={(swiper) => {
                 setCurrentForm(swiper.realIndex);
               }}>

@@ -22,7 +22,7 @@ export const UpdateCareerAPI = (data: ICareer) => {
 };
 
 export const GetCareersAPI = () => {
-  return getRequest(list);
+  return getRequest<ICareer>(list);
 };
 
 export const GetCareerByIDAPI = (_id: string) => {

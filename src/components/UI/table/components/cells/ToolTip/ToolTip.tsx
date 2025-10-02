@@ -8,15 +8,15 @@ import "tippy.js/dist/tippy.css";
 import styles from "./styles.module.scss";
 import Cell from "../Cell";
 
-interface IProps {
+export interface IToolTipProps {
   label: string;
-  content: ReactElement;
+  children: ReactElement | ReactElement[];
   variant: IVariant;
   icon: ReactElement;
 }
 
-export const ToolTip = (props: IProps) => {
-  const { content, label, variant, icon } = props;
+export const ToolTip = (props: IToolTipProps) => {
+  const { children, label, variant, icon } = props;
 
   const Label = () => {
     const classs = [styles.label, styles[variant]].join(" ");
@@ -31,8 +31,9 @@ export const ToolTip = (props: IProps) => {
   return (
     <Cell.Container>
       <Tippy
+      className={styles.popup}
         placement='bottom'
-        content={content}>
+        content={children}>
         {Label()}
       </Tippy>
     </Cell.Container>

@@ -9,4 +9,5 @@ export interface ICareer {
   createdAt: string;
   updatedAt: string;
   image: IFile;
+  type: "SPECIAL" | "NORMAL";
 }

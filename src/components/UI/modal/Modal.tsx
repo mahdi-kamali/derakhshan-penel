@@ -3,27 +3,31 @@ import { ReactElement } from "react";
 
 import styles from "./styles.module.scss";
 import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
-import { Fade, Grow } from "@mui/material";
+import { Grow } from "@mui/material";
+import { IButtonProps } from "../Button/types/Buttons.types";
 
-interface IProps {
-  children: ReactElement | ReactElement[];
-  show?: boolean;
-  onClose: () => void;
-  actions?: {
-    submit: {
-      enabled: boolean;
-      onSubmit?: () => void;
-    };
-    cancel: {
-      enabled: boolean;
-      onCancel?: () => void;
-    };
+interface IChildren {
+  callbacks: {
+    close: () => void;
   };
 }
 
+interface IProps {
+  children: () => {
+    BODY: ReactElement | ReactElement[];
+    ACTIONS: IButtonProps[];
+  };
+  show?: boolean;
+  onClose: () => void;
+}
+
 export default function Modal(props: IProps) {
-  const { children, show = false, onClose, actions } = props;
+  const { children, show = false, onClose } = props;
+
+  
+
+  const { BODY, ACTIONS } = children();
+
   return (
     <MuiModal
       classes={{
@@ -34,30 +38,12 @@ export default function Modal(props: IProps) {
       closeAfterTransition>
       <Grow in={show}>
         <div className={styles.content}>
-          <div className={styles.children}>{children}</div>
-
-          {actions && (
+          <div className={styles.children}>{BODY}</div>
+          {ACTIONS.length > 0 && (
             <div className={styles.actions}>
-              <Button
-                type='button'
-                title='لغو و بستن'
-                variant='danger'
-                icon={<Icon icon='line-md:close' />}
-                onClick={onClose}
-                disabled={actions.cancel.enabled === false}
-              />
-
-              <Button
-                type='button'
-                title='ثبت'
-                variant='success'
-                icon={<Icon icon='lsicon:submit-outline' />}
-                onClick={() => {
-                  if (actions?.submit?.onSubmit) actions?.submit?.onSubmit();
-                  onClose();
-                }}
-                disabled={actions.submit.enabled === false}
-              />
+              {ACTIONS.map((action) => (
+                <Button {...action} />
+              ))}
             </div>
           )}
         </div>

@@ -35,6 +35,8 @@ export default function page() {
     onSuccess(data, variables, context) {},
   });
 
+  console.log(values)
+
   return (
     <PageContainer
       title='ایحاد آگهی جدید'
@@ -111,6 +113,7 @@ export default function page() {
             icon={<Icon icon='line-md:image-filled' />}
             name='image'
             onChange={(image) => {
+              console.log(image)
               setFieldValue("image", image);
             }}
             title='عکس آگهی'

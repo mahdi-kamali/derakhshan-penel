@@ -22,17 +22,16 @@
     }
 
     &:disabled {
-        opacity: 0.5;
+        opacity: 0.25;
+        cursor: no-drop !important;
     }
 }
 
 .disabled {
-    pointer-events: none !important;
     cursor: not-allowed !important;
     * {
         color: white !important;
-    cursor: no-drop !important;
-
+        cursor: no-drop !important;
     }
 }
 

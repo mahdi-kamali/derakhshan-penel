@@ -1,9 +1,9 @@
 import { ISection } from "@/types/Pages/Sections/Sections.types";
-import { FormikContext, FormikContextType, useFormikContext } from "formik";
+import { FormikContextType } from "formik";
 import HOME from "./HOME/HOME";
 import ABOUT_US from "./ABOUT-US/ABOUT_US";
 import CAREERS from "./CAREERS/CAREERS";
-
+import CONTACT_US from "./CONTACT-US/CONTACT_US";
 interface IProps {
   formik: FormikContextType<ISection>;
 }
@@ -28,6 +28,8 @@ export default function BODY(props: IProps) {
       return CAREERS.CAREERS_HERO(props);
     case "CAREERS_JOBS":
       return CAREERS.JOBS(props);
+    case "CONTACT_US":
+      return CONTACT_US(props);
     default:
       return HOME.HERO(props);
   }

@@ -5,7 +5,7 @@ import { Grid } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
 import Cell from "@/components/UI/table/components/cells/Cell";
 import Table from "@/components/UI/table/Table";
-import useColdefs from "@/hooks/useColdefs";
+import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";
 import { DeletePageAPI, GetPagesAPI } from "@/services/Pages/Pages.services";
 import { IPage } from "@/types/Pages/pages.types";

@@ -36,13 +36,19 @@ export const ADMIN_URLS = {
       deleteById: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections/{section_id}",
     },
   },
-
   CAREERS: {
     create: ADMIN_URL_BASE_URL + "/careers/",
     list: ADMIN_URL_BASE_URL + "/careers/",
     getByID: ADMIN_URL_BASE_URL + "/careers/{_id}",
     deleteById: ADMIN_URL_BASE_URL + "/careers/{_id}",
     updateById: ADMIN_URL_BASE_URL + "/careers/{_id}",
+  },
+  CONTACT_US: {
+    create: ADMIN_URL_BASE_URL + "/contact-us/",
+    list: ADMIN_URL_BASE_URL + "/contact-us/",
+    getByID: ADMIN_URL_BASE_URL + "/contact-us/{_id}",
+    deleteById: ADMIN_URL_BASE_URL + "/contact-us/{_id}",
+    updateById: ADMIN_URL_BASE_URL + "/contact-us/{_id}",
   },
 };
 

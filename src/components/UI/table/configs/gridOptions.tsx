@@ -1,5 +1,19 @@
 import { GridOptions } from "ag-grid-community";
 import Cell from "../components/cells/Cell";
+import { IOption } from "@/types/Variables";
+import { ShowQuestion } from "@/common/toast/toast";
+import { IColDef } from "@/hooks/useColDefs/useColdefs.types";
+
+interface IProps {
+  colDef: {
+    type: IColDef<any>["type"];
+  };
+  value: any;
+  OPTIONS: IOption[];
+  onChange: (value: any, data: any) => void;
+  data: any;
+}
+
 const gridOptions: GridOptions = {
   multiSortKey: "ctrl",
   rowSelection: "multiple",
@@ -17,22 +31,46 @@ const gridOptions: GridOptions = {
     editable: false,
     suppressMovable: true,
     unSortIcon: false,
-    flex :1 ,
-    cellRenderer: (props: any) => {
-      const { value, colDef } = props;
+    flex: 1,
+    minWidth: 130,
+    cellDataType : "text",
+    cellRenderer: (props: IProps) => {
+      const { value, colDef, OPTIONS, onChange, data } = props;
       const { type } = colDef;
       switch (type) {
         case "STATUS": {
-          const options = props.OPTIONS;
           return (
             <Cell.Container>
               <Cell.Status
-                options={options}
-                onChange={(option) => {}}
+                options={OPTIONS}
+                onChange={(value) => onChange(value, data)}
                 value={value}
               />
             </Cell.Container>
           );
+        }
+        case "SELECT": {
+          return (
+            <Cell.Container>
+              <Cell.Select
+                options={OPTIONS}
+                onChange={(value) => onChange(value, data)}
+                value={value}
+              />
+            </Cell.Container>
+          );
+        }
+
+        case "DATE": {
+          return (
+            <Cell.Container>
+              <Cell.Date value={value} />
+            </Cell.Container>
+          );
+        }
+
+        case "TEXT": {
+          return <Cell.Container>{value}</Cell.Container>;
         }
       }
       return <Cell.Container>{value}</Cell.Container>;

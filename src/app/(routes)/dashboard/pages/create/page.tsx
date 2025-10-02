@@ -18,19 +18,21 @@ export default function Page() {
     },
   });
 
-  const { values, handleChange, submitForm, errors } = useFormik({
-    onSubmit(values, formikHelpers) {
-      ShowQuestion({
-        onConfirm() {
-          CreatePage(values);
-        },
-      });
+  const { values, handleChange, submitForm, errors, setFieldValue } = useFormik(
+    {
+      onSubmit(values, formikHelpers) {
+        ShowQuestion({
+          onConfirm() {
+            CreatePage(values);
+          },
+        });
+      },
+      initialValues: {
+        slug: "",
+        title: "",
+      } as ICreatePage,
     },
-    initialValues: {
-      slug: "",
-      title: "",
-    } as ICreatePage,
-  });
+  );
 
   return (
     <PageContainer title='ایجاد صفحه جدید'>
@@ -71,7 +73,10 @@ export default function Page() {
               type='text'
               name='slug'
               icon={<Icon icon='fluent:slide-text-title-16-filled' />}
-              onChange={handleChange}
+              onChange={(event) => {
+                const value = event.target.value.replace("/", "");
+                setFieldValue("slug", `/${value}`);
+              }}
               title='اسلاگ صفحه'
               value={values.slug}
               placeHodler='مثال : /home -  /about-us'

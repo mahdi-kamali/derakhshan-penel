@@ -2,7 +2,7 @@
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
 import Table from "@/components/UI/table/Table";
-import useColdefs from "@/hooks/useColdefs";
+import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";
 import { GetUsersAPI } from "@/services/Users.services";
 import { IUser } from "@/types/User/user.types";

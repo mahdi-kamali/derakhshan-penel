@@ -1,25 +1,25 @@
-import { LanguagesENUM } from "@/types/Language/Language.types";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { FormikContextType } from "formik";
-import React from "react";
 import Component from "./Component/Component";
+import { LanguagesENUM } from "@/types/Language/Language.types";
 
 interface IProps {
   formik: FormikContextType<ISection>;
 }
 
-export default function JOBS(props: IProps) {
+export default function CONTACT_US(props: IProps) {
+  const { formik } = props;
+
   const FA = (
     <Component
-      {...props}
       language={LanguagesENUM.FA}
+      formik={formik}
     />
   );
-
   const EN = (
     <Component
-      {...props}
       language={LanguagesENUM.EN}
+      formik={formik}
     />
   );
 
