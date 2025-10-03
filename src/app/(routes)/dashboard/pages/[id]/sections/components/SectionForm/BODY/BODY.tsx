@@ -4,6 +4,7 @@ import HOME from "./HOME/HOME";
 import ABOUT_US from "./ABOUT-US/ABOUT_US";
 import CAREERS from "./CAREERS/CAREERS";
 import CONTACT_US from "./CONTACT-US/CONTACT_US";
+import ORDER from "./ORDER/ORDER";
 interface IProps {
   formik: FormikContextType<ISection>;
 }
@@ -30,6 +31,8 @@ export default function BODY(props: IProps) {
       return CAREERS.JOBS(props);
     case "CONTACT_US":
       return CONTACT_US(props);
+    case "ORDER":
+      return ORDER(props);
     default:
       return HOME.HERO(props);
   }

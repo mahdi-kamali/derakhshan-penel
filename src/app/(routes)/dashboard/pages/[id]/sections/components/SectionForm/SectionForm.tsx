@@ -30,7 +30,7 @@ export default function SectionForm(props: IProps) {
       createdAt: "",
       updatedAt: "",
       isActive: true,
-      ...SECTIONS_TYPES_EXAMPLES["CONTACT_US"],
+      ...SECTIONS_TYPES_EXAMPLES["ORDER"],
     },
     validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
     onSubmit(values, formikHelpers) {},

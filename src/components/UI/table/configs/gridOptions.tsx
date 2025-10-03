@@ -33,7 +33,7 @@ const gridOptions: GridOptions = {
     unSortIcon: false,
     flex: 1,
     minWidth: 130,
-    cellDataType : "text",
+    cellDataType: "text",
     cellRenderer: (props: IProps) => {
       const { value, colDef, OPTIONS, onChange, data } = props;
       const { type } = colDef;
@@ -60,7 +60,6 @@ const gridOptions: GridOptions = {
             </Cell.Container>
           );
         }
-
         case "DATE": {
           return (
             <Cell.Container>
@@ -71,6 +70,14 @@ const gridOptions: GridOptions = {
 
         case "TEXT": {
           return <Cell.Container>{value}</Cell.Container>;
+        }
+
+        case "IMAGE": {
+          return (
+            <Cell.Container>
+              <Cell.Image image={value} />
+            </Cell.Container>
+          );
         }
       }
       return <Cell.Container>{value}</Cell.Container>;

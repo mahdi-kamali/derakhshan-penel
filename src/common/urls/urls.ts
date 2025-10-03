@@ -50,6 +50,13 @@ export const ADMIN_URLS = {
     deleteById: ADMIN_URL_BASE_URL + "/contact-us/{_id}",
     updateById: ADMIN_URL_BASE_URL + "/contact-us/{_id}",
   },
+  ORDERS: {
+    create: ADMIN_URL_BASE_URL + "/orders/",
+    list: ADMIN_URL_BASE_URL + "/orders/",
+    getByID: ADMIN_URL_BASE_URL + "/orders/{_id}",
+    deleteById: ADMIN_URL_BASE_URL + "/orders/{_id}",
+    updateById: ADMIN_URL_BASE_URL + "/orders/{_id}",
+  },
 };
 
 export const IMAGE_URL = (path: string) => `${SERVER_BASE_URL}${path}`;

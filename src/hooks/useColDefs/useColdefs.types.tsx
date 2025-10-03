@@ -1,11 +1,17 @@
 import { IOption } from "@/types/Variables";
+import { ColDef } from "ag-grid-community";
 import { ReactElement } from "react";
 
-type Base<T> = {
+type Base<T, F extends ColDef<T>["field"] = ColDef<T>["field"]> = {
   headerName: string;
-  field: keyof T;
+  field: F;
   minWidth?: number;
-  cellRenderer?: (props: { data: T; value: any }) => ReactElement;
+  cellRenderer?: (
+    props: {
+      data: T;
+      value: F extends keyof T ? T[F] : any; // match top-level fields
+    }
+  ) => ReactElement;
 };
 
 type SELECT<T> = {

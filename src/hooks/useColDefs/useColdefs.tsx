@@ -7,6 +7,7 @@ import {
   ICAREER_TYPES,
   IOption,
   IROLE_OPTIONS,
+  ORDERS_INDUSTRY_OPTIONS,
   PAGES_STATUS_OPTIONS,
 } from "@/types/Variables";
 import useRedirect from "../useRedirect";
@@ -28,6 +29,11 @@ import {
   GetContactUsAPI,
   UpdateContactUsAPI,
 } from "@/services/Contact-us/Contact_us.services";
+import { IOrder } from "@/types/Orders/Orders.types";
+import {
+  DeleteOrderByIdAPI,
+  GetOrdersAPI,
+} from "@/services/Orders/Orders.services";
 
 export default function useColdefs() {
   const { admin } = useRedirect();
@@ -52,6 +58,15 @@ export default function useColdefs() {
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({
         queryKey: [GetContactUsAPI.name],
+      });
+    },
+  });
+
+  const { mutate: DeleteOrder } = useMutation({
+    mutationFn: DeleteOrderByIdAPI,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetOrdersAPI.name],
       });
     },
   });
@@ -300,10 +315,96 @@ export default function useColdefs() {
     { headerName: "تاریخ بروزرسانی", field: "updatedAt", type: "DATE" },
   ];
 
+  const ordersColDef: IColDef<IOrder>[] = [
+    // ---- USER INFO ----
+    { headerName: "نام", field: "user.name", type: "TEXT" },
+    { headerName: "نام خانوادگی", field: "user.family", type: "TEXT" },
+    { headerName: "تلفن", field: "user.phone", type: "TEXT" },
+    { headerName: "ایمیل", field: "user.email", type: "TEXT" },
+
+    // ---- PRODUCT INFO ----
+    { headerName: "نوع محصول", field: "product.type", type: "TEXT" },
+    { headerName: "وزن (گرم)", field: "product.weight", type: "TEXT" },
+    { headerName: "تعداد", field: "product.quantity", type: "TEXT" },
+    {
+      headerName: "ابعاد",
+      field: "product.dimensions",
+      type: "TOOLTIP",
+      cellRenderer: ({ value }) => {
+        const { height, length, width } = value;
+        return (
+          <Cell.ToolTip
+            icon={<Icon icon='fluent-mdl2:view' />}
+            label='مشاهده ابعاد'
+            variant='success'>
+            <Grid>
+              <li>
+                <span>طول : {length}</span>
+              </li>
+              <li>
+                <span>عرض : {width}</span>
+              </li>
+              <li>
+                <span>ارتفاع : {height}</span>
+              </li>
+            </Grid>
+          </Cell.ToolTip>
+        );
+      },
+    },
+    {
+      headerName: "تصویر",
+      field: "product.image",
+      type: "IMAGE",
+    },
+
+    // ---- ORDER INFO ----
+    { headerName: "نام شرکت", field: "companyName", type: "TEXT" },
+    {
+      headerName: "صنعت",
+      field: "industry",
+      type: "STATUS",
+      minWidth: 200,
+      cellRendererParams: {
+        OPTIONS: ORDERS_INDUSTRY_OPTIONS,
+      },
+    },
+
+    {
+      headerName: "تاریخ ایجاد",
+      field: "createdAt",
+      type: "DATE",
+    },
+    // ---- ACTIONS ----
+    {
+      headerName: "عملیات",
+      field: "_id",
+      minWidth: 100,
+      type: "ACTIONS",
+      cellRenderer: ({ value }) => (
+        <Cell.Container gap='0.5rem'>
+          <Cell.Button
+            title='حذف'
+            variant='danger'
+            onClick={() => {
+              ShowQuestion({
+                onConfirm() {
+                  DeleteOrder(value);
+                },
+              });
+            }}
+            icon={<Icon icon='material-symbols-light:delete-rounded' />}
+          />
+        </Cell.Container>
+      ),
+    },
+  ];
+
   return {
     pagesColDef,
     usersColDef,
     careersColDef,
     contactUsColDef,
+    ordersColDef,
   };
 }

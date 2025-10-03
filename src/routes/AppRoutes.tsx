@@ -90,6 +90,21 @@ export default function useAppRouter() {
       path: "/dashboard/contact-us/list",
       shownSideBar: true,
     },
+    {
+      id: 1,
+      title: "سفارشات",
+      icon: <Icon icon='lets-icons:order-fill' />,
+      path: "/dashboard/orders/list",
+      shownSideBar: true,
+      children: [
+        {
+          title: "لیست",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/orders/list",
+        },
+      ],
+    },
   ]);
 
   const settingsRoute = routes.find((item) => item.id === 31);

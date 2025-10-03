@@ -4,6 +4,7 @@ import {
   CONTACT_US_STATUS_ENUM,
   IContactUs,
 } from "./Contact-us/Contact_us.types";
+import { INDUSTRY_ENUM, IOrder } from "./Orders/Orders.types";
 
 export type IVariant =
   | "success"
@@ -113,6 +114,37 @@ export const PAGES_STATUS_OPTIONS: IOption[] = [
     label: "ویرایشگر",
     value: "test",
     variant: "indigo",
+    type: "child",
+  },
+];
+
+export const ORDERS_INDUSTRY_OPTIONS: IOption<IOrder["industry"]>[] = [
+  {
+    icon: <Icon icon='mdi:package-variant' />,
+    label: "صنایع بهداشتی",
+    value: INDUSTRY_ENUM.HELTHCARE,
+    variant: "primary",
+    type: "child",
+  },
+  {
+    icon: <Icon icon='mdi:food' />,
+    label: "صنایع غذایی",
+    value: INDUSTRY_ENUM.FOOD,
+    variant: "success",
+    type: "child",
+  },
+  {
+    icon: <Icon icon='mdi:lipstick' />,
+    label: "سنایع آرایشی",
+    value: INDUSTRY_ENUM.COSMETICS,
+    variant: "warning",
+    type: "child",
+  },
+  {
+    icon: <Icon icon='mdi:office-building' />,
+    label: "سایر",
+    value: INDUSTRY_ENUM.OTHER,
+    variant: "type-2",
     type: "child",
   },
 ];
@@ -241,6 +273,21 @@ export const SECTIONS_OPTIONS: IOption<ISection["type"]>[] = [
         value: "CONTACT_US",
         icon: <Icon icon='si:info-fill' />,
         variant: "warning",
+      },
+    ],
+  },
+  {
+    label: "سفارشات",
+    type: "parent",
+    icon: <Icon icon='lsicon:order-edit-filled' />,
+    variant: "warning",
+    options: [
+      {
+        label: "ثبت سفارش",
+        type: "child",
+        value: "ORDER",
+        icon: <Icon icon='lsicon:order-edit-filled' />,
+        variant: "indigo",
       },
     ],
   },
