@@ -3,17 +3,6 @@
     gap: 1rem;
     align-items: center;
     padding-bottom: 0.25em;
-    .preview {
-        height: 5em;
-        aspect-ratio: 16/10;
-        img {
-            width: 100%;
-            border-radius: 0.5rem;
-            object-fit: cover;
-        }
-    }
-    .placeHolder {
-    }
 
     .input {
         display: flex;
@@ -22,6 +11,36 @@
         margin-right: auto;
         input {
             display: none;
+        }
+    }
+}
+
+.single {
+    .preview {
+        img {
+            width: 7rem;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            aspect-ratio: 16/10;
+        }
+    }
+}
+
+.multi {
+    display: flex;
+    flex-direction: column;
+
+    .preview {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        height: max-content;
+        img {
+            width: 100%;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            aspect-ratio: 16/10;
         }
     }
 }

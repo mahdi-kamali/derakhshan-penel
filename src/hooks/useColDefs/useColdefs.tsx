@@ -34,6 +34,16 @@ import {
   DeleteOrderByIdAPI,
   GetOrdersAPI,
 } from "@/services/Orders/Orders.services";
+import { IProudct } from "@/types/Product/Product.types";
+import {
+  DeleteProductByIdAPI,
+  GetProductsAPI,
+} from "@/services/Products/Products.services";
+import { ICategory } from "@/types/Category/Category.types";
+import {
+  DeleteCategoryAPI,
+  GetCateogiresAPI,
+} from "@/services/Category/Category.services";
 
 export default function useColdefs() {
   const { admin } = useRedirect();
@@ -67,6 +77,24 @@ export default function useColdefs() {
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({
         queryKey: [GetOrdersAPI.name],
+      });
+    },
+  });
+
+  const { mutate: DeleteProduct } = useMutation({
+    mutationFn: DeleteProductByIdAPI,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetProductsAPI.name],
+      });
+    },
+  });
+
+  const { mutate: DeleteCategory } = useMutation({
+    mutationFn: DeleteCategoryAPI,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetCateogiresAPI.name],
       });
     },
   });
@@ -400,11 +428,195 @@ export default function useColdefs() {
     },
   ];
 
+  const productsColDef: IColDef<IProudct>[] = [
+    {
+      headerName: "تصویر اصلی",
+      field: "image",
+      type: "IMAGE",
+      cellRenderer: ({ value }) => (
+        <img
+          src={IMAGE_URL(value?.path)}
+          alt={value?.originalname || "product"}
+          style={{ objectFit: "contain", width: "100%", maxHeight: "80px" }}
+        />
+      ),
+    },
+    {
+      headerName: "گالری",
+      field: "gallery",
+      type: "TOOLTIP",
+      minWidth: 200,
+      cellRenderer: ({ value }) => (
+        <Cell.ToolTip
+          icon={<Icon icon='fluent-mdl2:view' />}
+          label='مشاهده تصاویر'
+          variant='success'>
+          <Grid
+            gap='0.5rem'
+            gridTemplateColumns={"repeat(2,1fr)"}>
+            {value?.length ? (
+              value.map((img: any, i: number) => (
+                <img
+                  key={i}
+                  src={IMAGE_URL(img.path)}
+                  alt={img.originalname}
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              ))
+            ) : (
+              <p>بدون تصویر</p>
+            )}
+          </Grid>
+        </Cell.ToolTip>
+      ),
+    },
+    {
+      headerName: "عنوان",
+      field: "title",
+      type: "TEXT",
+      minWidth: 200,
+    },
+    {
+      headerName: "تاریخ ایجاد",
+      field: "createdAt",
+      type: "DATE",
+    },
+    {
+      headerName: "تاریخ بروزرسانی",
+      field: "updatedAt",
+      type: "DATE",
+    },
+    {
+      headerName: "عملیات",
+      field: "_id",
+      type: "ACTIONS",
+      minWidth: 200,
+      cellRenderer: ({ value }) => (
+        <Cell.Container gap='0.5rem'>
+          <Cell.Button
+            title='ویرایش'
+            variant='warning'
+            onClick={() => admin.products.edit(value)}
+            icon={<Icon icon='line-md:edit-filled' />}
+          />
+          <Cell.Button
+            title='حذف'
+            variant='danger'
+            onClick={() =>
+              ShowQuestion({
+                onConfirm() {
+                  DeleteProduct(value);
+                },
+              })
+            }
+            icon={<Icon icon='material-symbols-light:delete-rounded' />}
+          />
+        </Cell.Container>
+      ),
+    },
+  ];
+
+  const categoriesColDef: IColDef<ICategory>[] = [
+    {
+      headerName: "تصویر اصلی",
+      field: "image",
+      type: "IMAGE",
+      cellRenderer: ({ value }) => (
+        <img
+          src={IMAGE_URL(value?.path)}
+          alt={value?.originalname || "product"}
+          style={{ objectFit: "contain", width: "100%", maxHeight: "80px" }}
+        />
+      ),
+    },
+    {
+      headerName: "محصولات",
+      field: "products",
+      type: "TOOLTIP",
+      minWidth: 200,
+      cellRenderer: ({ value }: { value: ICategory["products"] }) => (
+        <Cell.ToolTip
+          icon={<Icon icon='fluent-mdl2:view' />}
+          label='مشاهده تصاویر'
+          variant='success'>
+          <Grid
+            gap='0.5rem'
+            gridTemplateColumns={"repeat(2,1fr)"}>
+            {value?.length ? (
+              value.map((product, i: number) => {
+                return (
+                  <img
+                    key={i}
+                    src={IMAGE_URL(product.image.path)}
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                    }}
+                  />
+                );
+              })
+            ) : (
+              <p>بدون تصویر</p>
+            )}
+          </Grid>
+        </Cell.ToolTip>
+      ),
+    },
+    {
+      headerName: "عنوان",
+      field: "title",
+      type: "TEXT",
+      minWidth: 200,
+    },
+    {
+      headerName: "تاریخ ایجاد",
+      field: "createdAt",
+      type: "DATE",
+    },
+    {
+      headerName: "عملیات",
+      field: "_id",
+      type: "ACTIONS",
+      minWidth: 200,
+      cellRenderer: ({ value }) => (
+        <Cell.Container gap='0.5rem'>
+          <Cell.Button
+            title='ویرایش'
+            variant='warning'
+            onClick={() => admin.products.categories.edit(value)}
+            icon={<Icon icon='line-md:edit-filled' />}
+          />
+          <Cell.Button
+            title='حذف'
+            variant='danger'
+            onClick={() =>
+              ShowQuestion({
+                onConfirm() {
+                  DeleteCategory(value);
+                },
+              })
+            }
+            icon={<Icon icon='material-symbols-light:delete-rounded' />}
+          />
+        </Cell.Container>
+      ),
+    },
+  ];
+
   return {
     pagesColDef,
     usersColDef,
     careersColDef,
     contactUsColDef,
     ordersColDef,
+    productsColDef,
+    categoriesColDef,
   };
 }

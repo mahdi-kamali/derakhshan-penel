@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Image as GalleryImage } from "@/components/UI/index";
+import {
+  Button,
+  Modal,
+  Image as GalleryImage,
+  Grid,
+} from "@/components/UI/index";
 import { IField } from "../field.types";
 import Base from "../Base/Base";
 import { IMAGE_URL } from "@/common/urls/urls";
@@ -8,39 +13,113 @@ import styles from "./styles.module.scss";
 import Icon from "../../Icon/Icon";
 import { GetAllGalleriesAPI } from "@/services/Gallery.services";
 import useTable from "@/hooks/useTable";
-interface IProps extends IField<IFile, IFile> {
+
+// SINGLE
+type SINGLE = Omit<IField<IFile, IFile>, "value" | "onChange"> & {
+  type: "single";
+  value: IFile;
+  onChange: (file: IFile) => void;
+  onSubmit?: (file: IFile) => void;
+};
+
+// MULTI
+type MULTI = Omit<IField<IFile[], IFile[]>, "value" | "onChange"> & {
+  type: "multi";
+  values: IFile[];
+  onChange: (files: IFile[]) => void;
+  onSubmit?: (files: IFile[]) => void;
+};
+
+type IProps = {
   type: "single" | "multi";
-}
+} & (SINGLE | MULTI);
 
 export default function Image(props: IProps) {
-  const { placeHodler } = props;
+  const { type, onChange } = props;
   const [show, setShow] = useState(false);
   const placeHolder = "/images/place-holder/image-holder.png";
 
   const [file, setFile] = useState<IFile>();
+  const [files, setFiles] = useState<IFile[]>([]);
 
   const { data: galleries } = useTable<IGallery[]>({
     api: GetAllGalleriesAPI,
   });
 
   useEffect(() => {
-    setFile(props.value);
-  }, [props.value]);
+    if (type === "single") setFile(props.value);
+    if (type === "multi") setFiles(props.values);
+  }, [show, props]);
+
+  function onFileChange(props: { file?: IFile; isChecked: boolean }) {
+    if (type === "multi") return;
+    const { isChecked, file } = props;
+    if (isChecked) setFile(file);
+    else setFile(undefined);
+    onChange(file!);
+  }
+
+  function onFilesChange(props: { file?: IFile; isChecked: boolean }) {
+    if (type == "single") return;
+    const { isChecked, file } = props;
+
+    let newFiles = files;
+    if (isChecked) {
+      newFiles.push(file!);
+    } else {
+      newFiles = files.filter((f) => f._id !== file?._id);
+    }
+    setFiles(newFiles);
+    onChange(newFiles);
+  }
+
+  const isFileSelected = (image: IFile) => {
+    if (type === "single") return file?._id === image._id;
+    if (type === "multi") return !!files.find((f) => f._id === image._id);
+    return false;
+  };
+
+  const isDisabled = () => {
+    if (type === "single") return file === undefined;
+    if (type === "multi") files.length === 0;
+  };
+
+  const RenderImage = () => {
+    if (type !== "single") return <></>;
+    return (
+      <img
+        loading='lazy'
+        src={IMAGE_URL(file?.path || "")}
+        onError={(e) => {
+          e.currentTarget.src = placeHolder;
+        }}
+      />
+    );
+  };
+  const RenderImages = () => {
+    if (type !== "multi") return <></>;
+
+    return files.map((file) => {
+      return (
+        <img
+          loading='lazy'
+          src={IMAGE_URL(file?.path || "")}
+          onError={(e) => {
+            e.currentTarget.src = placeHolder;
+          }}
+        />
+      );
+    });
+  };
+
+  const field = [styles.field, styles[type]].join(" ");
 
   return (
     <Base {...(props as any)}>
-      <div className={styles.field}>
+      <div className={field}>
         <div className={styles.preview}>
-          <img
-            loading='lazy'
-            src={IMAGE_URL(file?.path || "")}
-            onError={(e) => {
-              e.currentTarget.src = placeHolder;
-            }}
-          />
-        </div>
-        <div className={styles.placeHolder}>
-          <span>{placeHodler}</span>
+          <RenderImage />
+          <RenderImages />
         </div>
         <div className={styles.input}>
           <Button
@@ -74,10 +153,18 @@ export default function Image(props: IProps) {
                             select: {
                               enabled: true,
                               onChange(checked) {
-                                if (checked) setFile(image);
-                                else setFile(undefined);
+                                if (type === "single")
+                                  onFileChange({
+                                    isChecked: checked,
+                                    file: image,
+                                  });
+                                if (type === "multi")
+                                  onFilesChange({
+                                    isChecked: checked,
+                                    file: image,
+                                  });
                               },
-                              checked: file?._id === image._id,
+                              checked: isFileSelected(image),
                             },
                           }}
                         />
@@ -91,11 +178,12 @@ export default function Image(props: IProps) {
               {
                 type: "button",
                 variant: "success",
-                disabled: file === undefined,
+                disabled: isDisabled(),
                 title: "ثبت",
-                onClick() {
-                  props.onChange(file!!);
-                  setShow(false)
+                onClick: () => {
+                  if (type === "single") onChange(file!);
+                  if (type === "multi") onChange(files);
+                  setShow(false);
                 },
               },
             ],

@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 import Icon from "../Icon/Icon";
 
 interface IProps<T> {
-  api: () => Promise<IResponse<T>>;
+  api: () => Promise<IResponse<T[]>>;
   values: T[];
   mode: "single" | "multi";
   show?: boolean;

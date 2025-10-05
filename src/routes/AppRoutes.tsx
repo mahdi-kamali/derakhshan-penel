@@ -85,6 +85,37 @@ export default function useAppRouter() {
     },
     {
       id: 1,
+      title: "محصولات",
+      icon: <Icon icon='icon-park-outline:ad-product' />,
+      shownSideBar: true,
+      children: [
+        {
+          title: "لیست",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/products/list",
+        },
+        {
+          title: "ایجاد",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/products/create",
+        },
+        {
+          title: "دسته بندی ها",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/products/categories/list",
+        },{
+          title: "ایجاد دسته بندی",
+          id: 3,
+          shownSideBar: true,
+          path: "/dashboard/products/categories/create",
+        },
+      ],
+    },
+    {
+      id: 1,
       title: "تماس با ما",
       icon: <Icon icon='material-symbols-light:contact-phone-rounded' />,
       path: "/dashboard/contact-us/list",
