@@ -8,7 +8,7 @@ const { SECTIONS } = PAGES;
 const { list, create, deleteById } = SECTIONS;
 export const GetPageSectionsAPI = (_id: IPage["_id"]) => {
   const url = list.replace("{page_id}", _id);
-  return getRequest(url).then((res) => res.data);
+  return getRequest<ISection[]>(url)
 };
 
 export const CreateSectionAPI = (_id: IPage["_id"], data: ISection) => {
@@ -24,4 +24,9 @@ export const DeleteSectionByIdAPI = (
     .replace("{page_id}", page_id)
     .replace("{section_id}", section_id);
   return deleteRequest(url);
+};
+
+export const UpdateSectionAPI = (_id: IPage["_id"], data: ISection) => {
+  const url = list.replace("{page_id}", _id);
+  return postRequest(url, data);
 };

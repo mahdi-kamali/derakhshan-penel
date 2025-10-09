@@ -15,7 +15,7 @@ import { useFormik } from "formik";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-export default function page() {
+export default function Page() {
   const { _id } = useParams();
 
   const { admin } = useRedirect();
@@ -23,6 +23,7 @@ export default function page() {
   const { values, setFieldValue, handleChange, setValues } = useFormik<ICareer>(
     {
       initialValues: {
+        type : "NORMAL",
         createdAt: "",
         description: "",
         image: undefined as any,
@@ -88,7 +89,8 @@ export default function page() {
                   <Grid
                     gridTemplateColumns={"1fr max-content"}
                     alignItems='end'
-                    gap={"1rem"}>
+                    gap={"1rem"}
+                    key={index}>
                     <Field.Text
                       icon={<Icon icon='ic:twotone-title' />}
                       name={`skills[${index}]`}

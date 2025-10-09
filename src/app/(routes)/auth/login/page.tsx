@@ -22,8 +22,8 @@ export default function Page() {
 
   const { mutate: Login, isIdle } = useMutation({
     mutationFn: LoginAPI,
-    onSuccess({ data, token }, variables, context) {
-      UserActions.login({ ...data, token });
+    onSuccess({ data }, variables, context) {
+      UserActions.login(data);
       setTimeout(() => redirect.admin.GoUsers(), 1000);
     },
   });

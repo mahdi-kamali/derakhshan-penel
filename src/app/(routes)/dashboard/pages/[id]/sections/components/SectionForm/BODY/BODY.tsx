@@ -5,6 +5,8 @@ import ABOUT_US from "./ABOUT-US/ABOUT_US";
 import CAREERS from "./CAREERS/CAREERS";
 import CONTACT_US from "./CONTACT-US/CONTACT_US";
 import ORDER from "./ORDER/ORDER";
+import PRESS from "./PRESS/PRESS";
+import { useEffect } from "react";
 interface IProps {
   formik: FormikContextType<ISection>;
 }
@@ -33,6 +35,12 @@ export default function BODY(props: IProps) {
       return CONTACT_US(props);
     case "ORDER":
       return ORDER(props);
+    case "PREE_PRESS":
+      return PRESS.PREE_PRESS(props);
+    case "PRESS":
+      return PRESS.PRESS(props);
+    case "POST_PRESS":
+      return PRESS.POST_PRESS(props);
     default:
       return HOME.HERO(props);
   }

@@ -9,9 +9,10 @@ import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 
-export default function page() {
+export default function Page() {
   const { values, setFieldValue, handleChange } = useFormik<ICareer>({
     initialValues: {
+      type: "NORMAL",
       createdAt: "",
       description: "",
       image: undefined as any,
@@ -35,7 +36,7 @@ export default function page() {
     onSuccess(data, variables, context) {},
   });
 
-  console.log(values)
+  console.log(values);
 
   return (
     <PageContainer
@@ -58,13 +59,17 @@ export default function page() {
           />
 
           <Group header='مهارت های مورد نیاز'>
-            <Grid gap={"1rem"} maxHeight={"30rem"} overflow="auto">
+            <Grid
+              gap={"1rem"}
+              maxHeight={"30rem"}
+              overflow='auto'>
               {values.skills?.map((skill, index) => {
                 return (
                   <Grid
                     gridTemplateColumns={"1fr max-content"}
                     alignItems='end'
-                    gap={"1rem"}>
+                    gap={"1rem"}
+                    key={index}>
                     <Field.Text
                       icon={<Icon icon='ic:twotone-title' />}
                       name={`skills[${index}]`}
@@ -113,7 +118,7 @@ export default function page() {
             icon={<Icon icon='line-md:image-filled' />}
             name='image'
             onChange={(image) => {
-              console.log(image)
+              console.log(image);
               setFieldValue("image", image);
             }}
             title='عکس آگهی'

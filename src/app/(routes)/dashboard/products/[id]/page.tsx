@@ -15,7 +15,7 @@ import { useFormik } from "formik";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 
-export default function page() {
+export default function Page() {
   const { id } = useParams();
 
   const { list } = useRedirect().admin.products;
@@ -42,6 +42,8 @@ export default function page() {
         title: "",
         updatedAt: "",
         description: "",
+        en_description: "",
+        en_title: "",
       },
       onSubmit(values, formikHelpers) {},
     });
@@ -69,6 +71,15 @@ export default function page() {
             icon={<Icon icon='proicons:text-case-title' />}
             title='عنوان'
             value={values.title}
+            variant='light'
+          />
+          <Field.Text
+            type='text'
+            name='en_title'
+            onChange={handleChange}
+            icon={<Icon icon='proicons:text-case-title' />}
+            title='عنوان (لاتین)'
+            value={values.en_title}
             variant='light'
           />
           <Field.Image
@@ -103,6 +114,16 @@ export default function page() {
             icon={<Icon icon='proicons:text-case-title' />}
             title='توضیحات'
             value={values.description}
+            variant='light'
+            lines={4}
+          />
+          <Field.Text
+            type='text'
+            name='en_description'
+            onChange={handleChange}
+            icon={<Icon icon='proicons:text-case-title' />}
+            title='توضیحات (لاتین)'
+            value={values.en_description}
             variant='light'
             lines={4}
           />

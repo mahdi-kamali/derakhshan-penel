@@ -50,15 +50,21 @@ export default function Product(props: IProps) {
       </Grid>
       <Grid>
         <h2>{title}</h2>
-        <p>{description}</p>
+        <Grid
+          maxHeight={"8rem"}
+          fontSize={"0.7rem"}
+          overflow='auto'>
+          <p>{description}</p>
+        </Grid>
       </Grid>
       <Grid
         gridColumn={"-1/1"}
         gridTemplateColumns={"1fr 1fr 1fr 1fr"}
         gap={"1rem"}>
-        {gallery.map((gall) => (
+        {gallery.map((gall, index) => (
           <img
-            src={IMAGE_URL(image.path)}
+            key={index}
+            src={IMAGE_URL(gall.path)}
             width={"100%"}
             style={{
               borderRadius: "0.5rem",

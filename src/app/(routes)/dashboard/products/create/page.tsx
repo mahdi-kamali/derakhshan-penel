@@ -10,7 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import React from "react";
 
-export default function page() {
+export default function Page() {
   const { list } = useRedirect().admin.products;
   const { values, handleChange, setFieldValue } = useFormik<IProudct>({
     initialValues: {
@@ -18,8 +18,10 @@ export default function page() {
       gallery: [],
       image: undefined as any,
       title: "",
+      en_title: "",
       updatedAt: "",
       description: "",
+      en_description: "",
     },
     onSubmit(values, formikHelpers) {},
   });
@@ -47,6 +49,15 @@ export default function page() {
             icon={<Icon icon='proicons:text-case-title' />}
             title='عنوان'
             value={values.title}
+            variant='light'
+          />
+          <Field.Text
+            type='text'
+            name='en_title'
+            onChange={handleChange}
+            icon={<Icon icon='proicons:text-case-title' />}
+            title='عنوان (لاتین)'
+            value={values.en_title}
             variant='light'
           />
           <Field.Image
@@ -81,6 +92,16 @@ export default function page() {
             icon={<Icon icon='proicons:text-case-title' />}
             title='توضیحات'
             value={values.description}
+            variant='light'
+            lines={4}
+          />
+          <Field.Text
+            type='text'
+            name='en_description'
+            onChange={handleChange}
+            icon={<Icon icon='proicons:text-case-title' />}
+            title='توضیحات (لاتین)'
+            value={values.en_description}
             variant='light'
             lines={4}
           />

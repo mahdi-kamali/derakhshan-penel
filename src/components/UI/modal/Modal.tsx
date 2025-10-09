@@ -6,12 +6,6 @@ import Button from "../Button/Button";
 import { Grow } from "@mui/material";
 import { IButtonProps } from "../Button/types/Buttons.types";
 
-interface IChildren {
-  callbacks: {
-    close: () => void;
-  };
-}
-
 interface IProps {
   children: () => {
     BODY: ReactElement | ReactElement[];
@@ -23,8 +17,6 @@ interface IProps {
 
 export default function Modal(props: IProps) {
   const { children, show = false, onClose } = props;
-
-  
 
   const { BODY, ACTIONS } = children();
 
@@ -41,8 +33,11 @@ export default function Modal(props: IProps) {
           <div className={styles.children}>{BODY}</div>
           {ACTIONS.length > 0 && (
             <div className={styles.actions}>
-              {ACTIONS.map((action) => (
-                <Button {...action} />
+              {ACTIONS.map((action, index) => (
+                <Button
+                  {...action}
+                  key={index}
+                />
               ))}
             </div>
           )}

@@ -291,4 +291,33 @@ export const SECTIONS_OPTIONS: IOption<ISection["type"]>[] = [
       },
     ],
   },
+  {
+    label: "خدمات",
+    type: "parent",
+    icon: <Icon icon='grommet-icons:services' />,
+    variant: "type-4",
+    options: [
+      {
+        label: "پیش از چاپ",
+        type: "child",
+        value: "PREE_PRESS",
+        icon: <Icon icon='lsicon:order-edit-filled' />,
+        variant: "success",
+      },
+      {
+        label: "خدمات چاپی",
+        type: "child",
+        value: "PRESS",
+        icon: <Icon icon='lsicon:order-edit-filled' />,
+        variant: "warning",
+      },
+      {
+        label: "خدمات پس از چاپ",
+        type: "child",
+        value: "POST_PRESS",
+        icon: <Icon icon='lsicon:order-edit-filled' />,
+        variant: "indigo",
+      },
+    ],
+  },
 ];

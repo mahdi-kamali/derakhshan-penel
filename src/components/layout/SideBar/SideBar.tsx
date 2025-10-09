@@ -59,16 +59,9 @@ export default function SideBar({
     <aside
       className={classs}
       ref={sideBarRef}>
-      <Grid
-        alignItems='center'
-        justifyContent='center'>
-        <Image
-          src={"/images/layout/logo.png"}
-          width={125}
-          height={125}
-          alt=''
-        />
-      </Grid>
+      <div className={styles.logo}>
+        <img src='/images/layout/logo.png' />
+      </div>
 
       <div className={styles.menu}>
         {routes.map((route) => {

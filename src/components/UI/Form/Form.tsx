@@ -67,7 +67,9 @@ export default function Form(props: IProps) {
           <div className={styles.header}>
             <HEADERS {...extraProps} />
           </div>
-          <div className={styles.body}>
+          <div
+            className={styles.body}
+            key={props.formik.values.type}>
             <Swiper
               centeredSlides
               spaceBetween={0}

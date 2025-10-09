@@ -218,6 +218,88 @@ export type SECTIONS_TYPES = {
       FA: {};
     };
   };
+
+  PREE_PRESS: {
+    type: "PREE_PRESS";
+    components: {
+      EN: {
+        title: string;
+        description: string;
+        image: IFile;
+        gallery: IFile[];
+        services: {
+          title: string;
+          image: IFile;
+          description: string;
+        }[];
+      };
+      FA: {
+        title: string;
+        description: string;
+        image: IFile;
+        gallery: IFile[];
+        services: {
+          title: string;
+          image: IFile;
+          description: string;
+        }[];
+      };
+    };
+  };
+  PRESS: {
+    type: "PRESS";
+    components: {
+      EN: {
+        title: string;
+        description: string;
+        image: IFile;
+        gallery: IFile[];
+        services: {
+          title: string;
+          image: IFile;
+          description: string;
+        }[];
+      };
+      FA: {
+        title: string;
+        description: string;
+        image: IFile;
+        gallery: IFile[];
+        services: {
+          title: string;
+          image: IFile;
+          description: string;
+        }[];
+      };
+    };
+  };
+   POST_PRESS: {
+    type: "POST_PRESS";
+    components: {
+      EN: {
+        title: string;
+        description: string;
+        image: IFile;
+        gallery: IFile[];
+        services: {
+          title: string;
+          image: IFile;
+          description: string;
+        }[];
+      };
+      FA: {
+        title: string;
+        description: string;
+        image: IFile;
+        gallery: IFile[];
+        services: {
+          title: string;
+          image: IFile;
+          description: string;
+        }[];
+      };
+    };
+  };
 };
 
 export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
@@ -452,6 +534,66 @@ export const SECTIONS_TYPES_EXAMPLES: SECTIONS_TYPES = {
     components: {
       EN: {},
       FA: {},
+    },
+  },
+
+  PREE_PRESS: {
+    type: "PREE_PRESS",
+    components: {
+      EN: {
+        description: "",
+        gallery: [],
+        image: undefined as any,
+        title: "",
+        services: [],
+      },
+      FA: {
+        description: "",
+        gallery: [],
+        image: undefined as any,
+        title: "",
+        services: [],
+      },
+    },
+  },
+
+  PRESS: {
+    type: "PRESS",
+    components: {
+      EN: {
+        description: "",
+        gallery: [],
+        image: undefined as any,
+        title: "",
+        services: [],
+      },
+      FA: {
+        description: "",
+        gallery: [],
+        image: undefined as any,
+        title: "",
+        services: [],
+      },
+    },
+  },
+
+   POST_PRESS: {
+    type: "POST_PRESS",
+    components: {
+      EN: {
+        description: "",
+        gallery: [],
+        image: undefined as any,
+        title: "",
+        services: [],
+      },
+      FA: {
+        description: "",
+        gallery: [],
+        image: undefined as any,
+        title: "",
+        services: [],
+      },
     },
   },
 };

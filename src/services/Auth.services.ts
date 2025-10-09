@@ -10,5 +10,5 @@ export const LoginAPI = (data: ILogin) => {
 };
 
 export const LogOutUser = () => {
-  return getRequest(logOut);
+  return getRequest<IUser>(logOut) ;
 };

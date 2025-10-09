@@ -14,7 +14,7 @@ export default function useRedirect() {
     admin: {
       GoUsers: () => redirect("/dashboard/users/list"),
       GoDashboard: () => redirect("/dashboard/"),
-      GoHome: () => redirect("/dashboard/home"),
+      GoHome: () => redirect("/dashboard/users/list"),
       pages: {
         list: () => redirect("/dashboard/pages/list"),
         sections: {

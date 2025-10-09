@@ -11,7 +11,7 @@ interface IProps extends IField<string, ChangeEvent<HTMLInputElement>> {
 }
 
 export default function Text(props: IProps) {
-  const { type, placeHodler, lines } = props;
+  const { type, placeHodler, lines, errors } = props;
 
   const [view, setView] = useState(false);
 

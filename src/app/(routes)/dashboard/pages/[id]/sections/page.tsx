@@ -7,13 +7,19 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import CreateSection from "./components/CreateSection/CreateSection";
 import SectionForm from "./components/SectionForm/SectionForm";
+import useTable from "@/hooks/useTable";
+import { ISection } from "@/types/Pages/Sections/Sections.types";
 
 export default function Page() {
   const { id } = useParams();
 
-  const { data } = useQuery<IPage["sections"]>({
+  const { data } = useQuery({
     queryFn: () => GetPageSectionsAPI(id as string),
-    initialData: [],
+    initialData: {
+      data: [],
+      message: "",
+      status: 200,
+    },
     queryKey: [GetPageSectionsAPI.name],
   });
 
@@ -29,9 +35,9 @@ export default function Page() {
           flexDirection='column'
           borderTop={"1px solid white"}
           paddingTop={"1em"}>
-          <span>لیست سکشن های موجود ({data.length})</span>
+          <span>لیست سکشن های موجود ({data.data.length})</span>
           <Grid gap={"1rem"}>
-            {data?.map((section) => {
+            {data?.data.map((section) => {
               return (
                 <SectionForm
                   key={section._id}

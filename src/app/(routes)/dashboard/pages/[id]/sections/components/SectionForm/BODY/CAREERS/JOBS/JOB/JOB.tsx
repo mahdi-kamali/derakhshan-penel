@@ -31,9 +31,9 @@ export default function JOB(props: IProps) {
           maxHeight={"11rem"}
           overflow='auto'
           gap={"0.5rem"}>
-          {data.skills.map((skill) => {
+          {data.skills.map((skill,index) => {
             return (
-              <li className={styles.skill}>
+              <li className={styles.skill} key={index}>
                 <Icon icon='vaadin:circle' />
                 <span>{skill}</span>
               </li>

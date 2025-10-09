@@ -19,7 +19,7 @@ import { useFormik } from "formik";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-export default function page() {
+export default function Page() {
   const { id } = useParams();
 
   const [showModal, setShowModal] = useState(false);
@@ -32,6 +32,9 @@ export default function page() {
         createdAt: "",
         updatedAt: "",
         products: [],
+        description: "",
+        en_description: "",
+        en_title: "",
       },
       onSubmit(values, formikHelpers) {},
     });
@@ -75,6 +78,16 @@ export default function page() {
               placeHodler='عنوان دسته بندی'
               variant='light'
             />
+            <Field.Text
+              name='en_title'
+              icon={<Icon icon='proicons:text-case-title' />}
+              onChange={handleChange}
+              title='عنوان دسته بندی (لاتین)'
+              type='text'
+              value={values.en_title}
+              placeHodler='عنوان دسته بندی (لاتین)'
+              variant='light'
+            />
             <Field.Image
               name='image'
               icon={<Icon icon='line-md:image-twotone' />}
@@ -84,6 +97,28 @@ export default function page() {
               variant='light'
               type='single'
               value={values.image}
+            />
+            <Field.Text
+              name='description'
+              icon={<Icon icon='proicons:text-case-title' />}
+              onChange={handleChange}
+              title='توضیحات'
+              type='text'
+              value={values.description}
+              placeHodler='توضیحات دسته بندی'
+              variant='light'
+              lines={4}
+            />
+            <Field.Text
+              name='en_description'
+              icon={<Icon icon='proicons:text-case-title' />}
+              onChange={handleChange}
+              title='توضیحات (لاتین)'
+              type='text'
+              value={values.en_description}
+              placeHodler='توضیحات دسته بندی'
+              variant='light'
+              lines={4}
             />
             <SelectModal<IProudct>
               api={GetProductsAPI}
@@ -108,8 +143,8 @@ export default function page() {
               color='black'
               maxHeight={"30rem"}
               overflow='auto'>
-              {values.products.map((pro) => {
-                return <Product product={pro} />;
+              {values.products.map((pro,index) => {
+                return <Product product={pro} key={index} />;
               })}
             </Grid>
 

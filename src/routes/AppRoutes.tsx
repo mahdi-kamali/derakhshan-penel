@@ -5,13 +5,6 @@ import React, { useEffect, useState } from "react";
 export default function useAppRouter() {
   const [routes, setRoutes] = useState<IRouteType[]>([
     {
-      id: 1,
-      title: "پیشخوان",
-      icon: <Icon icon='material-symbols-light:home' />,
-      path: "/dashboard/main",
-      shownSideBar: true,
-    },
-    {
       id: 2,
       title: "کاربران",
       icon: <Icon icon='mage:users-fill' />,

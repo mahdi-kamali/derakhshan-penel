@@ -56,7 +56,6 @@ export default function FileUploader(porps: IProps) {
 
   return (
     <div className={styles.uploader}>
-      <h1>افزودن فایل :</h1>
       <Grid
         gridTemplateColumns={"1fr 1fr 1fr 1fr"}
         gap={"1rem"}>
@@ -81,7 +80,12 @@ export default function FileUploader(porps: IProps) {
           );
         })}
       </Grid>
-      <Grid gap={"1rem"}>
+      <Grid
+        gap={"1rem"}
+        width={"100%"}
+        alignItems='center'
+        type='flex'
+        justifyContent='center'>
         <DragDrop
           handleChange={handleChange as any}
           name='file'

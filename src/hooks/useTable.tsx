@@ -4,10 +4,11 @@ import { useState } from "react";
 
 interface IProps<T> {
   api: (params: any) => Promise<any>;
+  key?: string;
 }
 
 export default function useTable<T = any[]>(props: IProps<T>) {
-  const { api } = props;
+  const { api, key } = props;
 
   const [params, setParams] = useState({});
   const [enabled, setEnabled] = useState();
@@ -20,7 +21,7 @@ export default function useTable<T = any[]>(props: IProps<T>) {
   const { data, isLoading, refetch } = useQuery<T>({
     queryFn: () => api({ ...params }).then((res: any) => res.data),
     initialData: [] as T,
-    queryKey: [api.name, params],
+    queryKey: [api.name, params, key],
     enabled: true,
   });
 

@@ -6,7 +6,7 @@ import {
 } from "@/types/Pages/Sections/Sections.types";
 import VALIDATION from "@/utils/validations";
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HEADER from "./HEADER/HEADER";
 import TABS from "./TABS/TABS";
 import ACTIONS from "./ACTIONS/ACTIONS";
@@ -30,10 +30,23 @@ export default function SectionForm(props: IProps) {
       createdAt: "",
       updatedAt: "",
       isActive: true,
-      ...SECTIONS_TYPES_EXAMPLES["ORDER"],
+      ...SECTIONS_TYPES_EXAMPLES["UNSET"],
     },
-    validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
+    // validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
     onSubmit(values, formikHelpers) {},
+    // validate: (values) => {
+    //   const schema = VALIDATION.PAGE.SECTIONS[values.type];
+    //   try {
+    //     schema.validateSync(values, { abortEarly: false });
+    //     return {};
+    //   } catch (err: any) {
+    //     const errors: Record<string, string> = {};
+    //     err.inner.forEach((e: any) => {
+    //       errors[e.path] = e.message;
+    //     });
+    //     return errors;
+    //   }
+    // },
   });
 
   const { setValues } = formik;

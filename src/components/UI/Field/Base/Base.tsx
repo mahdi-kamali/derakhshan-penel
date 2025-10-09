@@ -4,7 +4,6 @@ import styles from "./styles.module.scss";
 import Icon from "../../Icon/Icon";
 import Tooltip from "../../tooltip/Tooltip";
 import { FindErrorKey } from "@/utils/validations";
-import { useFormikContext } from "formik";
 
 export interface IBaseProps extends IField {
   children?: React.ReactElement | React.ReactElement[];

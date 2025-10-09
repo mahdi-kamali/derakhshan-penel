@@ -99,9 +99,10 @@ export default function Image(props: IProps) {
   const RenderImages = () => {
     if (type !== "multi") return <></>;
 
-    return files.map((file) => {
+    return files.map((file, index) => {
       return (
         <img
+          key={index}
           loading='lazy'
           src={IMAGE_URL(file?.path || "")}
           onError={(e) => {

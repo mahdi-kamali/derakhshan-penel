@@ -33,8 +33,8 @@ export default function Component(props: IProps) {
       gap={"1rem"}
       color='black'>
       <Group header='شغل های منتخب شده'>
-        {jobs.map((job) => {
-          return <JOB data={job} />;
+        {jobs.map((job,index) => {
+          return <JOB data={job} key={index} />;
         })}
       </Group>
       <Grid>

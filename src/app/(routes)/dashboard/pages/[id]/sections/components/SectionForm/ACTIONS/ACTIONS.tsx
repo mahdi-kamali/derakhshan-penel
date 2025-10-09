@@ -28,11 +28,20 @@ interface IProps {
 export default function ACTIONS(props: IProps) {
   const { page_id, section_id, isCreating, isUpdating } = props;
 
-  const { values } = useFormikContext<ISection>();
+  const { values, errors } = useFormikContext<ISection>();
 
   const queryClient = useQueryClient();
 
   const { mutate: CreateSection } = useMutation({
+    mutationFn: () => CreateSectionAPI(page_id!!, values),
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetPageSectionsAPI.name],
+      });
+    },
+  });
+
+  const { mutate: UpdateSection } = useMutation({
     mutationFn: () => CreateSectionAPI(page_id!!, values),
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({

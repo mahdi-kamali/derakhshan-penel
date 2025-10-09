@@ -61,7 +61,7 @@ export default function SelectModal<T>(props: IProps<T>) {
                   (_, target) => index === target,
                 );
                 return (
-                  <div className={styles.row}>
+                  <div className={styles.row} key={index}>
                     <label className={styles.select}>
                       <span>انتخاب کردن</span>
                       <Checkbox
