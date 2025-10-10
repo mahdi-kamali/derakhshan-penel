@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import Modal from "../modal/Modal";
+import Modal from "../Modal/Modal";
 import { IResponse } from "@/common/axios/axios";
 import useTable from "@/hooks/useTable";
-import Grid from "../grid/Grid";
+import Grid from "../Grid/Grid";
 import { Checkbox } from "@mui/material";
 import styles from "./styles.module.scss";
 import Icon from "../Icon/Icon";

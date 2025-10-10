@@ -1,7 +1,7 @@
 "use client";
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
-import Table from "@/components/UI/table/Table";
+import Table from "@/components/UI/Table/Table";
 import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";
 import { GetContactUsAPI } from "@/services/Contact-us/Contact_us.services";

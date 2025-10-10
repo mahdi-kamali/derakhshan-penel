@@ -1,6 +1,6 @@
 "use client";
 
-import Accordion from "@/components/UI/accordion/Accordion";
+import Accordion from "@/components/UI/Accordion/Accordion";
 import { IRouteType } from "@/types/Routes.types";
 
 import styles from "./styles.module.scss";

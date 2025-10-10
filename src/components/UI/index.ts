@@ -1,13 +1,13 @@
-import Accordion from "./accordion/Accordion";
+import Accordion from "./Accordion/Accordion";
 import Field from "./Field/Field";
 import Spinners from "./Spinners";
-import Animation from "./animation/Animation";
-import Image from "./image/Image";
+import Animation from "./Animation/Animation";
+import Image from "./Image/Image";
 import Box from "./Box/Box";
 import Button from "./Button/Button";
-import Grid from "./grid/Grid";
-import Modal from "./modal/Modal";
-import Group from "./group/Group";
+import Grid from "./Grid/Grid";
+import Modal from "./Modal/Modal";
+import Group from "./Group/Group";
 export {
   Grid,
   Button,

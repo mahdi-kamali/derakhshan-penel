@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import Grid from "../UI/grid/Grid";
+import Grid from "../UI/Grid/Grid";
 import dynamic from "next/dynamic";
 
 const ReactJson = dynamic(() => import("react-json-view"), {

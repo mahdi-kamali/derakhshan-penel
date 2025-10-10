@@ -3,7 +3,7 @@
 import NotFound from "@/assets/animations/Errors/NotFound";
 import Icon from "@/components/UI/Icon/Icon";
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
-import Grid from "@/components/UI/grid/Grid";
+import Grid from "@/components/UI/Grid/Grid";
 
 import styles from "./notFound.module.scss";
 import Link from "next/link";

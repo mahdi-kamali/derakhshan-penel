@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FileUploader as DragDrop } from "react-drag-drop-files";
 import styles from "./styles.module.scss";
-import Grid from "../grid/Grid";
+import Grid from "../Grid/Grid";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

@@ -2,7 +2,7 @@
 
 import styles from "./styles.module.scss";
 import SideBarItem from "./components/SideBarItem/SideBarItem";
-import Grid from "@/components/UI/grid/Grid";
+import Grid from "@/components/UI/Grid/Grid";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import useAppRouter from "@/routes/AppRoutes";
