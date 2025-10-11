@@ -1,5 +1,5 @@
 import Icon from "@/components/UI/Icon/Icon";
-import Cell from "@/components/UI/Table/components/cells/Cell";
+import Cell from "@/components/UI/Table/components/Cells/Cell";
 import { IPage } from "@/types/Pages/pages.types";
 import {
   CONTACT_US_STATUS_OPTIONS,

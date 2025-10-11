@@ -1,5 +1,5 @@
 import { GridOptions } from "ag-grid-community";
-import Cell from "../components/cells/Cell";
+import Cell from "@/components/UI/Table/components/Cells/Cell";
 import { IOption } from "@/types/Variables";
 import { ShowQuestion } from "@/common/toast/toast";
 import { IColDef } from "@/hooks/useColDefs/useColdefs.types";

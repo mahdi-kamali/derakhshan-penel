@@ -3,7 +3,7 @@ import { ShowQuestion } from "@/common/toast/toast";
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
-import Cell from "@/components/UI/Table/components/cells/Cell";
+import Cell from "@/components/UI/Table/components/Cells/Cell";
 import Table from "@/components/UI/Table/Table";
 import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";

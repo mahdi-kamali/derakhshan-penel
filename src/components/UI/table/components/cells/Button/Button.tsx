@@ -1,7 +1,7 @@
 import { IVariant } from "@/types/Variables";
 import styles from "./styles.module.scss";
 import Spinners from "@/components/UI/Spinners";
-import Cell from "../Cell";
+import Cell from "@/components/UI/Table/components/Cells/Cell";
 
 interface IProps {
   variant: IVariant;
