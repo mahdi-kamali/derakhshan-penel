@@ -1,0 +1,79 @@
+.placeholder {
+    color: #888;
+}
+
+.single-value {
+    color: #222;
+    font-weight: 500;
+}
+
+.selected {
+    background: var(--color-info) !important;
+    color: white !important;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    color: white !important;
+    padding: 0.25em 0.5em !important;
+    transition: 0.25s ease all !important;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    svg {
+        font-size: 1rem;
+    }
+
+
+    &:hover {
+        background: var(--color-info) !important;
+        color: white !important;
+    }
+}
+
+.variant--success {
+    // background-color: var(--color-success) !important;
+    color: var(--color-success) !important;
+}
+
+.variant--type-2 {
+    // background-color: var(--color-secondary) !important;
+    color: var(--color-secondary) !important;
+}
+
+.variant--primary {
+    // background-color: var(--color-primary) !important;
+    color: var(--color-primary) !important;
+}
+
+.variant--type-4 {
+    // background-color: var(--color-info) !important;
+    color: var(--color-info) !important;
+}
+
+.variant--light {
+    // background-color: var(--color-success) !important;
+    color: var(--color-success) !important;
+}
+
+.variant--danger {
+    // background-color: var(--color-danger) !important;
+    color: var(--color-danger) !important;
+}
+
+.variant--warning {
+    // background-color: var(--color-warning) !important;
+    color: var(--color-warning) !important;
+}
+
+.variant--panel-list-item {
+    // background-color: var(--color-gray-200) !important;
+    color: var(--color-gray-200) !important;
+}
+
+.variant--indigo {
+    // background-color: var(--color-indigo) !important;
+    color: var(--color-indigo) !important;
+}
