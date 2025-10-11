@@ -13,46 +13,11 @@ import { useMutation } from "@tanstack/react-query";
 import React from "react";
 
 export default function Page() {
-
-  
   const { data, isLoading, refetch } = useTable<IPage[]>({
     api: GetPagesAPI,
   });
 
-  const { mutate: DeletePage } = useMutation({
-    mutationFn: DeletePageAPI,
-    onSuccess(data, variables, context) {
-      refetch();
-    },
-  });
-
   const { pagesColDef } = useColdefs();
-
-  const colDefs = [
-    ...pagesColDef,
-    {
-      field: "_id",
-      headerName: "عملیات",
-      cellRenderer: ({ data }: { data: IPage }) => {
-        return (
-          <Cell.Container>
-            <Cell.Button
-              title='حذف'
-              icon={<Icon icon='ic:round-delete' />}
-              onClick={() => {
-                ShowQuestion({
-                  onConfirm() {
-                    DeletePage(data._id);
-                  },
-                });
-              }}
-              variant='danger'
-            />
-          </Cell.Container>
-        );
-      },
-    },
-  ];
 
   return (
     <PageContainer
@@ -60,7 +25,7 @@ export default function Page() {
       isLoading={isLoading}>
       <Grid>
         <Table
-          colDefs={colDefs}
+          colDefs={pagesColDef}
           rowData={data}
         />
       </Grid>

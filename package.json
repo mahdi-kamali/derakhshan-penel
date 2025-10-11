@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "npm run deploy && next start",
+    "lint": "next lint",
+    "pull": "git pull origin main",
+    "deploy": "npm run pull && npm install --force && npm run build"
   },
   "dependencies": {
     "@ag-grid-community/core": "^32.0.2",

@@ -1,5 +1,6 @@
 import { ICareer } from "@/types/Career/Career.types";
 import { ICategory } from "@/types/Category/Category.types";
+import { IPage } from "@/types/Pages/pages.types";
 import { IProudct } from "@/types/Product/Product.types";
 import { useRouter } from "next/navigation";
 
@@ -17,6 +18,7 @@ export default function useRedirect() {
       GoHome: () => redirect("/dashboard/users/list"),
       pages: {
         list: () => redirect("/dashboard/pages/list"),
+        update: (id: IPage["_id"]) => redirect(`/dashboard/pages/${id}/update`),
         sections: {
           edit: (_id: string) => redirect(`/dashboard/pages/${_id}/sections`),
         },

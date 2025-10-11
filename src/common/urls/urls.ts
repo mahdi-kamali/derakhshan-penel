@@ -30,6 +30,8 @@ export const ADMIN_URLS = {
     list: ADMIN_URL_BASE_URL + "/pages",
     create: ADMIN_URL_BASE_URL + "/pages",
     deleteByID: ADMIN_URL_BASE_URL + "/pages/{id}",
+    updateById: ADMIN_URL_BASE_URL + "/pages/{id}",
+    getById: ADMIN_URL_BASE_URL + "/pages/{id}",
     SECTIONS: {
       list: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections",
       create: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections",
@@ -71,6 +73,9 @@ export const ADMIN_URLS = {
     deleteById: ADMIN_URL_BASE_URL + "/products/categories/{_id}",
     updateById: ADMIN_URL_BASE_URL + "/products/categories/{_id}",
   },
+  ICONS : {
+    findBySLug : ADMIN_URL_BASE_URL + "/icons/{slug}",
+  }
 };
 
 export const IMAGE_URL = (path: string) => `${SERVER_BASE_URL}${path}`;

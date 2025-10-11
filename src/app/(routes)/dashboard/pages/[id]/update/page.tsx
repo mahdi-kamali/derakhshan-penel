@@ -1,48 +1,78 @@
 "use client";
+import { IResponse } from "@/common/axios/axios";
 import { ShowQuestion } from "@/common/toast/toast";
 import IconSelect from "@/components/common/IconSelect/IconSelect";
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Box, Button, Field, Grid, Group, Modal } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
-import SelectModal from "@/components/UI/SelectModal/SelectModal";
 import useRedirect from "@/hooks/useRedirect";
-import { CreatePageAPI } from "@/services/Pages/Pages.services";
+import {
+  CreatePageAPI,
+  GetPageByIdAPI,
+  GetPagesAPI,
+  UpdatePageAPI,
+} from "@/services/Pages/Pages.services";
 import { ICreatePage, IPage } from "@/types/Pages/pages.types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 export default function Page() {
+  const initialValues: IPage = {
+    slug: "",
+    title: "",
+    title_en: "",
+    nav: {
+      icon: "",
+      show: false,
+    },
+    _id: "",
+    createdAt: "",
+    sections: [],
+    status: "",
+    updatedAt: "",
+  };
+
+  const { admin } = useRedirect();
+  const { id } = useParams();
+
   const GoList = useRedirect().admin.pages.list;
 
-  const { mutate: CreatePage, isIdle } = useMutation({
-    mutationFn: CreatePageAPI,
+  const { mutate: UpdatePage, isIdle } = useMutation({
+    mutationFn: UpdatePageAPI,
     onSuccess(data, variables, context) {
       GoList();
     },
   });
 
-  const { values, handleChange, submitForm, errors, setFieldValue } = useFormik(
-    {
+  const { data } = useQuery({
+    queryFn: () => GetPageByIdAPI(id as string),
+    initialData: {
+      data: initialValues,
+      message: "",
+      status: 200,
+    },
+    queryKey: [GetPageByIdAPI.name],
+  });
+
+  const { values, handleChange, submitForm, errors, setFieldValue, setValues } =
+    useFormik<IPage>({
       onSubmit(values, formikHelpers) {
         ShowQuestion({
           onConfirm() {
-            CreatePage(values);
+            UpdatePage(values);
           },
         });
       },
-      initialValues: {
-        slug: "",
-        title: "",
-        title_en: "",
-        nav: {
-          icon: "",
-          show: false,
-        },
-      } as ICreatePage,
-    },
-  );
+      initialValues: initialValues,
+    });
+
+  useEffect(() => {
+    setValues(data.data);
+  }, [data.data]);
 
   return (
-    <PageContainer title='ایجاد صفحه جدید'>
+    <PageContainer title='ویرایش صفحه'>
       <Box
         header={
           <Grid
@@ -50,7 +80,7 @@ export default function Page() {
             center
             gap={"0.5rem"}>
             <Icon icon='oui:ml-create-single-metric-job' />
-            <small>ایجاد صفحه ی جدید</small>
+            <small>ویرایش</small>
           </Grid>
         }>
         <Grid
@@ -125,7 +155,7 @@ export default function Page() {
             gap={"1rem"}>
             <Button
               type='button'
-              title='ثبت و ایجاد'
+              title='ثبت و ویرایش'
               variant='success'
               icon={<Icon icon='formkit:submit' />}
               onClick={submitForm}
@@ -135,7 +165,7 @@ export default function Page() {
               title='برگشت به لیست'
               variant='warning'
               icon={<Icon icon='line-md:list' />}
-              onClick={submitForm}
+              onClick={() => admin.pages.list()}
             />
           </Grid>
         </Grid>

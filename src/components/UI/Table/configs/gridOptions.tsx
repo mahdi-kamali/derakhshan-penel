@@ -79,6 +79,17 @@ const gridOptions: GridOptions = {
             </Cell.Container>
           );
         }
+
+        case "SWITCH": {
+          return (
+            <Cell.Container>
+              <Cell.Switch
+                onChange={(value) => onChange(value, data)}
+                value={value}
+              />
+            </Cell.Container>
+          );
+        }
       }
       return <Cell.Container>{value}</Cell.Container>;
     },

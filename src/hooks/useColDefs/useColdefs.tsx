@@ -44,6 +44,11 @@ import {
   DeleteCategoryAPI,
   GetCateogiresAPI,
 } from "@/services/Category/Category.services";
+import {
+  DeletePageAPI,
+  GetPagesAPI,
+  UpdatePageAPI,
+} from "@/services/Pages/Pages.services";
 
 export default function useColdefs() {
   const { admin } = useRedirect();
@@ -99,6 +104,24 @@ export default function useColdefs() {
     },
   });
 
+  const { mutate: DeletePage } = useMutation({
+    mutationFn: DeletePageAPI,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetPagesAPI.name],
+      });
+    },
+  });
+
+  const { mutate: UpdatePage } = useMutation({
+    mutationFn: UpdatePageAPI,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({
+        queryKey: [GetPagesAPI.name],
+      });
+    },
+  });
+
   // ---------------- USERS ----------------
   const usersColDef: IColDef<IUser>[] = [
     { headerName: "شماره تلفن", field: "phone", type: "TEXT" },
@@ -141,6 +164,7 @@ export default function useColdefs() {
   // ---------------- PAGES ----------------
   const pagesColDef: IColDef<IPage>[] = [
     { headerName: "عنوان", field: "title", type: "TEXT" },
+    { headerName: "عنوان لاتین", field: "title_en", type: "TEXT" },
     { headerName: "اسلاگ", field: "slug", type: "TEXT" },
     {
       headerName: "محتوا",
@@ -160,6 +184,58 @@ export default function useColdefs() {
       headerName: "وضعیت",
       type: "STATUS",
       cellRendererParams: { OPTIONS: PAGES_STATUS_OPTIONS },
+      minWidth: 150,
+    },
+    {
+      type: "SWITCH",
+      cellRendererParams: {
+        onChange(value, data) {
+          ShowQuestion({
+            onConfirm() {
+              UpdatePage({
+                ...data,
+                nav: {
+                  ...data.nav,
+                  show: value,
+                },
+              });
+            },
+          });
+        },
+      },
+      field: "nav.show",
+      headerName: "نمایش در هدر",
+      minWidth: 200,
+    },
+    {
+      type: "ACTIONS",
+      field: "_id",
+      headerName: "عملیات",
+      cellRenderer({ value }) {
+        return (
+          <Cell.Container gap={"0.5rem"}>
+            <Cell.Button
+              title='حذف'
+              icon={<Icon icon='ic:round-delete' />}
+              onClick={() => {
+                ShowQuestion({
+                  onConfirm() {
+                    DeletePage(value);
+                  },
+                });
+              }}
+              variant='danger'
+            />
+            <Cell.Button
+              title='ویرایش'
+              icon={<Icon icon='tdesign:edit-2-filled' />}
+              onClick={() => admin.pages.update(value)}
+              variant='warning'
+            />
+          </Cell.Container>
+        );
+      },
+      minWidth: 180,
     },
   ];
 

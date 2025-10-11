@@ -5,6 +5,7 @@ import Image from "@/components/UI/Table/components/Cells/Image/Image";
 import Select from "@/components/UI/Table/components/Cells/Select/Select";
 import Status from "@/components/UI/Table/components/Cells/Status/Status";
 import ToolTip from "@/components/UI/Table/components/Cells/ToolTip/ToolTip";
+import Switch from "./Switch/Switch";
 
 export default {
   Container,
@@ -14,4 +15,5 @@ export default {
   Select,
   Date,
   Image,
+  Switch,
 };
