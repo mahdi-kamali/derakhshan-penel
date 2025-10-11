@@ -5,7 +5,6 @@ import Table from "@/components/UI/Table/Table";
 import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";
 import { GetContactUsAPI } from "@/services/Contact-us/Contact_us.services";
-import { GetUsersAPI } from "@/services/Users.services";
 import { IUser } from "@/types/User/user.types";
 
 export default function Page() {

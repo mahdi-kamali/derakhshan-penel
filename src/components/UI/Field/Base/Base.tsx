@@ -2,7 +2,7 @@ import { IField } from "../field.types";
 
 import styles from "./styles.module.scss";
 import Icon from "../../Icon/Icon";
-import Tooltip from "../../Tooltip/Tooltip";
+import Tooltip from "@/components/UI/Tooltip/Tooltip";
 import { FindErrorKey } from "@/utils/validations";
 
 export interface IBaseProps extends IField {

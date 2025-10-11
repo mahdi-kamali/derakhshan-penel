@@ -5,7 +5,6 @@ import Table from "@/components/UI/Table/Table";
 import useColdefs from "@/hooks/useColDefs/useColdefs";
 import useTable from "@/hooks/useTable";
 import { GetCareersAPI } from "@/services/Careers/Careers.services";
-import { GetUsersAPI } from "@/services/Users.services";
 import { ICareer } from "@/types/Career/Career.types";
 
 export default function Page() {

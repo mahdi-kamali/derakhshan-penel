@@ -1,10 +1,10 @@
-import Button from "../Cells/Button/Button";
-import Container from "../Cells/Container/Container";
-import Date from "../Cells/Date/Date";
-import Image from "../Cells/Image/Image";
-import Select from "../Cells/Select/Select";
-import Status from "../Cells/Status/Status";
-import ToolTip from "../Cells/ToolTip/ToolTip";
+import Button from "@/components/UI/Table/components/Cells/Button/Button";
+import Container from "@/components/UI/Table/components/Cells/Container/Container";
+import Date from "@/components/UI/Table/components/Cells/Date/Date";
+import Image from "@/components/UI/Table/components/Cells/Image/Image";
+import Select from "@/components/UI/Table/components/Cells/Select/Select";
+import Status from "@/components/UI/Table/components/Cells/Status/Status";
+import ToolTip from "@/components/UI/Table/components/Cells/ToolTip/ToolTip";
 
 export default {
   Container,

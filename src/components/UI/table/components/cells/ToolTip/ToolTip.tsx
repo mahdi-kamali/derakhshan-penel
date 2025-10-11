@@ -6,7 +6,7 @@ import { ReactElement } from "react";
 import "tippy.js/dist/tippy.css";
 
 import styles from "./styles.module.scss";
-import Cell from "../Cell";
+import Cell from "@/components/UI/Table/components/Cells/Cell";
 
 export interface IToolTipProps {
   label: string;
