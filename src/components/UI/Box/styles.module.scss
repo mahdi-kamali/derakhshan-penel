@@ -1,0 +1,20 @@
+.box {
+    padding: 1em;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    gap: 0.5rem;
+    // width: max-content;
+    .header {
+        color: black;
+        font-weight: bold;
+    }
+}
+
+.header {
+    font-size: 1.25rem;
+}
+
+.body {
+}
