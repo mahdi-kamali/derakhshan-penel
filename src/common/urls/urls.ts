@@ -73,9 +73,12 @@ export const ADMIN_URLS = {
     deleteById: ADMIN_URL_BASE_URL + "/products/categories/{_id}",
     updateById: ADMIN_URL_BASE_URL + "/products/categories/{_id}",
   },
-  ICONS : {
-    findBySLug : ADMIN_URL_BASE_URL + "/icons/{slug}",
-  }
+  ICONS: {
+    findBySLug: ADMIN_URL_BASE_URL + "/icons/{slug}",
+  },
 };
 
-export const IMAGE_URL = (path: string) => `${SERVER_BASE_URL}${path}`;
+export const IMAGE_URL = (path: string) => {
+  console.log(`${SERVER_BASE_URL}${path}`);
+  return `${SERVER_BASE_URL}${path}`;
+};

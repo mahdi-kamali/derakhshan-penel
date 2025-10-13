@@ -32,10 +32,10 @@ export default function FileUploader(porps: IProps) {
   const { mutate: AddImages } = useMutation({
     mutationFn: AddImagesGalleryAPI,
     onSuccess(data, variables, context) {
-      setProgress({
+      setProgress((prev) => ({
         isShow: false,
         value: 0,
-      });
+      }));
       client.invalidateQueries({
         queryKey: [GetAllGalleriesAPI.name],
       });

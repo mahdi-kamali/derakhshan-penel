@@ -1,16 +1,23 @@
 "use client";
 import PageContainer from "@/components/layout/PageContainer/PageContianer";
 import { Grid } from "@/components/UI";
-import useTable from "@/hooks/useTable";
 import { GetAllGalleriesAPI } from "@/services/Gallery.services";
-import { IGallery } from "@/types/Gallery/gallery.types";
 import React from "react";
 import Gallery from "./components/Gallery";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Page() {
-  const { data, isLoading, refetch } = useTable<IGallery[]>({
-    api: GetAllGalleriesAPI,
+  const { data, isLoading, refetch } = useQuery({
+    queryFn: GetAllGalleriesAPI,
+    initialData: {
+      data: [],
+      message: "",
+      status: 200,
+    },
+    queryKey: [GetAllGalleriesAPI.name],
   });
+
+  const { data: galleries } = data;
 
   return (
     <PageContainer
@@ -21,8 +28,13 @@ export default function Page() {
         <Grid
           width={"100%"}
           gap={"1rem"}>
-          {data.map((gallery, index) => {
-            return <Gallery.Section key={gallery._id} gallery={gallery} />;
+          {galleries.map((gallery, index) => {
+            return (
+              <Gallery.Section
+                key={gallery._id}
+                gallery={gallery}
+              />
+            );
           })}
         </Grid>
       </Grid>
