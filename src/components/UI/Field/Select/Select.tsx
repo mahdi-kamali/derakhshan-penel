@@ -6,6 +6,7 @@ import Option from "./Option/Option";
 import GroupHeading from "./GroupHeading/GroupHeading";
 import Group from "./Group/Group";
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 interface IProps extends IField<IOption["value"], IOption> {
   options: IOption[];
@@ -15,6 +16,9 @@ export default function Select(props: IProps) {
   const { options, onChange } = props;
 
   const allOptions: IOption[] = [];
+
+
+
 
   const findChilds = (option: IOption) => {
     if (option.type !== "parent") return [];
@@ -42,8 +46,10 @@ export default function Select(props: IProps) {
   });
 
   const opt = allOptions.find((option) => {
-    return option.value === props.value;
+    return option.value === props.value ;
   });
+
+
 
   return (
     <Base
@@ -51,7 +57,8 @@ export default function Select(props: IProps) {
       onChange={(value: any) => onChange(value)}>
       <RcSelect
         options={options}
-        defaultValue={opt}
+
+        value={opt}
         isDisabled={props.disabled}
         onChange={onChange as any}
         menuPortalTarget={document.querySelector("body")}

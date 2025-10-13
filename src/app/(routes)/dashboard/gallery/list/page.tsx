@@ -24,7 +24,7 @@ export default function Page() {
       title='گالری'
       isLoading={isLoading}>
       <Grid gap={"1rem"}>
-        <Gallery.Create onCreate={refetch} />
+        <Gallery.Create />
         <Grid
           width={"100%"}
           gap={"1rem"}>

@@ -20,7 +20,7 @@
         img {
             width: 7rem;
             border-radius: 0.5rem;
-            object-fit: cover;
+            object-fit: contain;
             aspect-ratio: 16/10;
         }
     }

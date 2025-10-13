@@ -10,6 +10,7 @@ import {
   GetAllGalleriesAPI,
 } from "@/services/Gallery.services";
 import { Checkbox } from "@mui/material";
+import { ShowQuestion } from "@/common/toast/toast";
 
 interface IProps {
   gallery: IGallery;
@@ -60,7 +61,7 @@ export default function Image(props: IProps) {
           </div>
           <div className={styles.row}>
             <small>حجم : </small>
-            <span>{file.size / 100000} MB</span>
+            <span>{(file.size / 1000000).toFixed(2)} MB</span>
           </div>
           <div className={styles.row}>
             <small>تاریخ ایجاد : </small>
@@ -72,9 +73,13 @@ export default function Image(props: IProps) {
             icon='mingcute:delete-2-fill'
             color='var(--color-danger)'
             onClick={() => {
-              DeleteMutate({
-                _id: file._id,
-                gallery_id: gallery._id,
+              ShowQuestion({
+                onConfirm() {
+                  DeleteMutate({
+                    _id: file._id,
+                    gallery_id: gallery._id,
+                  });
+                },
               });
             }}
           />

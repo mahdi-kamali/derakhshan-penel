@@ -1,20 +1,20 @@
 import { Box, Button, Field, Grid } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
-import { CreateGalleryAPI } from "@/services/Gallery.services";
-import { useMutation } from "@tanstack/react-query";
+import {
+  CreateGalleryAPI,
+  GetAllGalleriesAPI,
+} from "@/services/Gallery.services";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormikProvider, useFormik } from "formik";
 
-interface IProps {
-  onCreate: () => void;
-}
-
-export default function Create(props: IProps) {
-  const { onCreate } = props;
-
+export default function Create() {
+  const queryClient = useQueryClient();
   const { mutate: CreateGallery, isIdle: loading } = useMutation({
     mutationFn: CreateGalleryAPI,
     onSuccess(data, variables, context) {
-      onCreate();
+      queryClient.invalidateQueries({
+        queryKey: [GetAllGalleriesAPI.name],
+      });
     },
   });
 
@@ -22,7 +22,7 @@ export default function Create(props: IProps) {
     initialValues: {
       title: "",
       isActive: true,
-      creating: false,
+      creating: true,
     },
     onSubmit(values, { setFieldValue }) {
       CreateGallery(values);
@@ -36,7 +36,9 @@ export default function Create(props: IProps) {
     <FormikProvider value={formik}>
       <Box
         header={
-          <Grid gridTemplateColumns={" 1fr max-content"} gap={"1rem"}>
+          <Grid
+            gridTemplateColumns={" 1fr max-content"}
+            gap={"1rem"}>
             <p>ایجاد گالری جدید</p>
             <Button
               type='button'

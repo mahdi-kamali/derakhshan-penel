@@ -3,10 +3,15 @@ import { Button } from "@/components/UI";
 import { IButtonProps } from "@/components/UI/Button/types/Buttons.types";
 import Icon from "@/components/UI/Icon/Icon";
 import {
+  AddSectionToPageAPI,
+  GetPageByIdAPI,
+  GetPagesAPI,
+} from "@/services/Pages/Pages.services";
+import {
   CreateSectionAPI,
   DeleteSectionByIdAPI,
-  GetPageSectionsAPI,
-} from "@/services/Pages/Sections/Sections.services";
+  UpdateSectionAPI,
+} from "@/services/Sections/Sections.services";
 import { IPage } from "@/types/Pages/pages.types";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -27,34 +32,42 @@ interface IProps {
 
 export default function ACTIONS(props: IProps) {
   const { page_id, section_id, isCreating, isUpdating } = props;
-
   const { values, errors } = useFormikContext<ISection>();
-
   const queryClient = useQueryClient();
 
-  const { mutate: CreateSection } = useMutation({
-    mutationFn: () => CreateSectionAPI(page_id!!, values),
+  const { mutate: AddSectionToPage } = useMutation({
+    mutationFn: AddSectionToPageAPI,
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({
-        queryKey: [GetPageSectionsAPI.name],
+        queryKey: [GetPageByIdAPI.name],
+      });
+    },
+  });
+
+  const { mutate: CreateSection } = useMutation({
+    mutationFn: CreateSectionAPI,
+    onSuccess(data, variables, context) {
+      AddSectionToPage({
+        page_id: page_id as string,
+        section_id: data.data._id,
       });
     },
   });
 
   const { mutate: UpdateSection } = useMutation({
-    mutationFn: () => CreateSectionAPI(page_id!!, values),
+    mutationFn: UpdateSectionAPI,
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({
-        queryKey: [GetPageSectionsAPI.name],
+        queryKey: [GetPageByIdAPI.name],
       });
     },
   });
 
   const { mutate: DeleteSection } = useMutation({
-    mutationFn: () => DeleteSectionByIdAPI(page_id!!, section_id!!),
+    mutationFn: () => DeleteSectionByIdAPI(section_id as string),
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({
-        queryKey: [GetPageSectionsAPI.name],
+        queryKey: [GetPageByIdAPI.name],
       });
     },
   });
@@ -68,7 +81,7 @@ export default function ACTIONS(props: IProps) {
     onClick() {
       ShowQuestion({
         onConfirm() {
-          CreateSection();
+          UpdateSection(values);
         },
       });
     },
@@ -83,7 +96,7 @@ export default function ACTIONS(props: IProps) {
     onClick() {
       ShowQuestion({
         onConfirm() {
-          CreateSection();
+          CreateSection(values);
         },
       });
     },
@@ -109,7 +122,7 @@ export default function ACTIONS(props: IProps) {
     title: "لغو و بستن",
     variant: "danger",
     icon: <Icon icon='carbon:close-filled' />,
-    show: isCreating,
+    show: false,
     onClick() {},
   };
 

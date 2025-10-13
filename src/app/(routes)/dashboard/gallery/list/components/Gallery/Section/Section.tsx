@@ -12,7 +12,9 @@ export default function Section(props: IProps) {
 
   return (
     <Box header={<Gallery.Header gallery={gallery} />}>
-      <Grid gap={"1rem"} maxWidth={"50rem"}>
+      <Grid
+        gap={"1rem"}
+        maxWidth={"50rem"}>
         {/* Prev Images */}
         <Grid
           gridTemplateColumns={"1fr 1fr 1fr"}

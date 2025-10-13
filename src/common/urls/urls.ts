@@ -32,11 +32,15 @@ export const ADMIN_URLS = {
     deleteByID: ADMIN_URL_BASE_URL + "/pages/{id}",
     updateById: ADMIN_URL_BASE_URL + "/pages/{id}",
     getById: ADMIN_URL_BASE_URL + "/pages/{id}",
-    SECTIONS: {
-      list: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections",
-      create: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections",
-      deleteById: ADMIN_URL_BASE_URL + "/pages/{page_id}/sections/{section_id}",
-    },
+    addSection:
+      ADMIN_URL_BASE_URL + "/pages/{page_id}/add-section/{section_id}",
+  },
+  SECTIONS: {
+    list: ADMIN_URL_BASE_URL + "/sections",
+    create: ADMIN_URL_BASE_URL + "/sections",
+    deleteById: ADMIN_URL_BASE_URL + "/sections/{_id}",
+    getBySingle: ADMIN_URL_BASE_URL + "/sections/{_id}",
+    updateById: ADMIN_URL_BASE_URL + "/sections/{_id}",
   },
   CAREERS: {
     create: ADMIN_URL_BASE_URL + "/careers/",
@@ -79,6 +83,5 @@ export const ADMIN_URLS = {
 };
 
 export const IMAGE_URL = (path: string) => {
-  console.log(`${SERVER_BASE_URL}${path}`);
   return `${SERVER_BASE_URL}${path}`;
 };

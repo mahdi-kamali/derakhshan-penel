@@ -51,6 +51,7 @@ export default function HEADER(props: IProps) {
         value={values.type}
         placeHodler='نوع سکشن را انتخاب کنید..'
         options={SECTIONS_OPTIONS}
+        disabled={!!values._id}
       />
     </Grid>
   );
