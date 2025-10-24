@@ -1,18 +1,7 @@
 .grid {
     display: grid;
-    grid-template-rows: 0fr;
-    transition: all 0.5s ease;
     position: relative;
     animation: fade 1s ease forwards;
-    width: 100%;
-}
-
-.accordion {
-    display: grid;
-    overflow: hidden;
-    transition: inherit;
-    width: 100%;
-    background-color: rebeccapurple;
 }
 
 .content {
@@ -31,14 +20,6 @@
 .flex {
     display: flex !important;
     flex-wrap: wrap;
-}
-
-.grid {
-    display: grid !important;
-}
-
-.expanded {
-    grid-template-rows: 1fr;
 }
 
 .blur {

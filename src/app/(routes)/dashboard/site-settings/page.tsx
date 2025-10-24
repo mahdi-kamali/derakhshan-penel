@@ -85,19 +85,18 @@ export default function page() {
   return (
     <PageContainer
       title='تنظیات سایت'
-      isLoading={isLoading}>
-      <Box>
-        <Form formik={formik}>
-          {() => {
-            return {
-              ACTIONS: ACTIONS,
-              BODY: BODY,
-              HEADERS: HEADER,
-              TABS: TABS,
-            };
-          }}
-        </Form>
-      </Box>
+      isLoading={isLoading}
+      center>
+      <Form formik={formik}>
+        {() => {
+          return {
+            ACTIONS: ACTIONS,
+            BODY: BODY,
+            HEADERS: HEADER,
+            TABS: TABS,
+          };
+        }}
+      </Form>
     </PageContainer>
   );
 }

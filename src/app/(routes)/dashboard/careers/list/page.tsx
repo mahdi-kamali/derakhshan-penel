@@ -16,14 +16,12 @@ export default function Page() {
 
   return (
     <PageContainer
-      title='لیست کاربران'
+      title='لیست آگهی ها'
       isLoading={isLoading}>
-      <Grid>
-        <Table
-          colDefs={careersColDef}
-          rowData={data}
-        />
-      </Grid>
+      <Table
+        colDefs={careersColDef}
+        rowData={data}
+      />
     </PageContainer>
   );
 }

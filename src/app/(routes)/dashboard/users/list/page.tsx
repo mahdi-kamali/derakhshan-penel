@@ -18,15 +18,10 @@ export default function Page() {
     <PageContainer
       title='لیست کاربران'
       isLoading={isLoading}>
-      <Grid
-        width={"100%"}
-        height={"30rem"}
-        type='flex'>
-        <Table
-          colDefs={usersColDef}
-          rowData={data}
-        />
-      </Grid>
+      <Table
+        colDefs={usersColDef}
+        rowData={data}
+      />
     </PageContainer>
   );
 }

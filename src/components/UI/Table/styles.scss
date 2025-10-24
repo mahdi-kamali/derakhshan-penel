@@ -36,9 +36,6 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.ag-theme-material .ag-header {
-}
-
 .ag-theme-material .ag-header-cell:hover {
     background-color: rgba(0, 0, 0, 0.5) !important;
     cursor: pointer;
@@ -50,9 +47,6 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-}
-
-.ag-center-cols-viewport {
 }
 
 .ag-body {
@@ -98,11 +92,12 @@
 .table-container-class {
     display: flex;
     width: 100%;
-    
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .table-root {
         width: 100%;
-        border: none !important;
-      
     }
 }

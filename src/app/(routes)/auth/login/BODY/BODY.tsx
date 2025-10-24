@@ -6,18 +6,19 @@ import { FormikContextType, useFormikContext } from "formik";
 import { SwiperSlide } from "swiper/react";
 
 interface IProps {
-  formik : FormikContextType<ILogin>
+  formik: FormikContextType<ILogin>;
 }
 
 export default function BODY(props: IProps) {
-  const {formik} = props
+  const { formik } = props;
   const { values, handleChange, errors } = formik;
 
   const LOGIN = (
     <Grid
       width='80%'
       gap='0'
-      margin='0 auto'>
+      margin='0 auto'
+      paddingBottom={"2em"}>
       <Field.Text
         errors={errors}
         name='phone'

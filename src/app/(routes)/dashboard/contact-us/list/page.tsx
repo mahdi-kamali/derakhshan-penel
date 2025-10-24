@@ -16,14 +16,12 @@ export default function Page() {
 
   return (
     <PageContainer
-      title='درباره ما'
+      title='تماس با ما'
       isLoading={isLoading}>
-      <Grid>
-        <Table
-          colDefs={contactUsColDef}
-          rowData={data}
-        />
-      </Grid>
+      <Table
+        colDefs={contactUsColDef}
+        rowData={data}
+      />
     </PageContainer>
   );
 }

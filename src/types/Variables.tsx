@@ -135,7 +135,7 @@ export const ORDERS_INDUSTRY_OPTIONS: IOption<IOrder["industry"]>[] = [
   },
   {
     icon: <Icon icon='mdi:lipstick' />,
-    label: "سنایع آرایشی",
+    label: "صنایع آرایشی",
     value: INDUSTRY_ENUM.COSMETICS,
     variant: "warning",
     type: "child",

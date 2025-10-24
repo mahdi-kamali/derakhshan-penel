@@ -18,12 +18,10 @@ export default function Page() {
     <PageContainer
       title='محصولات'
       isLoading={isLoading}>
-      <Grid>
-        <Table
-          colDefs={productsColDef}
-          rowData={data}
-        />
-      </Grid>
+      <Table
+        colDefs={productsColDef}
+        rowData={data}
+      />
     </PageContainer>
   );
 }

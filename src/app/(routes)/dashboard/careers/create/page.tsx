@@ -36,13 +36,11 @@ export default function Page() {
     onSuccess(data, variables, context) {},
   });
 
-  console.log(values);
-
   return (
     <PageContainer
       title='ایحاد آگهی جدید'
       isLoading={isIdle}>
-      <Box header={<></>}>
+      <Box>
         <Grid
           gap={"1rem"}
           gridTemplateColumns={"1fr"}

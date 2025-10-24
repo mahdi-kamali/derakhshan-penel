@@ -23,12 +23,10 @@ export default function Page() {
     <PageContainer
       title='صفحات'
       isLoading={isLoading}>
-      <Grid>
-        <Table
-          colDefs={pagesColDef}
-          rowData={data}
-        />
-      </Grid>
+      <Table
+        colDefs={pagesColDef}
+        rowData={data}
+      />
     </PageContainer>
   );
 }

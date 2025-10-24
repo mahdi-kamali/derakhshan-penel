@@ -49,3 +49,7 @@ img {
         padding: 0 10px;
     }
 }
+
+.ReactCollapse--collapse {
+    transition: height 500ms;
+}

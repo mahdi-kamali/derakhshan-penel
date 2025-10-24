@@ -20,12 +20,10 @@ export default function Page() {
     <PageContainer
       title='دسته بندی ها'
       isLoading={isLoading}>
-      <Grid>
-        <Table
-          colDefs={categoriesColDef}
-          rowData={data}
-        />
-      </Grid>
+      <Table
+        colDefs={categoriesColDef}
+        rowData={data}
+      />
     </PageContainer>
   );
 }
