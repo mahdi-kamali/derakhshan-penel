@@ -44,15 +44,8 @@ export default function Page() {
   return (
     <PageContainer title='ایجاد صفحه جدید'>
       <Box
-        header={
-          <Grid
-            type='flex'
-            center
-            gap={"0.5rem"}>
-            <Icon icon='oui:ml-create-single-metric-job' />
-            <small>ایجاد صفحه ی جدید</small>
-          </Grid>
-        }>
+        header='ایجاد صفحه ی جدید'
+        maxContent>
         <Grid
           gap={"1rem"}
           display='flex'

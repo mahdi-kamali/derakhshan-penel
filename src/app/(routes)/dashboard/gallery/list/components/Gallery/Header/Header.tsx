@@ -2,7 +2,7 @@ import { IGallery } from "@/types/Gallery/gallery.types";
 import styles from "./styles.module.scss";
 import Icon from "@/components/UI/Icon/Icon";
 import { useState } from "react";
-import { Grid } from "@/components/UI";
+import { Field, Grid } from "@/components/UI";
 import { ShowQuestion } from "@/common/toast/toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -55,32 +55,39 @@ export default function Header(props: IProps) {
 
   return (
     <div className={styles.header}>
-      <Grid>
+      <Grid width={editing.active ? "20rem" : "7rem"}>
         <Grid expanded={editing.active === false}>
           <div className={styles.title}>{title}</div>
         </Grid>
         <Grid expanded={editing.active}>
           <div className={styles.edit}>
-            <span>تغییر اسم این گالری : </span>
-            <input
-              type='text'
-              defaultValue={editing.value}
+            <Field.Text
+              variant='light'
+              title='اسم گالری'
+              icon={<Icon icon='solar:gallery-bold' />}
               onChange={(event) => {
                 const value = event.target.value;
                 setEditing((prev) => ({ ...prev, value: value }));
               }}
+              name='name'
+              type='text'
+              value={editing.value}
             />
             <Icon
               icon='el:ok-sign'
-              color='var(--color-success)'
+              fontSize={"1.5rem"}
               onClick={() => {
-                UpdateGallery({
-                  ...gallery,
-                  title: editing.value,
-                });
-                setEditing({
-                  value: editing.value,
-                  active: false,
+                ShowQuestion({
+                  onConfirm() {
+                    UpdateGallery({
+                      ...gallery,
+                      title: editing.value,
+                    });
+                    setEditing({
+                      value: editing.value,
+                      active: false,
+                    });
+                  },
                 });
               }}
             />
@@ -89,18 +96,31 @@ export default function Header(props: IProps) {
       </Grid>
 
       <div className={styles.buttons}>
-        <Icon
-          icon='line-md:edit-filled'
-          color='var(--color-warning)'
-          onClick={() =>
-            setEditing((prev) => ({ ...prev, active: !prev.active }))
-          }
-        />
-        <Icon
-          icon='mingcute:delete-2-fill'
-          color='var(--color-danger)'
-          onClick={handleDelete}
-        />
+        {editing.active === false && (
+          <>
+            <Icon
+              icon='line-md:edit-filled'
+              color='var(--color-warning)'
+              onClick={() =>
+                setEditing((prev) => ({ ...prev, active: !prev.active }))
+              }
+            />
+            <Icon
+              icon='mingcute:delete-2-fill'
+              color='var(--color-danger)'
+              onClick={handleDelete}
+            />
+          </>
+        )}
+        {editing.active && (
+          <Icon
+            icon='zondicons:close-solid'
+            color='var(--color-danger)'
+            onClick={() =>
+              setEditing((prev) => ({ ...prev, active: !prev.active }))
+            }
+          />
+        )}
       </div>
     </div>
   );

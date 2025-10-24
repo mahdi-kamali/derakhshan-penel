@@ -3,7 +3,6 @@
     border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.5em;
 
     .edit {
         display: flex;
@@ -11,12 +10,7 @@
         justify-content: center;
         gap: 1rem;
         padding: 0.5em;
-        input {
-            all: unset;
-            box-shadow: 0rem 0rem 0.3rem 0 rgb(217, 217, 217);
-            border-radius: 0.25rem;
-            padding: 0.25em 0.5em;
-        }
+     
     }
 
     .title {

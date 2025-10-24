@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 import styles from "./styles.module.scss";
 import Icon from "../Icon/Icon";
 
@@ -6,15 +6,16 @@ interface IProps {
   children: ReactElement;
   header?: React.ReactElement | string;
   maxContent?: boolean;
+  width?: CSSProperties["width"];
 }
 
 export default function Box(props: IProps) {
-  const { children, header, maxContent = false } = props;
+  const { children, header, maxContent = false, width } = props;
   return (
     <fieldset
       className={styles.box}
       style={{
-        width: maxContent ? "max-content" : "100%",
+        width: width ? width : "max-content",
       }}>
       {header && (
         <legend className={styles.header}>

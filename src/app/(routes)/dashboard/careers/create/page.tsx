@@ -40,7 +40,7 @@ export default function Page() {
     <PageContainer
       title='ایحاد آگهی جدید'
       isLoading={isIdle}>
-      <Box>
+      <Box maxContent>
         <Grid
           gap={"1rem"}
           gridTemplateColumns={"1fr"}
