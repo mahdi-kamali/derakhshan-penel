@@ -38,15 +38,17 @@ export default function SelectModal<T>(props: IProps<T>) {
 
   const [selectedRows, setSelectedRows] = useState<T[]>(values);
 
-  const { data } = useTable<T[]>({
+  const { data, refetch } = useTable<T[]>({
     api: api,
   });
-
-  
 
   useEffect(() => {
     setSelectedRows(values);
   }, [values, show]);
+
+  useEffect(() => {
+    if (show) refetch();
+  }, [show]);
 
   return (
     <Modal
@@ -61,7 +63,9 @@ export default function SelectModal<T>(props: IProps<T>) {
                   (_, target) => index === target,
                 );
                 return (
-                  <div className={styles.row} key={index}>
+                  <div
+                    className={styles.row}
+                    key={index}>
                     <label className={styles.select}>
                       <span>انتخاب کردن</span>
                       <Checkbox

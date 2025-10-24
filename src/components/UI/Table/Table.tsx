@@ -17,17 +17,16 @@ interface IProps {
 export default function Table(props: IProps) {
   const { colDefs, rowData } = props;
 
-
   return (
-    <div
-      className='ag-theme-material'
-      style={{ height: 700, width: 900 }}>
-      <AgGridReact
-        rowData={rowData}
-        enableRtl={true}
-        gridOptions={gridOptions as any}
-        columnDefs={colDefs as any}
-      />
+    <div className='table-container-class'>
+      <div className='ag-theme-material table-root'>
+        <AgGridReact
+          rowData={rowData}
+          enableRtl={true}
+          gridOptions={gridOptions as any}
+          columnDefs={colDefs as any}
+        />
+      </div>
     </div>
   );
 }

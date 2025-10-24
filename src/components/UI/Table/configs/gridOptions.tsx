@@ -21,6 +21,7 @@ const gridOptions: GridOptions = {
   suppressColumnMoveAnimation: true,
   suppressAnimationFrame: true,
   suppressRowHoverHighlight: true,
+  domLayout : "autoHeight",
   defaultColDef: {
     suppressHeaderMenuButton: true,
     suppressFloatingFilterButton: true,

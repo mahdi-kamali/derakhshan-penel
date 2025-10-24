@@ -20,6 +20,7 @@ export default function Grid(props: IProps) {
     gridTemplateColumns,
     gap,
     center = false,
+    width = "100%",
   } = props;
 
   const grid = [

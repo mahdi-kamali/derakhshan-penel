@@ -80,6 +80,10 @@ export const ADMIN_URLS = {
   ICONS: {
     findBySLug: ADMIN_URL_BASE_URL + "/icons/{slug}",
   },
+  SITE_SETTINGS: {
+    list: ADMIN_URL_BASE_URL + "/site-settings",
+    update: ADMIN_URL_BASE_URL + "/site-settings",
+  },
 };
 
 export const IMAGE_URL = (path: string) => {

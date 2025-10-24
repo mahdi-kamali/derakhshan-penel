@@ -44,6 +44,19 @@ export default function CAREERS_HERO(props: IProps): ReactElement[] {
           variant='light'
         />
         <Grid gridColumn={"-1/1"}>
+          <Field.Text
+            name={`components.${language}.description`}
+            icon={<Icon icon='fluent:slide-text-title-edit-16-filled' />}
+            title='توضیحات'
+            onChange={handleChange}
+            type='text'
+            value={components.description}
+            placeHodler='توضیحات'
+            variant='light'
+            lines={4}
+          />
+        </Grid>
+        <Grid gridColumn={"-1/1"}>
           <Field.Image
             icon={<Icon icon='line-md:image' />}
             name={`components.${language}.background`}

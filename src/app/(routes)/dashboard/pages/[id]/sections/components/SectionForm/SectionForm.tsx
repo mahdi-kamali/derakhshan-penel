@@ -32,21 +32,7 @@ export default function SectionForm(props: IProps) {
       isActive: true,
       ...SECTIONS_TYPES_EXAMPLES["UNSET"],
     },
-    // validationSchema: VALIDATION.PAGE.SECTIONS.HOME_ABOUT_US,
     onSubmit(values, formikHelpers) {},
-    // validate: (values) => {
-    //   const schema = VALIDATION.PAGE.SECTIONS[values.type];
-    //   try {
-    //     schema.validateSync(values, { abortEarly: false });
-    //     return {};
-    //   } catch (err: any) {
-    //     const errors: Record<string, string> = {};
-    //     err.inner.forEach((e: any) => {
-    //       errors[e.path] = e.message;
-    //     });
-    //     return errors;
-    //   }
-    // },
   });
 
   const { setValues } = formik;

@@ -41,6 +41,7 @@ export default function ADVANCE_PACKING(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='توضیحات'
         value={values.components.FA.description}
+        lines={3}
       />
 
       <Grid gridColumn={"-1/1"}>
@@ -86,6 +87,7 @@ export default function ADVANCE_PACKING(props: IProps): ReactElement[] {
         onChange={handleChange}
         title='توضیحات'
         value={values.components.EN.description}
+        lines={3}
       />
 
       <Grid gridColumn={"-1/1"}>

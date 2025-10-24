@@ -6,12 +6,10 @@ export interface ILoginResponse {
 }
 
 export interface IUser {
-  _id: string;
+  _id?: string;
   phone: string;
   name: string;
-  role: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  role: "Admin" | "User";
   token: string;
+  password? : string
 }

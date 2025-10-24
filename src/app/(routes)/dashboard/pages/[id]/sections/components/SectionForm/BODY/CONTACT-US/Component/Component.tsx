@@ -80,7 +80,7 @@ export default function Component(props: IProps) {
             onChange={(image) => {
               setFieldValue(fieldName("image"), image);
             }}
-            title='موقعیت'
+            title='عکس آواتار'
             variant='light'
           />
         </Grid>

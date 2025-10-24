@@ -3,7 +3,7 @@ import { Field, Grid } from "@/components/UI";
 import Icon from "@/components/UI/Icon/Icon";
 import { GetIconsAPI } from "@/services/Icons/Icons.services";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
 interface IProps {
@@ -19,12 +19,15 @@ export default function IconSelect(props: IProps) {
   const { mutate: GetICONS } = useMutation({
     mutationFn: GetIconsAPI,
     onSuccess(data, variables, context) {
-      console.log(data);
       setIcons(data.data);
     },
   });
 
   const [slug, setSlug] = useState("");
+
+  useEffect(() => {
+    if (slug === "") setIcons([]);
+  }, [slug]);
 
   return (
     <Grid
@@ -46,12 +49,14 @@ export default function IconSelect(props: IProps) {
       />
       <Grid
         color='black'
-        fontSize={"2rem"}
+        fontSize={"1rem"}
         type='flex'
         gridColumn={"-1/1"}
         gridTemplateColumns={"1fr 1fr"}
         alignItems='center'
-        gap={"2rem"}>
+        gap={"2rem"}
+        expanded={!!value}
+        key={value}>
         <span>آیکون منتخب : </span>
         <Icon
           icon={value}
@@ -59,8 +64,8 @@ export default function IconSelect(props: IProps) {
         />
       </Grid>
       <Grid
-        gridTemplateColumns={"repeat(10,1fr)"}
-        maxHeight={"20rem"}
+        gridTemplateColumns={"repeat(auto-fit,minmax(2rem,1fr))"}
+        maxHeight={"10rem"}
         overflow='auto'
         gap={"0.5rem"}>
         {icons.map((ico) => {

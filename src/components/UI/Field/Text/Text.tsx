@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
 import Icon from "../../Icon/Icon";
 import Base from "../Base/Base";
 import { IField } from "../field.types";
@@ -19,6 +19,21 @@ export default function Text(props: IProps) {
     setView((prev) => !prev);
   };
 
+  const [event, setEvent] = useState<ChangeEvent<HTMLInputElement>>();
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEvent(event);
+  };
+
+  useEffect(() => {
+    if (event === undefined) return;
+    const debounce = setTimeout(() => {
+      props.onChange(event);
+    }, 500);
+
+    return () => clearTimeout(debounce);
+  }, [event]);
+
   return (
     <Base {...(props as any)}>
       <div className={styles.text}>
@@ -27,6 +42,8 @@ export default function Text(props: IProps) {
             {...(props as any)}
             rows={lines}
             placeholder={placeHodler}
+            onChange={onChange}
+            value={event ? event.target.value : props.value}
           />
         )}
 
@@ -35,6 +52,8 @@ export default function Text(props: IProps) {
             {...(props as any)}
             type={view ? "text" : type || "text"}
             placeholder={placeHodler}
+            onChange={onChange}
+            value={event ? event.target.value : props.value}
           />
         )}
 

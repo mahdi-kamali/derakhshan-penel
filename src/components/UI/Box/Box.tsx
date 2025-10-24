@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 
 interface IProps {
   children: ReactElement;
-  header: React.ReactElement;
+  header?: React.ReactElement;
   maxContent?: boolean;
 }
 
@@ -15,7 +15,7 @@ export default function Box(props: IProps) {
       style={{
         width: maxContent ? "max-content" : "100%",
       }}>
-      <div className={styles.header}>{header}</div>
+      {header && <div className={styles.header}>{header}</div>}
       <div className={styles.body}>{children}</div>
     </section>
   );

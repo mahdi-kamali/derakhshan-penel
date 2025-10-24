@@ -99,7 +99,8 @@ export default function useAppRouter() {
           id: 3,
           shownSideBar: true,
           path: "/dashboard/products/categories/list",
-        },{
+        },
+        {
           title: "ایجاد دسته بندی",
           id: 3,
           shownSideBar: true,
@@ -128,6 +129,13 @@ export default function useAppRouter() {
           path: "/dashboard/orders/list",
         },
       ],
+    },
+    {
+      id: 1,
+      title: "تنظیمات سایت",
+      icon: <Icon icon='material-symbols:settings' />,
+      path: "/dashboard/site-settings",
+      shownSideBar: true,
     },
   ]);
 

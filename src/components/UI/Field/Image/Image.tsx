@@ -42,7 +42,7 @@ export default function Image(props: IProps) {
   const [file, setFile] = useState<IFile>();
   const [files, setFiles] = useState<IFile[]>([]);
 
-  const { data: galleries } = useTable<IGallery[]>({
+  const { data: galleries, refetch } = useTable<IGallery[]>({
     api: GetAllGalleriesAPI,
   });
 
@@ -50,6 +50,10 @@ export default function Image(props: IProps) {
     if (type === "single") setFile(props.value);
     if (type === "multi") setFiles(props.values);
   }, [show, props]);
+
+  useEffect(() => {
+    if (show) refetch();
+  }, [show]);
 
   function onFileChange(props: { file?: IFile; isChecked: boolean }) {
     if (type === "multi") return;
