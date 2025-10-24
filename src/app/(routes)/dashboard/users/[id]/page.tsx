@@ -7,38 +7,66 @@ import { useFormik } from "formik";
 import { IROLE_OPTIONS } from "../../../../../types/Variables";
 import { ShowQuestion } from "@/common/toast/toast";
 import useRedirect from "@/hooks/useRedirect";
-import { useMutation } from "@tanstack/react-query";
-import { CreateUserAPI } from "@/services/Users.services";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { GetUserByIdAPI, UpdateUserAPI } from "@/services/Users.services";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Page() {
+  const { id } = useParams();
+
   const { admin } = useRedirect();
 
-  const { mutate: CreateUser } = useMutation({
-    mutationFn: CreateUserAPI,
+  const { mutate: UpdateUser } = useMutation({
+    mutationFn: UpdateUserAPI,
     onSuccess(data, variables, context) {
       admin.users.list();
     },
   });
 
-  const { values, setFieldValue, handleChange, submitForm } = useFormik<IUser>({
-    initialValues: {
-      name: "",
-      phone: "",
-      role: "User",
-      token: "",
-      createdAt : "",
-      updatedAt : ""
+  const { data } = useQuery({
+    queryFn: () => GetUserByIdAPI(id as string),
+    initialData: {
+      data: {
+        name: "",
+        phone: "",
+        role: "Admin",
+        token: "",
+        _id: "",
+        password: "",
+        createdAt : "",
+        updatedAt :""
+      },
+      message: "",
+      status: 200,
     },
-    onSubmit(values, formikHelpers) {
-      CreateUser(values);
-    },
+    queryKey: [GetUserByIdAPI.name],
   });
 
+  const { values, setFieldValue, handleChange, submitForm, setValues } =
+    useFormik<IUser>({
+      initialValues: {
+        name: "",
+        phone: "",
+        role: "User",
+        token: "",
+        createdAt : "",
+        updatedAt : ""
+      },
+      onSubmit(values, formikHelpers) {
+        UpdateUser(values);
+      },
+    });
+
+  useEffect(() => {
+    if (data.data) setValues(data.data);
+  }, [data.data]);
+
   return (
-    <PageContainer title='ایجاد کاربر'>
+    <PageContainer title='ویرایش کاربر'>
       <Box
         maxContent={true}
-        header={"ایجاد کاربری"}>
+        header={"ویرایش کاربری"}>
         <Grid
           width={"30rem"}
           gridTemplateColumns={"1fr 1fr"}
@@ -86,7 +114,7 @@ export default function Page() {
             <Button
               type='button'
               variant='success'
-              title='ثبت و ایجاد'
+              title='ثبت و ویرایش'
               icon={<Icon icon='formkit:submit' />}
               onClick={() => {
                 ShowQuestion({

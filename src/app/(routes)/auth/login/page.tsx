@@ -20,7 +20,7 @@ export default function Page() {
     mutationFn: LoginAPI,
     onSuccess({ data }, variables, context) {
       UserActions.login(data);
-      setTimeout(() => redirect.admin.GoUsers(), 1000);
+      setTimeout(() => redirect.admin.users.list(), 1000);
     },
   });
 

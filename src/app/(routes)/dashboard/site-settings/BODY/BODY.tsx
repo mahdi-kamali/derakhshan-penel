@@ -16,6 +16,7 @@ export default function BODY(props: IProps) {
     <Component
       language={lang}
       formik={formik}
+      key={lang}
     />
   ));
 }

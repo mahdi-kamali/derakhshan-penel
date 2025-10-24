@@ -98,7 +98,8 @@ export default function Component(props: IProps) {
                 backgroundColor='rgba(0,0,0,0.1)'
                 borderRadius={"1rem"}
                 padding={"1em"}
-                gap={"1rem"}>
+                gap={"1rem"}
+                key={index}>
                 <Field.Text
                   variant='light'
                   name={fieldName("label")}
@@ -176,7 +177,8 @@ export default function Component(props: IProps) {
                 backgroundColor='rgba(255,0,0,0.1)'
                 borderRadius={"1rem"}
                 padding={"1em"}
-                gap={"1rem"}>
+                gap={"1rem"}
+                key={index}>
                 <Field.Text
                   variant='light'
                   name={fieldName("label")}
@@ -255,7 +257,8 @@ export default function Component(props: IProps) {
                 backgroundColor='rgba(255,0,0,0.1)'
                 borderRadius={"1rem"}
                 padding={"1em"}
-                gap={"1rem"}>
+                gap={"1rem"}
+                key={index}>
                 <Field.Image
                   type='single'
                   icon={<Icon icon='line-md:image-filled' />}

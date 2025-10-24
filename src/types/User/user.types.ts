@@ -11,5 +11,7 @@ export interface IUser {
   name: string;
   role: "Admin" | "User";
   token: string;
-  password? : string
+  password?: string;
+  createdAt: string;
+  updatedAt: string;
 }

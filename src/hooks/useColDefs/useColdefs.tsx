@@ -147,12 +147,12 @@ export default function useColdefs() {
       field: "_id",
       minWidth: 180,
       type: "ACTIONS",
-      cellRenderer: () => (
+      cellRenderer: ({ value }) => (
         <Cell.Container>
           <Cell.Button
             variant='success'
             icon={<Icon icon='line-md:edit-filled' />}
-            onClick={() => alert("ok")}
+            onClick={() => admin.users.update(value)}
             title='ویرایش'
             loading={false}
           />

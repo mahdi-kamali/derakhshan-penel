@@ -2,6 +2,7 @@ import { ICareer } from "@/types/Career/Career.types";
 import { ICategory } from "@/types/Category/Category.types";
 import { IPage } from "@/types/Pages/pages.types";
 import { IProudct } from "@/types/Product/Product.types";
+import { IUser } from "@/types/User/user.types";
 import { useRouter } from "next/navigation";
 
 export default function useRedirect() {
@@ -13,7 +14,10 @@ export default function useRedirect() {
 
   return {
     admin: {
-      GoUsers: () => redirect("/dashboard/users/list"),
+      users: {
+        list: () => redirect("/dashboard/users/list"),
+        update: (_id: IUser["_id"]) => redirect(`/dashboard/users/${_id}`),
+      },
       GoDashboard: () => redirect("/dashboard/"),
       GoHome: () => redirect("/dashboard/users/list"),
       pages: {

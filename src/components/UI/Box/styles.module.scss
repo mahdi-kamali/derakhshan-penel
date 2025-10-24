@@ -8,6 +8,17 @@
     .header {
         color: black;
         font-weight: bold;
+        background-color: #290f56;
+        color: white;
+        padding: 0.25em 1em;
+        border-radius: 0.75rem;
+        margin: 0 1rem;
+        font-size: 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.167);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
     }
 }
 

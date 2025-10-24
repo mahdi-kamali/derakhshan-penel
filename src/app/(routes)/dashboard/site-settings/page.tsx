@@ -60,7 +60,7 @@ const initialData: ISiteSettings = {
   },
 };
 
-export default function page() {
+export default function Page() {
   const { data, isLoading } = useQuery({
     queryFn: GetSiteSettingsAPI,
     initialData: {

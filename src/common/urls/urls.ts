@@ -16,6 +16,8 @@ export const ADMIN_URLS = {
   USERS: {
     list: ADMIN_URL_BASE_URL + "/users",
     create: ADMIN_URL_BASE_URL + "/users",
+    update: ADMIN_URL_BASE_URL + "/users/{_id}",
+    getById: ADMIN_URL_BASE_URL + "/users/{_id}",
   },
   GALLERY: {
     list: ADMIN_URL_BASE_URL + "/gallery",

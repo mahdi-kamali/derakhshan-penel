@@ -11,9 +11,11 @@
 }
 
 .content {
-    display: grid;
+    display: flex;
     animation: fade-in 1s ease forwards;
     width: 100%;
+    justify-content: center;
+    
 }
 
 .center {

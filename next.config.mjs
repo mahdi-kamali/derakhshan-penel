@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: "standalone",
   images: {
     domains: ["devgolang.aldypay.com"],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 

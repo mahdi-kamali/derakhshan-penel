@@ -34,21 +34,7 @@ export default function Create() {
 
   return (
     <FormikProvider value={formik}>
-      <Box
-        header={
-          <Grid
-            gridTemplateColumns={" 1fr max-content"}
-            gap={"1rem"}>
-            <p>ایجاد گالری جدید</p>
-            <Button
-              type='button'
-              variant='success'
-              title='ایجاد'
-              icon={<Icon icon='gridicons:add-outline' />}
-              onClick={() => setFieldValue("creating", true)}
-            />
-          </Grid>
-        }>
+      <Box header='ایجاد گالری جدید'>
         <Grid
           expanded={values.creating}
           color='black'>
@@ -75,13 +61,7 @@ export default function Create() {
               icon={<Icon icon='el:ok' />}
               onClick={submitForm}
             />
-            <Button
-              type='button'
-              variant='danger'
-              title='لغو'
-              icon={<Icon icon='line-md:cancel-twotone' />}
-              onClick={() => setFieldValue("creating", false)}
-            />
+          
           </Grid>
         </Grid>
       </Box>
