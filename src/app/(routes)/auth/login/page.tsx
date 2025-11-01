@@ -16,7 +16,7 @@ import styles from "./styles.module.scss";
 export default function Page() {
   const redirect = useRedirect();
 
-  const { mutate: Login, isIdle } = useMutation({
+  const { mutate: Login, isPending } = useMutation({
     mutationFn: LoginAPI,
     onSuccess({ data }, variables, context) {
       UserActions.login(data);
@@ -36,7 +36,7 @@ export default function Page() {
   return (
     <PageContainer
       title='ورود به داشبورد'
-      isLoading={isIdle}>
+      isLoading={isPending}>
       <div className={styles.form}>
         <Form
           formik={formik}
