@@ -10,7 +10,7 @@ import { GetPageByIdAPI } from "@/services/Pages/Pages.services";
 export default function Page() {
   const { id } = useParams();
 
-  const { data } = useQuery({
+  const { data,isFetching } = useQuery({
     queryFn: () => GetPageByIdAPI(id as string),
     initialData: {
       data: {
@@ -36,7 +36,7 @@ export default function Page() {
   const { data: page } = data;
 
   return (
-    <PageContainer title='ویرایش محتوای صفحه'>
+    <PageContainer title='ویرایش محتوای صفحه' isLoading={isFetching}>
       <Grid>
         <CreateSection page_id={id as string} />
         <Grid

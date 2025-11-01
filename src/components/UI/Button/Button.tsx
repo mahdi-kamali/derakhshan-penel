@@ -48,7 +48,7 @@ export default function Button(props: IButtonProps) {
     <button
       className={getClass()}
       onClick={onClick}
-      disabled={!!disabled || false}
+      disabled={!!disabled || isLoading}
       style={style}
       type={type}>
       {isLoading ? <Icon icon='eos-icons:loading' /> : icon}

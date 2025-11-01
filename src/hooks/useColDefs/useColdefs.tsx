@@ -240,124 +240,125 @@ export default function useColdefs() {
   ];
 
   // ---------------- CAREERS ----------------
-  const careersColDef: IColDef<ICareer>[] = [
-    {
-      field: "image",
-      headerName: "تصویر",
-      type: "TEXT",
-      cellRenderer: ({ value }) => {
-        const path = value?.path;
-        return (
-          <img
-            src={IMAGE_URL(path)}
-            alt=''
-            style={{ objectFit: "contain", width: "100%" }}
-          />
-        );
-      },
-    },
-    { field: "title", headerName: "عنوان", minWidth: 200, type: "TEXT" },
-    {
-      field: "description",
-      headerName: "توضیحات",
-      type: "TOOLTIP",
-      cellRenderer: ({ value }) => (
-        <Cell.ToolTip
-          icon={<Icon icon='fluent-mdl2:view' />}
-          label='مشاهده'
-          variant='success'>
-          <p>{value}</p>
-        </Cell.ToolTip>
-      ),
-    },
-    {
-      field: "skills",
-      headerName: "مهارت‌ها",
-      type: "TOOLTIP",
-      cellRenderer: ({ value }) => (
-        <Cell.ToolTip
-          icon={<Icon icon='fluent-mdl2:view' />}
-          label='مشاهده'
-          variant='success'>
-          <Grid gap='0.5rem'>
-            {value.map((val: string, i: number) => (
-              <Grid
-                key={i}
-                type='flex'
-                alignItems='center'
-                gap='0.5rem'>
-                <Icon
-                  icon='tdesign:circle-filled'
-                  fontSize='0.5rem'
-                />
-                <span>{val}</span>
-              </Grid>
-            ))}
-          </Grid>
-        </Cell.ToolTip>
-      ),
-    },
-    {
-      headerName: "وضعیت",
-      field: "isActive",
-      type: "STATUS",
-      cellRendererParams: { OPTIONS: ICAREER_IS_ACTIVE },
-    },
-    {
-      headerName: "نوع",
-      field: "type",
-      type: "SELECT",
-      minWidth: 200,
-      cellRendererParams: {
-        OPTIONS: ICAREER_TYPES,
-        onChange: (value: IOption, data: ICareer) => {
-          ShowQuestion({
-            onConfirm() {
-              UpdateCareer({ ...data, type: value.value });
-            },
-          });
-        },
-      },
-    },
-    {
-      field: "updatedAt",
-      headerName: "تاریخ بروزرسانی",
-      type: "DATE",
-      cellRenderer: ({ value }) => (
-        <Cell.Container>
-          <p>{dateToJalai(value)}</p>
-        </Cell.Container>
-      ),
-    },
-    {
-      field: "_id",
-      headerName: "عملیات",
-      minWidth: 200,
-      type: "ACTIONS",
-      cellRenderer: ({ value }) => (
-        <Cell.Container gap='0.5rem'>
-          <Cell.Button
-            title='ویرایش'
-            variant='warning'
-            onClick={() => admin.careers.edit(value)}
-            icon={<Icon icon='line-md:edit-filled' />}
-          />
-          <Cell.Button
-            title='حذف'
-            variant='danger'
-            onClick={() =>
-              ShowQuestion({
-                onConfirm() {
-                  DeleteCareer(value);
-                },
-              })
-            }
-            icon={<Icon icon='material-symbols-light:delete-rounded' />}
-          />
-        </Cell.Container>
-      ),
-    },
-  ];
+  // const careersColDef: IColDef<ICareer>[] = [
+  //   {
+  //     field: "image",
+  //     headerName: "تصویر",
+  //     type: "TEXT",
+  //     cellRenderer: ({ value }) => {
+  //       const path = value?.path;
+  //       return (
+  //         <img
+  //           src={IMAGE_URL(path)}
+  //           alt=''
+  //           style={{ objectFit: "contain", width: "100%" }}
+  //         />
+  //       );
+  //     },
+  //   },
+  //   { field: "title", headerName: "عنوان", minWidth: 200, type: "TEXT" },
+  //   {
+  //     field: "description",
+  //     headerName: "توضیحات",
+  //     type: "TOOLTIP",
+  //     cellRenderer: ({ value }) => (
+  //       <Cell.ToolTip
+  //         icon={<Icon icon='fluent-mdl2:view' />}
+  //         label='مشاهده'
+  //         variant='success'>
+  //         <p>{value}</p>
+  //       </Cell.ToolTip>
+  //     ),
+  //   },
+  //   {
+  //     field: "skills",
+  //     headerName: "مهارت‌ها",
+  //     type: "TOOLTIP",
+  //     cellRenderer: ({ value }) => (
+  //       <Cell.ToolTip
+  //         icon={<Icon icon='fluent-mdl2:view' />}
+  //         label='مشاهده'
+  //         variant='success'>
+  //         <Grid gap='0.5rem'>
+  //           {value.map((val: string, i: number) => (
+  //             <Grid
+  //               key={i}
+  //               type='flex'
+  //               alignItems='center'
+  //               gap='0.5rem'>
+  //               <Icon
+  //                 icon='tdesign:circle-filled'
+  //                 fontSize='0.5rem'
+  //               />
+  //               <span>{val}</span>
+  //             </Grid>
+  //           ))}
+  //         </Grid>
+  //       </Cell.ToolTip>
+  //     ),
+  //   },
+  //   {
+  //     headerName: "وضعیت",
+  //     field: "isActive",
+  //     type: "STATUS",
+  //     cellRendererParams: { OPTIONS: ICAREER_IS_ACTIVE },
+  //   },
+  //   {
+  //     headerName: "نوع",
+  //     field: "type",
+  //     type: "SELECT",
+  //     minWidth: 200,
+  //     cellRendererParams: {
+  //       OPTIONS: ICAREER_TYPES,
+  //       onChange: (value: IOption, data: ICareer) => {
+  //         ShowQuestion({
+  //           onConfirm() {
+  //             UpdateCareer({ ...data, type: value.value });
+  //           },
+  //         });
+  //       },
+  //     },
+  //   },
+  //   {
+  //     field: "updatedAt",
+  //     headerName: "تاریخ بروزرسانی",
+  //     type: "DATE",
+  //     cellRenderer: ({ value }) => (
+  //       <Cell.Container>
+  //         <p>{dateToJalai(value)}</p>
+  //       </Cell.Container>
+  //     ),
+  //   },
+  //   {
+  //     field: "_id",
+  //     headerName: "عملیات",
+  //     minWidth: 200,
+  //     type: "ACTIONS",
+  //     cellRenderer: ({ value }) => (
+  //       <Cell.Container gap='0.5rem'>
+  //         <Cell.Button
+  //           title='ویرایش'
+  //           variant='warning'
+  //           onClick={() => admin.careers.edit(value)}
+  //           icon={<Icon icon='line-md:edit-filled' />}
+  //         />
+  //         <Cell.Button
+  //           title='حذف'
+  //           variant='danger'
+  //           onClick={() =>
+  //             ShowQuestion({
+  //               onConfirm() {
+  //                 DeleteCareer(value);
+  //               },
+  //             })
+  //           }
+  //           icon={<Icon icon='material-symbols-light:delete-rounded' />}
+  //         />
+  //       </Cell.Container>
+  //     ),
+  //   },
+  // ];
+  
 
   // ---------------- CONTACT US ----------------
   const contactUsColDef: IColDef<IContactUs>[] = [
@@ -689,7 +690,7 @@ export default function useColdefs() {
   return {
     pagesColDef,
     usersColDef,
-    careersColDef,
+    // careersColDef,
     contactUsColDef,
     ordersColDef,
     productsColDef,

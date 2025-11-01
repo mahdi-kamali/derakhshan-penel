@@ -28,7 +28,8 @@ export default function HEADER(props: IProps) {
   return (
     <Grid
       gap={"1rem"}
-      gridTemplateColumns={"1fr 1fr "}>
+      gridTemplateColumns={"1fr 1fr "}
+      minWidth={"40rem"}>
       <Field.Text
         errors={errors}
         variant='light'

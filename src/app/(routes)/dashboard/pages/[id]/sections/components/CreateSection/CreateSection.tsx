@@ -11,33 +11,14 @@ interface IProps {
 export default function CreateSection(props: IProps) {
   const { page_id } = props;
 
-  const [isCreating, setIsCreating] = useState(true);
-
   return (
     <Grid
       type='flex'
       center
       flexDirection='column'>
-      <Grid center>
-        <Button
-          type='button'
-          variant='success'
-          title={"افزودن سکشن "}
-          icon={
-            <Icon
-              icon='oui:ml-create-single-metric-job'
-              color='var(--color-success)'
-            />
-          }
-          onClick={() => {
-            setIsCreating((prev) => !prev);
-          }}
-        />
-      </Grid>
       {/* Create Forms */}
       <Grid
-        marginTop={"1rem"}
-        expanded={isCreating}>
+        marginTop={"1rem"}>
         <SectionForm page_id={page_id} />
       </Grid>
     </Grid>

@@ -1,13 +1,22 @@
 import { IFile } from "../Gallery/gallery.types";
 
+
+
 export interface ICareer {
-  isActive: boolean;
+  EN: IData;
+  FA: IData;
   _id?: string;
+ 
+}
+
+interface IData {
   title: string;
   skills: string[];
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  isActive: boolean;
   image: IFile;
-  type: "SPECIAL" | "NORMAL";
+  type: string;
 }
+
+
+

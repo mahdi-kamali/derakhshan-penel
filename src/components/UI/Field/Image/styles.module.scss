@@ -50,7 +50,6 @@
     flex-direction: column;
     gap: 0.5rem;
     position: relative;
-
     h1 {
         border-bottom: 1px solid black;
         padding-bottom: 0.25em;
@@ -62,7 +61,12 @@
     }
     .images {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
+        img {
+            width: 20rem;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
     }
 }

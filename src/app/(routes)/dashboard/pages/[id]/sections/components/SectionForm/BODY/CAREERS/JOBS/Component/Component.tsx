@@ -1,12 +1,12 @@
 import { Button, Grid, Group } from "@/components/UI";
 import { LanguagesENUM } from "@/types/Language/Language.types";
 import { useState } from "react";
-import JOB from "../JOB/JOB";
 import SelectModal from "@/components/UI/SelectModal/SelectModal";
 import { ICareer } from "@/types/Career/Career.types";
 import { FormikContextType } from "formik";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { GetCareersAPI } from "@/services/Careers/Careers.services";
+import Career from "@/app/(routes)/dashboard/careers/list/components/Career/Career";
 
 interface IProps {
   formik: FormikContextType<ISection>;
@@ -31,11 +31,25 @@ export default function Component(props: IProps) {
   return (
     <Grid
       gap={"1rem"}
-      color='black'>
-      <Group header='شغل های منتخب شده'>
-        {jobs.map((job,index) => {
-          return <JOB data={job} key={index} />;
-        })}
+      color='black'
+      marginTop={"1rem"}>
+      <Group
+        header='شغل های منتخب شده'
+        minHeight={"30rem"}
+        maxHeight={"30rem"}
+        overflow='auto'
+        variant="primary">
+        <Grid gap={"1rem"}>
+          {jobs.map((job, index) => {
+            return (
+              <Career
+                career={job}
+                key={index}
+                showActions={false}
+              />
+            );
+          })}
+        </Grid>
       </Group>
       <Grid>
         <Button
@@ -49,7 +63,12 @@ export default function Component(props: IProps) {
           mode='single'
           values={component.jobs}
           show={showModal}
-          onRenderRow={(row, index) => <JOB data={row} />}
+          onRenderRow={(row, index) => (
+            <Career
+              key={index}
+              career={row}
+            />
+          )}
           onChange={(rows) =>
             setFieldValue(`components[${language}].jobs`, rows)
           }

@@ -17,7 +17,7 @@ interface IProps<T = any> {
   width?: string;
   extraProps?: any;
   children: () => {
-    HEADERS: IComponentsType;
+    HEADERS?: IComponentsType;
     BODY: (props: any) => ReactElement[];
     TABS: IComponentsType;
     ACTIONS: IComponentsType;
@@ -44,8 +44,6 @@ export default function Form(props: IProps) {
     extraProps: extraProps,
     formik: formik,
   }) as ReactElement[];
-  
-
 
   return (
     <FormikProvider value={formik}>
@@ -66,9 +64,12 @@ export default function Form(props: IProps) {
         )}
 
         <div className={styles.forms}>
-          <div className={styles.header}>
-            <HEADERS {...extraProps} />
-          </div>
+          {HEADERS && (
+            <div className={styles.header}>
+              <HEADERS {...extraProps} />
+            </div>
+          )}
+
           <div
             className={styles.body}
             key={props.formik.values.type}>
@@ -89,6 +90,7 @@ export default function Form(props: IProps) {
             </Swiper>
           </div>
         </div>
+
         <div className={styles.actons}>
           <ACTIONS {...extraProps} />
         </div>

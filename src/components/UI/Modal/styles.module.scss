@@ -1,7 +1,8 @@
 .content {
     margin: auto;
     height: 50dvh;
-    width: 50dvw;
+    min-width: 50dvw;
+    width: max-content !important;
     color: black;
     position: fixed;
     inset: 0;
@@ -26,5 +27,3 @@
     justify-content: center;
     gap: 0.5rem;
 }
-
-

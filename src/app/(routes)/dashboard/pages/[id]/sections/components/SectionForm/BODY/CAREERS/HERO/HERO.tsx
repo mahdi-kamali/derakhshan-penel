@@ -53,7 +53,7 @@ export default function CAREERS_HERO(props: IProps): ReactElement[] {
             value={components.description}
             placeHodler='توضیحات'
             variant='light'
-            lines={4}
+            lines={3}
           />
         </Grid>
         <Grid gridColumn={"-1/1"}>

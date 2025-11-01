@@ -22,9 +22,9 @@ export default function useTable<T = any[]>(props: IProps<T>) {
     _setCurrentPage(page);
   };
 
-  const [debouncedParams,] = useDebounce(counter, 100); // wait 400ms after last change
+  const [debouncedParams] = useDebounce(counter, 100); // wait 400ms after last change
 
-  const { data, isLoading } = useQuery<T>({
+  const { data, isLoading, isFetching } = useQuery<T>({
     queryFn: () => api({ ...params }).then((res: any) => res.data),
     initialData: [] as T,
     queryKey: [api.name, params, key, debouncedParams],
@@ -33,7 +33,7 @@ export default function useTable<T = any[]>(props: IProps<T>) {
 
   return {
     data: data as T,
-    isLoading,
+    isLoading: isFetching || isLoading,
     params,
     setParams,
     enabled,

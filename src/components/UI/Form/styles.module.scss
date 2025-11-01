@@ -1,5 +1,6 @@
 .container {
-    width: 50rem;
+    width: max-content;
+    max-width: 50rem;
     flex-direction: column;
     gap: 1rem;
     background-color: white;
@@ -37,8 +38,6 @@
 .forms {
     .body {
         margin-top: 1rem;
-        max-height: 50dvh;
-        overflow: auto;
     }
     .form {
         direction: rtl;
