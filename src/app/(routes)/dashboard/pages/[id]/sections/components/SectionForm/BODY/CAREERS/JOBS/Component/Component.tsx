@@ -6,7 +6,7 @@ import { ICareer } from "@/types/Career/Career.types";
 import { FormikContextType } from "formik";
 import { ISection } from "@/types/Pages/Sections/Sections.types";
 import { GetCareersAPI } from "@/services/Careers/Careers.services";
-import Career from "@/app/(routes)/dashboard/careers/list/components/Career/Career";
+import Career from "@/app/(routes)/dashboard/careers/list/Career/Career";
 
 interface IProps {
   formik: FormikContextType<ISection>;

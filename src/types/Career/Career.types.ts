@@ -15,7 +15,7 @@ interface IData {
   description: string;
   isActive: boolean;
   image: IFile;
-  type: string;
+  type: "SPECIAL" | "NORMAL";
 }
 
 
