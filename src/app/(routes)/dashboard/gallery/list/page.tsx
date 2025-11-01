@@ -23,7 +23,9 @@ export default function Page() {
     <PageContainer
       title='گالری'
       isLoading={isLoading}>
-      <Grid gap={"1rem"}>
+      <Grid
+        gap={"1rem"}
+        width={"max-content"}>
         <Gallery.Create />
         <Grid
           width={"100%"}
