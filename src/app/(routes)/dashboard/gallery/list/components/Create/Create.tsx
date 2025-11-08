@@ -26,7 +26,6 @@ export default function Create() {
     },
     onSubmit(values, { setFieldValue }) {
       CreateGallery(values);
-      setFieldValue("creating", false);
     },
   });
 
@@ -35,9 +34,7 @@ export default function Create() {
   return (
     <FormikProvider value={formik}>
       <Box header='ایجاد گالری جدید'>
-        <Grid
-          expanded={values.creating}
-          color='black'>
+        <Grid color='black'>
           <Field.Text
             errors={errors}
             variant='light'
@@ -61,7 +58,6 @@ export default function Create() {
               icon={<Icon icon='el:ok' />}
               onClick={submitForm}
             />
-          
           </Grid>
         </Grid>
       </Box>
