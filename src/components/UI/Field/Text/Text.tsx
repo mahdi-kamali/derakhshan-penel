@@ -6,12 +6,12 @@ import { IField } from "../field.types";
 import styles from "./styles.module.scss";
 
 interface IProps extends IField<string, ChangeEvent<HTMLInputElement>> {
-  type: "text" | "password";
+  type: "text" | "password" | "number" | "tel";
   lines?: number;
 }
 
 export default function Text(props: IProps) {
-  const { type, placeHodler, lines, errors } = props;
+  const { type, placeHodler, lines, errors ,pattern = ""} = props;
 
   const [view, setView] = useState(false);
 

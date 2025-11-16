@@ -26,8 +26,6 @@ export default function Component(props: IProps) {
   const fieldName = (field: keyof Info) =>
     `components[${language}].info.${field}`;
 
-
-
   return (
     <Grid paddingBottom={"0.25em"}>
       <Grid
@@ -43,7 +41,7 @@ export default function Component(props: IProps) {
           variant='light'
         />
         <Field.Text
-          type='text'
+          type='tel'
           name={fieldName("phone")}
           icon={<Icon icon='line-md:phone-filled' />}
           onChange={handleChange}
@@ -54,12 +52,12 @@ export default function Component(props: IProps) {
         />
 
         <Field.Text
-          type='text'
+          type='tel'
           name={fieldName("fax")}
           icon={<Icon icon='fa-solid:fax' />}
           onChange={handleChange}
           title='فکس'
-          value={location}
+          value={fax}
           variant='light'
         />
         <Field.Text
@@ -68,7 +66,7 @@ export default function Component(props: IProps) {
           icon={<Icon icon='material-symbols:attach-email' />}
           onChange={handleChange}
           title='ایمیل'
-          value={location}
+          value={email}
           variant='light'
         />
         <Grid gridColumn={"-1/1"}>

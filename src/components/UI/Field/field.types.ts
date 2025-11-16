@@ -15,4 +15,5 @@ export interface IField<
   isLoading?: boolean;
   onChange: (value: CHANGE) => void;
   errors?: any;
+  pattern?: string;
 }
