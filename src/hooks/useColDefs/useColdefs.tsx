@@ -358,7 +358,6 @@ export default function useColdefs() {
   //     ),
   //   },
   // ];
-  
 
   // ---------------- CONTACT US ----------------
   const contactUsColDef: IColDef<IContactUs>[] = [
@@ -426,6 +425,7 @@ export default function useColdefs() {
     { headerName: "نام خانوادگی", field: "user.family", type: "TEXT" },
     { headerName: "تلفن", field: "user.phone", type: "TEXT" },
     { headerName: "ایمیل", field: "user.email", type: "TEXT" },
+    { headerName: "کشور", field: "user.country", type: "TEXT" },
 
     // ---- PRODUCT INFO ----
     { headerName: "نوع محصول", field: "product.type", type: "TEXT" },

@@ -143,8 +143,13 @@ export default function Page() {
               color='black'
               maxHeight={"30rem"}
               overflow='auto'>
-              {values.products.map((pro,index) => {
-                return <Product product={pro} key={index} />;
+              {values.products.map((pro, index) => {
+                return (
+                  <Product
+                    product={pro}
+                    key={index}
+                  />
+                );
               })}
             </Grid>
 

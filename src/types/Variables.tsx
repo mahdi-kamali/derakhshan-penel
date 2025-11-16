@@ -188,13 +188,6 @@ export const SECTIONS_OPTIONS: IOption<ISection["type"]>[] = [
         type: "child",
       },
       {
-        label: "رهبران",
-        value: "HOME_LEADERSHIP",
-        variant: "success",
-        icon: <Icon icon='mdi:account-group' />,
-        type: "child",
-      },
-      {
         label: "درباره ما",
         value: "HOME_ABOUT_US",
         variant: "indigo",

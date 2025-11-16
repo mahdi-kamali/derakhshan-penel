@@ -49,4 +49,5 @@ interface User {
   family: string;
   phone: string;
   email: string;
+  country: string;
 }

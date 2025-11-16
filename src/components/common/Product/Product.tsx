@@ -37,7 +37,8 @@ export default function Product(props: IProps) {
       backgroundColor='rgba(0, 0, 0, 0.1)'
       padding={"1em"}
       borderRadius={"1rem"}
-      gap={"1rem"}>
+      gap={"1rem"}
+      maxWidth={"30rem"}>
       <Grid>
         <img
           src={IMAGE_URL(image.path)}
