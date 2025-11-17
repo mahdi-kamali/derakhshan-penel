@@ -1,0 +1,32 @@
+.export {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: white;
+    padding: 2em;
+    border-radius: 1rem;
+    .data {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 0.25rem;
+
+        .header {
+        }
+        .body {
+            .image {
+                width: 15rem;
+                height: max-content;
+                object-fit: contain;
+            }
+        }
+    }
+}

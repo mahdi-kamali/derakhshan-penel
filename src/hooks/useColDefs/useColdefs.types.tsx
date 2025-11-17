@@ -33,6 +33,7 @@ type DATE<T> = {
 
 type TOOLTIP<T> = {
   type: "TOOLTIP";
+  exportRender?: ({ value }: { value: any }) => ReactElement;
 } & Base<T>;
 
 type ACTIONS<T> = {

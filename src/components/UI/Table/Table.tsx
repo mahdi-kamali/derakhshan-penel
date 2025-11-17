@@ -8,19 +8,20 @@ import "ag-grid-community/styles/ag-theme-material.css";
 import "./styles.scss";
 import gridOptions from "./configs/gridOptions";
 import { ColDef } from "@ag-grid-community/core";
-import Button from "../Button/Button";
 
 interface IProps {
   colDefs: ColDef[];
   rowData: any[];
 }
+import "ag-grid-enterprise";
+import TableExport from "./components/Export/TableExport";
 
 export default function Table(props: IProps) {
   const { colDefs, rowData } = props;
   const gridRef = useRef<AgGridReact>(null);
 
   const exportExcel = () => {
-   
+    // gridRef.current?.api.exportDataAsCsv();
   };
 
   return (
@@ -33,11 +34,16 @@ export default function Table(props: IProps) {
           columnDefs={colDefs as any}
           ref={gridRef}
         />
-        <Button
+        {/* <Button
           type='button'
           variant='indigo'
           title='خروجی اکسل'
           onClick={exportExcel}
+        /> */}
+
+        <TableExport
+          colDefs={colDefs as any}
+          rowData={rowData}
         />
       </div>
     </div>

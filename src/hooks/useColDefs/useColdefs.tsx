@@ -456,6 +456,22 @@ export default function useColdefs() {
           </Cell.ToolTip>
         );
       },
+      exportRender({ value }) {
+        const { height, length, width } = value;
+        return (
+          <Grid>
+            <li>
+              <span>طول : {length}</span>
+            </li>
+            <li>
+              <span>عرض : {width}</span>
+            </li>
+            <li>
+              <span>ارتفاع : {height}</span>
+            </li>
+          </Grid>
+        );
+      },
     },
     {
       headerName: "تصویر",
