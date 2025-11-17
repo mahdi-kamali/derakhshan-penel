@@ -49,6 +49,7 @@ import {
   GetPagesAPI,
   UpdatePageAPI,
 } from "@/services/Pages/Pages.services";
+import { IFile } from "@/types/Gallery/gallery.types";
 
 export default function useColdefs() {
   const { admin } = useRedirect();
@@ -382,6 +383,9 @@ export default function useColdefs() {
           <p>{value}</p>
         </Cell.ToolTip>
       ),
+      exportRender({ value }) {
+        return <p>{value}</p>;
+      },
     },
     {
       headerName: "پیام",
@@ -395,6 +399,9 @@ export default function useColdefs() {
           <p>{value}</p>
         </Cell.ToolTip>
       ),
+      exportRender({ value }) {
+        return <p>{value}</p>;
+      },
     },
     {
       headerName: "وضعیت",
@@ -567,6 +574,27 @@ export default function useColdefs() {
           </Grid>
         </Cell.ToolTip>
       ),
+      exportRender({ value }: { value: IFile[] }) {
+        return (
+          <Grid
+            gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+            gap={"1rem"}>
+            {value.map((img) => {
+              return (
+                <img
+                  src={IMAGE_URL(img.path)}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              );
+            })}
+          </Grid>
+        );
+      },
     },
     {
       headerName: "عنوان",
@@ -661,6 +689,28 @@ export default function useColdefs() {
           </Grid>
         </Cell.ToolTip>
       ),
+      exportRender({ value }: { value: IProudct[] }) {
+        console.log(value);
+        return (
+          <Grid
+            gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+            gap={"1rem"}>
+            {value.map((product) => {
+              return (
+                <img
+                  src={IMAGE_URL(product.image.path)}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              );
+            })}
+          </Grid>
+        );
+      },
     },
     {
       headerName: "عنوان",

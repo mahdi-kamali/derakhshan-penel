@@ -15,36 +15,41 @@ interface IProps {
 }
 import "ag-grid-enterprise";
 import TableExport from "./components/Export/TableExport";
+import Grid from "../Grid/Grid";
+import Button from "../Button/Button";
+import Icon from "../Icon/Icon";
 
 export default function Table(props: IProps) {
   const { colDefs, rowData } = props;
-  const gridRef = useRef<AgGridReact>(null);
 
-  const exportExcel = () => {
-    // gridRef.current?.api.exportDataAsCsv();
-  };
+  const [exporting, setExporting] = useState(false);
 
   return (
     <div className='table-container-class'>
       <div className='ag-theme-material table-root'>
-        <AgGridReact
-          rowData={rowData}
-          enableRtl={true}
-          gridOptions={gridOptions as any}
-          columnDefs={colDefs as any}
-          ref={gridRef}
-        />
-        {/* <Button
-          type='button'
-          variant='indigo'
-          title='خروجی اکسل'
-          onClick={exportExcel}
-        /> */}
-
-        <TableExport
-          colDefs={colDefs as any}
-          rowData={rowData}
-        />
+        <div className='table-actions-export'>
+          <Button
+            type='button'
+            variant='success'
+            title='خروجی گرفتن'
+            icon={<Icon icon='ph:export-bold' />}
+            onClick={() => setExporting((prev) => !prev)}
+          />
+        </div>
+        <Grid expanded={exporting === false}>
+          <AgGridReact
+            rowData={rowData}
+            enableRtl={true}
+            gridOptions={gridOptions as any}
+            columnDefs={colDefs as any}
+          />
+        </Grid>
+        <Grid expanded={exporting === true}>
+          <TableExport
+            colDefs={colDefs as any}
+            rowData={rowData}
+          />
+        </Grid>
       </div>
     </div>
   );
