@@ -1,0 +1,38 @@
+.content {
+    margin: auto;
+    height: 50dvh;
+    min-width: 50dvw;
+    width: max-content !important;
+    color: black;
+    position: fixed;
+    inset: 0;
+    border-radius: 1rem;
+    padding: 1em;
+    background-color: white;
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    gap: 1rem;
+    .children {
+        overflow: auto;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        border-bottom: 1px dashed rgb(221, 221, 221);
+        padding-bottom: 0.5em;
+    }
+}
+
+.backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}

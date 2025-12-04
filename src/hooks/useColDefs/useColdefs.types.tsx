@@ -36,6 +36,10 @@ type TOOLTIP<T> = {
   exportRender?: ({ value }: { value: any }) => ReactElement;
 } & Base<T>;
 
+type MODAL<T> = {
+  type: "MODAL";
+} & Base<T>;
+
 type ACTIONS<T> = {
   type: "ACTIONS";
 } & Base<T>;
@@ -63,6 +67,7 @@ type TYPES<T> =
   | ACTIONS<T>
   | IMAGE<T>
   | TEXT<T>
-  | SWITCH<T>;
+  | SWITCH<T>
+  | MODAL<T>;
 
 export type IColDef<T> = {} & (TYPES<T> | undefined);

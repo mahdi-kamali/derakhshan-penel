@@ -2,11 +2,14 @@ import Icon from "@/components/UI/Icon/Icon";
 import Cell from "@/components/UI/Table/components/Cells/Cell";
 import { IPage } from "@/types/Pages/pages.types";
 import {
+  BOOLEAN_OPTIONS,
   CONTACT_US_STATUS_OPTIONS,
   ICAREER_IS_ACTIVE,
   ICAREER_TYPES,
   IOption,
   IROLE_OPTIONS,
+  MARITAL_STATUS_OPTIONS,
+  MILITARY_STATUS_OPTIONS,
   ORDERS_INDUSTRY_OPTIONS,
   PAGES_STATUS_OPTIONS,
 } from "@/types/Variables";
@@ -20,7 +23,7 @@ import {
   UpdateCareerAPI,
 } from "@/services/Careers/Careers.services";
 import { ShowQuestion } from "@/common/toast/toast";
-import { Grid } from "@/components/UI";
+import { Button, Grid } from "@/components/UI";
 import { ICareer } from "@/types/Career/Career.types";
 import { IContactUs } from "@/types/Contact-us/Contact_us.types";
 import { IUser } from "@/types/User/user.types";
@@ -50,24 +53,21 @@ import {
   UpdatePageAPI,
 } from "@/services/Pages/Pages.services";
 import { IFile } from "@/types/Gallery/gallery.types";
+import {
+  ICareerApply,
+  IEducation,
+  ISkill,
+  IWork,
+} from "@/types/Career/applys/Applys.types";
+import { useState } from "react";
+import Education from "@/components/common/Education/Education";
+import Work from "@/components/common/Work/Work";
+import Skill from "@/components/common/Skill/Skill";
+import Modal from "@/components/UI/Table/components/Cells/Modal/Modal";
 
 export default function useColdefs() {
   const { admin } = useRedirect();
   const queryClient = useQueryClient();
-
-  const { mutate: DeleteCareer } = useMutation({
-    mutationFn: DeleteCareerByIDAPI,
-    onSuccess() {
-      queryClient.invalidateQueries({ queryKey: [GetCareersAPI.name] });
-    },
-  });
-
-  const { mutate: UpdateCareer } = useMutation({
-    mutationFn: UpdateCareerAPI,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [GetCareersAPI.name] });
-    },
-  });
 
   const { mutate: UpdateContactUs } = useMutation({
     mutationFn: UpdateContactUsAPI,
@@ -426,6 +426,7 @@ export default function useColdefs() {
     { headerName: "تاریخ بروزرسانی", field: "updatedAt", type: "DATE" },
   ];
 
+  // ORDERS //
   const ordersColDef: IColDef<IOrder>[] = [
     // ---- USER INFO ----
     { headerName: "نام", field: "user.name", type: "TEXT" },
@@ -528,6 +529,7 @@ export default function useColdefs() {
     },
   ];
 
+  // PRODUCTS
   const productsColDef: IColDef<IProudct>[] = [
     {
       headerName: "تصویر اصلی",
@@ -642,6 +644,7 @@ export default function useColdefs() {
     },
   ];
 
+  // CATEGORIES
   const categoriesColDef: IColDef<ICategory>[] = [
     {
       headerName: "تصویر اصلی",
@@ -753,6 +756,248 @@ export default function useColdefs() {
     },
   ];
 
+  const applysColDef: IColDef<ICareerApply>[] = [
+    // PERSONAL INFO
+    {
+      field: "personalInfo.fullName",
+      type: "TEXT",
+      headerName: "نام و نام خانوادگی",
+      minWidth: 150,
+    },
+    { field: "personalInfo.nationalId", type: "TEXT", headerName: "کد ملی" },
+    { field: "personalInfo.birthDate", type: "TEXT", headerName: "تاریخ تولد" },
+    { field: "personalInfo.birthPlace", type: "TEXT", headerName: "محل تولد" },
+    { field: "personalInfo.issuePlace", type: "TEXT", headerName: "محل صدور" },
+    {
+      field: "personalInfo.maritalStatus",
+      type: "STATUS",
+      headerName: "وضعیت تاهل",
+      cellRendererParams: {
+        OPTIONS: MARITAL_STATUS_OPTIONS,
+      },
+    },
+    {
+      field: "personalInfo.militaryStatus",
+      type: "STATUS",
+      headerName: "وضعیت نظام وظیفه",
+      cellRendererParams: {
+        OPTIONS: MILITARY_STATUS_OPTIONS,
+      },
+    },
+    { field: "personalInfo.fatherName", type: "TEXT", headerName: "نام پدر" },
+    { field: "personalInfo.fatherJob", type: "TEXT", headerName: "شغل پدر" },
+    {
+      field: "personalInfo.insuranceHistory",
+      type: "STATUS",
+      headerName: "سابقه بیمه",
+      cellRendererParams: {
+        OPTIONS: BOOLEAN_OPTIONS,
+      },
+    },
+    {
+      field: "personalInfo.phoneNumber",
+      type: "TEXT",
+      headerName: "شماره تماس",
+    },
+
+    // ROOT FIELDS
+    { field: "description", type: "TEXT", headerName: "توضیحات" },
+    { field: "expectedSalary", type: "TEXT", headerName: "حقوق درخواستی" },
+    { field: "createdAt", type: "DATE", headerName: "تاریخ ثبت" },
+
+    // WORK EXPERIENCE ROOT
+    {
+      field: "workExperience.lastSalary",
+      type: "TEXT",
+      headerName: "آخرین حقوق",
+    },
+    {
+      field: "workExperience.insuranceDuration",
+      type: "TEXT",
+      headerName: "مدت بیمه",
+    },
+    {
+      field: "workExperience.usedUnemploymentInsurance",
+      type: "STATUS",
+      headerName: "استفاده از بیمه بیکاری",
+      cellRendererParams: {
+        OPTIONS: BOOLEAN_OPTIONS,
+      },
+    },
+
+    // --- ARRAY / MODAL FIELDS (sorted last) ---
+
+    // EDUCATION ARRAY
+    {
+      field: "education",
+      type: "MODAL",
+      headerName: "تحصیلات",
+      cellRenderer(props) {
+        const values = props.value as IEducation[];
+        const [show, setShow] = useState(false);
+        return (
+          <Cell.Container alignItems='center'>
+            <Button
+              type='button'
+              variant='primary'
+              onClick={() => setShow(true)}
+              title='مشاهده'
+              icon={<Icon icon='bxs:show' />}
+            />
+            <Modal
+              show={show}
+              onClose={() => setShow(false)}
+              header={<h1>تحصیلات</h1>}>
+              <Grid
+                gap='0.25rem'
+                gridTemplateColumns='1fr 1fr'>
+                {values.map((value) => (
+                  <Education education={value} />
+                ))}
+              </Grid>
+            </Modal>
+          </Cell.Container>
+        );
+      },
+    },
+
+    // WORK EXPERIENCE ARRAY
+    {
+      field: "workExperience.works",
+      type: "MODAL",
+      headerName: "سوابق کاری",
+      cellRenderer(props) {
+        const values = props.value as IWork[];
+        const [show, setShow] = useState(false);
+        return (
+          <Cell.Container alignItems='center'>
+            <Button
+              type='button'
+              variant='primary'
+              onClick={() => setShow(true)}
+              title='مشاهده'
+              icon={<Icon icon='bxs:show' />}
+            />
+            <Modal
+              show={show}
+              onClose={() => setShow(false)}
+              header={<h1>سوابق کاری</h1>}>
+              <Grid
+                gap='0.25rem'
+                gridTemplateColumns='1fr 1fr'>
+                {values.map((value) => (
+                  <Work work={value} />
+                ))}
+              </Grid>
+            </Modal>
+          </Cell.Container>
+        );
+      },
+    },
+
+    // SKILLS ARRAY
+    {
+      field: "skills",
+      type: "MODAL",
+      headerName: "مهارت‌ها",
+      cellRenderer(props) {
+        const values = props.value as ISkill[];
+        const [show, setShow] = useState(false);
+        return (
+          <Cell.Container alignItems='center'>
+            <Button
+              type='button'
+              variant='primary'
+              onClick={() => setShow(true)}
+              title='مشاهده'
+              icon={<Icon icon='bxs:show' />}
+            />
+            <Modal
+              show={show}
+              onClose={() => setShow(false)}
+              header={<h1>مهارت‌ها</h1>}>
+              <Grid
+                gap='0.25rem'
+                gridTemplateColumns='1fr 1fr'>
+                {values.map((value) => (
+                  <Skill skill={value} />
+                ))}
+              </Grid>
+            </Modal>
+          </Cell.Container>
+        );
+      },
+    },
+
+    // SOFTWARE ARRAY
+    {
+      field: "software",
+      type: "MODAL",
+      headerName: "نرم‌افزارها",
+      cellRenderer(props) {
+        const values = props.value as ISkill[];
+        const [show, setShow] = useState(false);
+        return (
+          <Cell.Container alignItems='center'>
+            <Button
+              type='button'
+              variant='primary'
+              onClick={() => setShow(true)}
+              title='مشاهده'
+              icon={<Icon icon='bxs:show' />}
+            />
+            <Modal
+              show={show}
+              onClose={() => setShow(false)}
+              header={<h1>نرم‌افزارها</h1>}>
+              <Grid
+                gap='0.25rem'
+                gridTemplateColumns='1fr 1fr'>
+                {values.map((value) => (
+                  <Skill skill={value} />
+                ))}
+              </Grid>
+            </Modal>
+          </Cell.Container>
+        );
+      },
+    },
+
+    // LANGUAGES ARRAY
+    {
+      field: "languages",
+      type: "MODAL",
+      headerName: "زبان‌ها",
+      cellRenderer(props) {
+        const values = props.value as ISkill[];
+        const [show, setShow] = useState(false);
+        return (
+          <Cell.Container alignItems='center'>
+            <Button
+              type='button'
+              variant='primary'
+              onClick={() => setShow(true)}
+              title='مشاهده'
+              icon={<Icon icon='bxs:show' />}
+            />
+            <Modal
+              show={show}
+              onClose={() => setShow(false)}
+              header={<h1>زبان‌ها</h1>}>
+              <Grid
+                gap='0.25rem'
+                gridTemplateColumns='1fr 1fr'>
+                {values.map((value) => (
+                  <Skill skill={value} />
+                ))}
+              </Grid>
+            </Modal>
+          </Cell.Container>
+        );
+      },
+    },
+  ];
+
   return {
     pagesColDef,
     usersColDef,
@@ -761,5 +1006,6 @@ export default function useColdefs() {
     ordersColDef,
     productsColDef,
     categoriesColDef,
+    applysColDef,
   };
 }

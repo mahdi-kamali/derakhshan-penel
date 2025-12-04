@@ -6,6 +6,7 @@ import Select from "@/components/UI/Table/components/Cells/Select/Select";
 import Status from "@/components/UI/Table/components/Cells/Status/Status";
 import ToolTip from "@/components/UI/Table/components/Cells/ToolTip/ToolTip";
 import Switch from "./Switch/Switch";
+import Modal from "./Modal/Modal";
 
 export default {
   Container,
@@ -16,4 +17,5 @@ export default {
   Date,
   Image,
   Switch,
+  Modal,
 };

@@ -315,4 +315,185 @@ export const SECTIONS_OPTIONS: IOption<ISection["type"]>[] = [
   },
 ];
 
+export const EDUCATIONS_OPTIONS: IOption<string>[] = [
+  {
+    type: "child",
+    label: "سیکل",
+    value: "middle_school",
+    icon: <Icon icon='mdi:school-outline' />,
+    variant: "light",
+  },
+  {
+    type: "child",
+    label: "دیپلم",
+    value: "high_school",
+    icon: <Icon icon='mdi:school' />,
+    variant: "primary",
+  },
+  {
+    type: "child",
+    label: "فوق دیپلم",
+    value: "associate_degree",
+    icon: <Icon icon='mdi:book-open-page-variant' />,
+    variant: "primary",
+  },
+  {
+    type: "child",
+    label: "لیسانس",
+    value: "bachelor",
+    icon: <Icon icon='mdi:graduation-cap' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "فوق لیسانس",
+    value: "master",
+    icon: <Icon icon='mdi:school-graduate' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "دکترا",
+    value: "phd",
+    icon: <Icon icon='mdi:school' />,
+    variant: "indigo",
+  },
+];
 
+export const LEVELS_OPTIONS: IOption<string>[] = [
+  {
+    type: "child",
+    label: "کم",
+    value: "LOW",
+    icon: <Icon icon='mdi:arrow-down-bold' />,
+    variant: "light",
+  },
+  {
+    type: "child",
+    label: "متوسط",
+    value: "MEDIUM",
+    icon: <Icon icon='mdi:arrow-right-bold' />,
+    variant: "warning",
+  },
+  {
+    type: "child",
+    label: "زیاد",
+    value: "HIGH",
+    icon: <Icon icon='mdi:arrow-up-bold' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "خیلی زیاد",
+    value: "VERY_HIGH",
+    icon: <Icon icon='mdi:arrow-up-bold-circle' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "خیلی کم",
+    value: "VERY_LOW",
+    icon: <Icon icon='mdi:arrow-down-bold-circle' />,
+    variant: "danger",
+  },
+];
+
+export const MARITAL_STATUS_OPTIONS: IOption<string>[] = [
+  {
+    type: "child",
+    label: "مجرد",
+    value: "single",
+    icon: <Icon icon='mdi:account' />,
+    variant: "primary",
+  },
+  {
+    type: "child",
+    label: "متاهل",
+    value: "married",
+    icon: <Icon icon='mdi:account-group' />,
+    variant: "success",
+  },
+];
+
+export const MILITARY_STATUS_OPTIONS: IOption<string>[] = [
+  {
+    type: "child",
+    label: "مشمول",
+    value: "draft",
+    icon: <Icon icon='mdi:clipboard-text' />,
+    variant: "warning",
+  },
+  {
+    type: "child",
+    label: "معاف",
+    value: "exempt",
+    icon: <Icon icon='mdi:shield-check' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "غیبت",
+    value: "absence",
+    icon: <Icon icon='mdi:account-off' />,
+    variant: "danger",
+  },
+  {
+    type: "child",
+    label: "پایان خدمت",
+    value: "completed",
+    icon: <Icon icon='mdi:check-circle' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "در حال خدمت",
+    value: "serving",
+    icon: <Icon icon='mdi:account-military' />,
+    variant: "primary",
+  },
+  {
+    type: "child",
+    label: "معافیت تحصیلی",
+    value: "education-exempt",
+    icon: <Icon icon='mdi:book' />,
+    variant: "indigo",
+  },
+  {
+    type: "child",
+    label: "معافیت پزشکی",
+    value: "medical-exempt",
+    icon: <Icon icon='mdi:hospital-box' />,
+    variant: "danger",
+  },
+];
+
+export const BOOLEAN_OPTIONS: IOption<string>[] = [
+  {
+    type: "child",
+    label: "دارم",
+    value: "true",
+    icon: <Icon icon='mdi:check-circle' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "بله",
+    value: "yes",
+    icon: <Icon icon='mdi:check-circle' />,
+    variant: "success",
+  },
+  {
+    type: "child",
+    label: "نخیر",
+    value: "no",
+    icon: <Icon icon='mdi:close-circle' />,
+    variant: "danger",
+  },
+  {
+    type: "child",
+    label: "ندارم",
+    value: "false",
+    icon: <Icon icon='mdi:close-circle' />,
+    variant: "danger",
+  },
+];

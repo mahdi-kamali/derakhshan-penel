@@ -1,7 +1,6 @@
 import { GridOptions } from "ag-grid-community";
 import Cell from "@/components/UI/Table/components/Cells/Cell";
 import { IOption } from "@/types/Variables";
-import { ShowQuestion } from "@/common/toast/toast";
 import { IColDef } from "@/hooks/useColDefs/useColdefs.types";
 
 interface IProps {
@@ -68,11 +67,9 @@ const gridOptions: GridOptions = {
             </Cell.Container>
           );
         }
-
         case "TEXT": {
           return <Cell.Container>{value}</Cell.Container>;
         }
-
         case "IMAGE": {
           return (
             <Cell.Container>
@@ -80,7 +77,6 @@ const gridOptions: GridOptions = {
             </Cell.Container>
           );
         }
-
         case "SWITCH": {
           return (
             <Cell.Container>
@@ -90,6 +86,10 @@ const gridOptions: GridOptions = {
               />
             </Cell.Container>
           );
+        }
+
+        case "MODAL": {
+          return <></>;
         }
       }
       return <Cell.Container>{value}</Cell.Container>;

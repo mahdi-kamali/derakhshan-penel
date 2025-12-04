@@ -1,12 +1,9 @@
 import { IFile } from "../Gallery/gallery.types";
 
-
-
 export interface ICareer {
   EN: IData;
   FA: IData;
   _id?: string;
- 
 }
 
 interface IData {
@@ -17,6 +14,3 @@ interface IData {
   image: IFile;
   type: "SPECIAL" | "NORMAL";
 }
-
-
-

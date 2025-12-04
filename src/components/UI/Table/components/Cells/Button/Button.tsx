@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import Spinners from "@/components/UI/Spinners";
 import Cell from "@/components/UI/Table/components/Cells/Cell";
 
-interface IProps {
+export interface IButtonProps {
   variant: IVariant;
   icon: React.ReactElement;
   title: string;
@@ -12,7 +12,7 @@ interface IProps {
   loading?: boolean;
 }
 
-export default function Button(props: IProps) {
+export default function Button(props: IButtonProps) {
   const {
     variant,
     icon,

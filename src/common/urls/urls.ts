@@ -50,6 +50,9 @@ export const ADMIN_URLS = {
     getByID: ADMIN_URL_BASE_URL + "/careers/{_id}",
     deleteById: ADMIN_URL_BASE_URL + "/careers/{_id}",
     updateById: ADMIN_URL_BASE_URL + "/careers/{_id}",
+    APPLYS: {
+      list: ADMIN_URL_BASE_URL + "/careers/applys/",
+    },
   },
   CONTACT_US: {
     create: ADMIN_URL_BASE_URL + "/contact-us/",

@@ -46,6 +46,13 @@ export default function useAppRouter() {
           icon: <Icon icon='material-symbols-light:new-label' />,
           shownSideBar: true,
         },
+        {
+          id: 4,
+          title: "رزومه های دریافتی",
+          path: "/dashboard/careers/resumes",
+          icon: <Icon icon='material-symbols-light:new-label' />,
+          shownSideBar: true,
+        },
       ],
     },
     {
