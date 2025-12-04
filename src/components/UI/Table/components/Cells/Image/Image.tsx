@@ -7,5 +7,6 @@ interface IProps {
 
 export default function Image(props: IProps) {
   const { image } = props;
+
   return <img className={styles.image} src={IMAGE_URL(image.path)} />;
 }

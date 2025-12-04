@@ -756,7 +756,18 @@ export default function useColdefs() {
     },
   ];
 
+  // APPLYS
   const applysColDef: IColDef<ICareerApply>[] = [
+    {
+      type: "IMAGE",
+      field: "career_id.FA.image",
+      headerName: "عکس آگهی",
+    },
+    {
+      type: "TEXT",
+      field: "career_id.FA.title",
+      headerName: "عنوان آگهی",
+    },
     // PERSONAL INFO
     {
       field: "personalInfo.fullName",

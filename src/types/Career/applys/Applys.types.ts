@@ -1,6 +1,8 @@
+import { ICareer } from "../Career.types";
+
 export interface ICareerApply {
   _id: string;
-  career_id: string;
+  career_id: ICareer;
   personalInfo: PersonalInfo;
   education: IEducation[];
   workExperience: IWorkExperience;
