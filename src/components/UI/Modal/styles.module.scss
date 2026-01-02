@@ -1,6 +1,6 @@
 .content {
     margin: auto;
-    height: 50dvh;
+    height: 70dvh;
     min-width: 50dvw;
     width: max-content !important;
     color: black;
@@ -13,7 +13,29 @@
     grid-template-rows: 1fr max-content;
     gap: 1rem;
     .children {
+        padding-left: 1em;
         overflow: auto;
+        /* scrollbar width */
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        /* track */
+        &::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        /* thumb */
+        &::-webkit-scrollbar-thumb {
+            background: red;
+            border-radius: 10px;
+        }
+
+        /* thumb hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
     }
 }
 

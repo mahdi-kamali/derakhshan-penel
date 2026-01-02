@@ -47,7 +47,6 @@ export default function BODY(props: IProps) {
             icon={<Icon icon='line-md:image-filled' />}
             name={GetFieldName(language, "image")}
             onChange={(image) => {
-              console.log(image);
               setFieldValue(GetFieldName(language, "image"), image);
             }}
             title='عکس آگهی'
