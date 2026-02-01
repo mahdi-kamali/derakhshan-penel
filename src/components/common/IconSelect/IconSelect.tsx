@@ -21,6 +21,9 @@ export default function IconSelect(props: IProps) {
     onSuccess(data, variables, context) {
       setIcons(data.data);
     },
+    onError(error, variables, context) {
+      console.log(error)
+    },
   });
 
   const [slug, setSlug] = useState("");

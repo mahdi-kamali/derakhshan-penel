@@ -102,6 +102,20 @@ export default function TableExport(props: IProps) {
         if (value === true) return <p>بله</p>;
         if (value === false) return <p>خیر</p>;
       }
+
+      case "DOWNLOAD": {
+        return (
+          <Cell.Download
+            href={value.path}
+            title='دانلود'
+            variant='success'
+          />
+        );
+      }
+
+      case "MODAL": {
+        return header.exportComponent(value);
+      }
     }
 
     return <></>;

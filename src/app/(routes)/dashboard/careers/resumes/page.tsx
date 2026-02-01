@@ -16,8 +16,6 @@ export default function page() {
     api: GetCareerApplys,
   });
 
-  console.log(data)
-
   return (
     <PageContainer
       title='لیست رزومه ها'

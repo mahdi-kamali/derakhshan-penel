@@ -2,7 +2,8 @@ import { GridOptions } from "ag-grid-community";
 import Cell from "@/components/UI/Table/components/Cells/Cell";
 import { IOption } from "@/types/Variables";
 import { IColDef } from "@/hooks/useColDefs/useColdefs.types";
-import * as lodash from "lodash"
+import * as lodash from "lodash";
+import { IMAGE_URL } from "@/common/urls/urls";
 interface IProps {
   colDef: {
     type: IColDef<any>["type"];
@@ -71,8 +72,6 @@ const gridOptions: GridOptions = {
           return <Cell.Container>{value}</Cell.Container>;
         }
         case "IMAGE": {
-
-
           return (
             <Cell.Container>
               <Cell.Image image={value} />
@@ -89,9 +88,16 @@ const gridOptions: GridOptions = {
             </Cell.Container>
           );
         }
-
-        case "MODAL": {
-          return <></>;
+        case "DOWNLOAD": {
+          return (
+            <Cell.Container>
+              <Cell.Download
+                title='دانلود'
+                variant='success'
+                href={value.path}
+              />
+            </Cell.Container>
+          );
         }
       }
       return <Cell.Container>{value}</Cell.Container>;

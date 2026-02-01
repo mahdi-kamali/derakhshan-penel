@@ -22,8 +22,6 @@ export default function Page() {
         colDefs={ordersColDef}
         rowData={data}
       />
-
-      
     </PageContainer>
   );
 }

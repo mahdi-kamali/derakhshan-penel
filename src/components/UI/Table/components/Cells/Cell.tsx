@@ -7,6 +7,7 @@ import Status from "@/components/UI/Table/components/Cells/Status/Status";
 import ToolTip from "@/components/UI/Table/components/Cells/ToolTip/ToolTip";
 import Switch from "./Switch/Switch";
 import Modal from "./Modal/Modal";
+import Download from "./Download/Download";
 
 export default {
   Container,
@@ -18,4 +19,5 @@ export default {
   Image,
   Switch,
   Modal,
+  Download,
 };

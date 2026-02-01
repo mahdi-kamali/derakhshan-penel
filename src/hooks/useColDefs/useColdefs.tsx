@@ -482,9 +482,9 @@ export default function useColdefs() {
       },
     },
     {
-      headerName: "تصویر",
+      headerName: "تصویر (ZIP)",
       field: "product.image",
-      type: "IMAGE",
+      type: "DOWNLOAD",
     },
 
     // ---- ORDER INFO ----
@@ -870,6 +870,17 @@ export default function useColdefs() {
           </Cell.Container>
         );
       },
+      exportComponent(values: IEducation[]) {
+        return (
+          <Grid
+            gap='0.25rem'
+            gridTemplateColumns='1fr '>
+            {values.map((value) => (
+              <Education education={value} />
+            ))}
+          </Grid>
+        );
+      },
     },
 
     // WORK EXPERIENCE ARRAY
@@ -895,13 +906,24 @@ export default function useColdefs() {
               header={<h1>سوابق کاری</h1>}>
               <Grid
                 gap='0.25rem'
-                gridTemplateColumns='1fr 1fr'>
+                gridTemplateColumns='1fr'>
                 {values.map((value) => (
                   <Work work={value} />
                 ))}
               </Grid>
             </Modal>
           </Cell.Container>
+        );
+      },
+      exportComponent(values: IWork[]) {
+        return (
+          <Grid
+            gap='0.25rem'
+            gridTemplateColumns='1fr '>
+            {values.map((value) => (
+              <Work work={value} />
+            ))}
+          </Grid>
         );
       },
     },
@@ -938,6 +960,17 @@ export default function useColdefs() {
           </Cell.Container>
         );
       },
+      exportComponent(values: ISkill[]) {
+        return (
+          <Grid
+            gap='0.25rem'
+            gridTemplateColumns='1fr'>
+            {values.map((value) => (
+              <Skill skill={value} />
+            ))}
+          </Grid>
+        );
+      },
     },
 
     // SOFTWARE ARRAY
@@ -972,6 +1005,17 @@ export default function useColdefs() {
           </Cell.Container>
         );
       },
+      exportComponent(values: ISkill[]) {
+        return (
+          <Grid
+            gap='0.25rem'
+            gridTemplateColumns='1fr '>
+            {values.map((value) => (
+              <Skill skill={value} />
+            ))}
+          </Grid>
+        );
+      },
     },
 
     // LANGUAGES ARRAY
@@ -1004,6 +1048,17 @@ export default function useColdefs() {
               </Grid>
             </Modal>
           </Cell.Container>
+        );
+      },
+      exportComponent(values: ISkill[]) {
+        return (
+          <Grid
+            gap='0.25rem'
+            gridTemplateColumns='1fr '>
+            {values.map((value) => (
+              <Skill skill={value} />
+            ))}
+          </Grid>
         );
       },
     },

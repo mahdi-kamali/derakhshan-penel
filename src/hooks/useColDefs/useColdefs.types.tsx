@@ -38,6 +38,7 @@ type TOOLTIP<T> = {
 
 type MODAL<T> = {
   type: "MODAL";
+  exportComponent: (values: any[]) => JSX.Element;
 } & Base<T>;
 
 type ACTIONS<T> = {
@@ -50,6 +51,10 @@ type TEXT<T> = {
 
 type IMAGE<T> = {
   type: "IMAGE";
+} & Base<T>;
+
+type DOWNLOAD<T> = {
+  type: "DOWNLOAD";
 } & Base<T>;
 
 type SWITCH<T> = {
@@ -68,6 +73,7 @@ type TYPES<T> =
   | IMAGE<T>
   | TEXT<T>
   | SWITCH<T>
-  | MODAL<T>;
+  | MODAL<T>
+  | DOWNLOAD<T>;
 
 export type IColDef<T> = {} & (TYPES<T> | undefined);

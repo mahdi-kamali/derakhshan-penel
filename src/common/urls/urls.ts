@@ -91,6 +91,14 @@ export const ADMIN_URLS = {
   },
 };
 
+
+
+
+export const STORAGE_URL = (path: string) => {
+  return `${SERVER_BASE_URL}${path}`;
+};
+
+
 export const IMAGE_URL = (path: string) => {
   return `${SERVER_BASE_URL}${path}`;
 };

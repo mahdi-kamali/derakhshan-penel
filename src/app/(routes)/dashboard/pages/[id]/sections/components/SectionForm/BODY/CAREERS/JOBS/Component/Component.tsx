@@ -39,7 +39,7 @@ export default function Component(props: IProps) {
         maxHeight={"30rem"}
         overflow='auto'
         variant="primary">
-        <Grid gap={"1rem"}>
+        <Grid gap={"1rem"} width={"30rem"}>
           {jobs.map((job, index) => {
             return (
               <Career

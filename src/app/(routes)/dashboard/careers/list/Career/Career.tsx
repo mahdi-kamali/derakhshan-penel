@@ -43,7 +43,7 @@ export default function Career(props: IProps) {
     <Group header={career.FA.title}>
       <Grid
         gridTemplateColumns={"1fr 1fr"}
-        gap={"1rem"}>
+        gap={"1rem"}minHeight={"25rem"}>
         <Component
           language={LanguagesENUM.FA}
           career={career}
