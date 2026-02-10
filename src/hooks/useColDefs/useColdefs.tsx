@@ -756,6 +756,9 @@ export default function useColdefs() {
     },
   ];
 
+
+
+
   // APPLYS
   const applysColDef: IColDef<ICareerApply>[] = [
     {
